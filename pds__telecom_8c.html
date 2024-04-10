@@ -1,0 +1,1181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Complex - Projeto de Engenharia II: Referência ao ficheiro src/MIMO/pds_telecom.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="mycomplex.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Complex - Projeto de Engenharia II
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('pds__telecom_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Funções</a>  </div>
+  <div class="headertitle">
+<div class="title">Referência ao ficheiro pds_telecom.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &quot;../matrizes/matrizes.h&quot;</code><br />
+<code>#include &lt;gsl/gsl_linalg.h&gt;</code><br />
+<code>#include &lt;time.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;libgen.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Diagrama de dependências de inclusão para pds_telecom.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="pds__telecom_8c__incl.png" border="0" usemap="#asrc_2MIMO_2pds__telecom_8c" alt=""/></div>
+<map name="asrc_2MIMO_2pds__telecom_8c" id="asrc_2MIMO_2pds__telecom_8c">
+<area shape="rect" title=" " alt="" coords="464,5,645,32"/>
+<area shape="rect" title=" " alt="" coords="5,80,72,107"/>
+<area shape="rect" title=" " alt="" coords="97,80,167,107"/>
+<area shape="rect" title=" " alt="" coords="191,80,355,107"/>
+<area shape="rect" title=" " alt="" coords="379,80,498,107"/>
+<area shape="rect" title=" " alt="" coords="523,80,587,107"/>
+<area shape="rect" title=" " alt="" coords="611,80,679,107"/>
+<area shape="rect" title=" " alt="" coords="703,80,774,107"/>
+<area shape="rect" title=" " alt="" coords="799,80,873,107"/>
+<area shape="rect" title=" " alt="" coords="897,80,980,107"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:ab15359648110ac707e2aa5658f4a4312"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pds__telecom_8c.html#ab15359648110ac707e2aa5658f4a4312">tx_data_read</a> (FILE *fp, long int numBytes)</td></tr>
+<tr class="memdesc:ab15359648110ac707e2aa5658f4a4312"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lê os dados de um arquivo e os converte em um array de inteiros.  <a href="pds__telecom_8c.html#ab15359648110ac707e2aa5658f4a4312">Mais...</a><br /></td></tr>
+<tr class="separator:ab15359648110ac707e2aa5658f4a4312"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c53251390c9eb0d28ab94ed4aae790f"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pds__telecom_8c.html#a1c53251390c9eb0d28ab94ed4aae790f">tx_data_padding</a> (int *s, long int numBytes, int Npadding)</td></tr>
+<tr class="memdesc:a1c53251390c9eb0d28ab94ed4aae790f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Realiza o preenchimento (padding) dos dados com zeros.  <a href="pds__telecom_8c.html#a1c53251390c9eb0d28ab94ed4aae790f">Mais...</a><br /></td></tr>
+<tr class="separator:a1c53251390c9eb0d28ab94ed4aae790f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e9ef869be44bc1f0821428f9fd46ce6"><td class="memItemLeft" align="right" valign="top">complexo *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pds__telecom_8c.html#a0e9ef869be44bc1f0821428f9fd46ce6">tx_qam_mapper</a> (int *s, long int numQAM)</td></tr>
+<tr class="memdesc:a0e9ef869be44bc1f0821428f9fd46ce6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mapeia os dados binários em uma sequência de símbolos QAM.  <a href="pds__telecom_8c.html#a0e9ef869be44bc1f0821428f9fd46ce6">Mais...</a><br /></td></tr>
+<tr class="separator:a0e9ef869be44bc1f0821428f9fd46ce6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf975ddcdcb95ab5e2fc261a9f32dfa3"><td class="memItemLeft" align="right" valign="top">complexo **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pds__telecom_8c.html#acf975ddcdcb95ab5e2fc261a9f32dfa3">tx_layer_mapper</a> (complexo *v, int Nstream, long int Nsymbol)</td></tr>
+<tr class="memdesc:acf975ddcdcb95ab5e2fc261a9f32dfa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mapeia os dados de um vetor para uma matriz de complexos.  <a href="pds__telecom_8c.html#acf975ddcdcb95ab5e2fc261a9f32dfa3">Mais...</a><br /></td></tr>
+<tr class="separator:acf975ddcdcb95ab5e2fc261a9f32dfa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af34debfab01a53ac162063f8df9286d2"><td class="memItemLeft" align="right" valign="top">complexo *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pds__telecom_8c.html#af34debfab01a53ac162063f8df9286d2">rx_layer_demapper</a> (complexo **mtx_stream, int Nstream, long int numBytes)</td></tr>
+<tr class="memdesc:af34debfab01a53ac162063f8df9286d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mapeia os dados de um vetor para uma matriz de complexos.  <a href="pds__telecom_8c.html#af34debfab01a53ac162063f8df9286d2">Mais...</a><br /></td></tr>
+<tr class="separator:af34debfab01a53ac162063f8df9286d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f4c4ca22fa77b6407d3e8d91118ee0a"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pds__telecom_8c.html#a6f4c4ca22fa77b6407d3e8d91118ee0a">rx_qam_demapper</a> (complexo *vmap, long int numQAM)</td></tr>
+<tr class="memdesc:a6f4c4ca22fa77b6407d3e8d91118ee0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Desmapeia os símbolos QAM para dados binários.  <a href="pds__telecom_8c.html#a6f4c4ca22fa77b6407d3e8d91118ee0a">Mais...</a><br /></td></tr>
+<tr class="separator:a6f4c4ca22fa77b6407d3e8d91118ee0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93398a6e73daf2dd1866ab475486468c"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pds__telecom_8c.html#a93398a6e73daf2dd1866ab475486468c">rx_data_depadding</a> (int *s, long int numBytes, int Nstream)</td></tr>
+<tr class="memdesc:a93398a6e73daf2dd1866ab475486468c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retira os símbolos "nulos" que foram preenchidos (padding).  <a href="pds__telecom_8c.html#a93398a6e73daf2dd1866ab475486468c">Mais...</a><br /></td></tr>
+<tr class="separator:a93398a6e73daf2dd1866ab475486468c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1a0b1e728db06c6e0e3eb03eeae5bc9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pds__telecom_8c.html#ac1a0b1e728db06c6e0e3eb03eeae5bc9">rx_data_write</a> (int *s, long int numBytes, char *fileName)</td></tr>
+<tr class="memdesc:ac1a0b1e728db06c6e0e3eb03eeae5bc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recupera os bytes originais.  <a href="pds__telecom_8c.html#ac1a0b1e728db06c6e0e3eb03eeae5bc9">Mais...</a><br /></td></tr>
+<tr class="separator:ac1a0b1e728db06c6e0e3eb03eeae5bc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac913d43ccaf5bcca38ad71bec62e8a20"><td class="memItemLeft" align="right" valign="top">complexo **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pds__telecom_8c.html#ac913d43ccaf5bcca38ad71bec62e8a20">produto_matricial_geral</a> (complexo **mtx_a, complexo **mtx_b, int linhas_a, int colunas_a, int linhas_b, int colunas_b)</td></tr>
+<tr class="memdesc:ac913d43ccaf5bcca38ad71bec62e8a20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Realiza a multiplicação de duas matrizes complexas.  <a href="pds__telecom_8c.html#ac913d43ccaf5bcca38ad71bec62e8a20">Mais...</a><br /></td></tr>
+<tr class="separator:ac913d43ccaf5bcca38ad71bec62e8a20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3ef00a466212849dc5175bafdf784a1"><td class="memItemLeft" align="right" valign="top">complexo **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pds__telecom_8c.html#ad3ef00a466212849dc5175bafdf784a1">channel_gen</a> (int Nr, int Nt, float minValue, float maxValue)</td></tr>
+<tr class="memdesc:ad3ef00a466212849dc5175bafdf784a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gera uma matriz complexa representando um canal de transferência.  <a href="pds__telecom_8c.html#ad3ef00a466212849dc5175bafdf784a1">Mais...</a><br /></td></tr>
+<tr class="separator:ad3ef00a466212849dc5175bafdf784a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2b3c8e848a59d549a6b741993d38897"><td class="memItemLeft" align="right" valign="top">complexo **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pds__telecom_8c.html#ab2b3c8e848a59d549a6b741993d38897">channel_rd_gen</a> (int Nr, int Nt, float minValue, float maxValue)</td></tr>
+<tr class="memdesc:ab2b3c8e848a59d549a6b741993d38897"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gera uma matriz de complexos representando o ruído do canal de comunicação.  <a href="pds__telecom_8c.html#ab2b3c8e848a59d549a6b741993d38897">Mais...</a><br /></td></tr>
+<tr class="separator:ab2b3c8e848a59d549a6b741993d38897"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a734a93faf0ec02dc693c60447ae509d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pds__telecom_8c.html#a734a93faf0ec02dc693c60447ae509d6">transposed_channel_svd</a> (complexo **H, complexo **Uh, complexo **Sh, complexo **Vh, int Tlinhas, int Tcolunas)</td></tr>
+<tr class="memdesc:a734a93faf0ec02dc693c60447ae509d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Realiza a decomposição em valores singulares (SVD) de uma matriz transposta.  <a href="pds__telecom_8c.html#a734a93faf0ec02dc693c60447ae509d6">Mais...</a><br /></td></tr>
+<tr class="separator:a734a93faf0ec02dc693c60447ae509d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a573cdce01ea489eff0d0c6cf835f0fcb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pds__telecom_8c.html#a573cdce01ea489eff0d0c6cf835f0fcb">square_channel_svd</a> (complexo **H, complexo **Uh, complexo **Sh, complexo **Vh, int linhas, int colunas)</td></tr>
+<tr class="memdesc:a573cdce01ea489eff0d0c6cf835f0fcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Realiza a decomposição em valores singulares (SVD) de uma matriz quadrada.  <a href="pds__telecom_8c.html#a573cdce01ea489eff0d0c6cf835f0fcb">Mais...</a><br /></td></tr>
+<tr class="separator:a573cdce01ea489eff0d0c6cf835f0fcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cb2e62a8dca68179c8f01f5a3dc6eb7"><td class="memItemLeft" align="right" valign="top">complexo **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pds__telecom_8c.html#a7cb2e62a8dca68179c8f01f5a3dc6eb7">tx_precoder</a> (complexo **V, complexo **x, int Vlinhas, int Vcolunas, int xlinhas, int xcolunas)</td></tr>
+<tr class="memdesc:a7cb2e62a8dca68179c8f01f5a3dc6eb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Realiza a multiplicação dos símbolos das streams pela matriz V resultante da decomposição SVD.  <a href="pds__telecom_8c.html#a7cb2e62a8dca68179c8f01f5a3dc6eb7">Mais...</a><br /></td></tr>
+<tr class="separator:a7cb2e62a8dca68179c8f01f5a3dc6eb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a253ab9e633bedd7bedcbf54813bdbae7"><td class="memItemLeft" align="right" valign="top">complexo **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pds__telecom_8c.html#a253ab9e633bedd7bedcbf54813bdbae7">channel_transmission</a> (complexo **H, complexo **xp, int Hlinhas, int Hcolunas, int xpLinhas, int xpColunas, int r)</td></tr>
+<tr class="memdesc:a253ab9e633bedd7bedcbf54813bdbae7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Realiza a transmissão do sinal através do canal de comunicação.  <a href="pds__telecom_8c.html#a253ab9e633bedd7bedcbf54813bdbae7">Mais...</a><br /></td></tr>
+<tr class="separator:a253ab9e633bedd7bedcbf54813bdbae7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac74b7bdbb1d3a2c1749d2238ebdd6733"><td class="memItemLeft" align="right" valign="top">complexo **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pds__telecom_8c.html#ac74b7bdbb1d3a2c1749d2238ebdd6733">rx_combiner</a> (complexo **U, complexo **xt, int Ulinhas, int Ucolunas, int xtLinhas, int xtColunas)</td></tr>
+<tr class="memdesc:ac74b7bdbb1d3a2c1749d2238ebdd6733"><td class="mdescLeft">&#160;</td><td class="mdescRight">Realiza a multiplicação dos sinais recebidos pelas Nr antenas pela matriz U.  <a href="pds__telecom_8c.html#ac74b7bdbb1d3a2c1749d2238ebdd6733">Mais...</a><br /></td></tr>
+<tr class="separator:ac74b7bdbb1d3a2c1749d2238ebdd6733"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e8d036544b7e74e391913edf992f155"><td class="memItemLeft" align="right" valign="top">complexo **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pds__telecom_8c.html#a2e8d036544b7e74e391913edf992f155">rx_feq</a> (complexo **S, complexo **xc, int Slinhas, int Scolunas, int xcLinhas, int xcColunas)</td></tr>
+<tr class="memdesc:a2e8d036544b7e74e391913edf992f155"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retira a interferência do canal H (matriz S da decomposição SVD)  <a href="pds__telecom_8c.html#a2e8d036544b7e74e391913edf992f155">Mais...</a><br /></td></tr>
+<tr class="separator:a2e8d036544b7e74e391913edf992f155"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86b7986db8bfdf925e8c6e14c1b4e02a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pds__telecom_8c.html#a86b7986db8bfdf925e8c6e14c1b4e02a">gera_estatistica</a> (int *s, int *finals, long int numBytes)</td></tr>
+<tr class="memdesc:a86b7986db8bfdf925e8c6e14c1b4e02a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gera estatísticas sobre os símbolos QAM transmitidos e recebidos.  <a href="pds__telecom_8c.html#a86b7986db8bfdf925e8c6e14c1b4e02a">Mais...</a><br /></td></tr>
+<tr class="separator:a86b7986db8bfdf925e8c6e14c1b4e02a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b6aefb69421016701b4bf643a6fe61e"><td class="memItemLeft" align="right" valign="top"><a id="a7b6aefb69421016701b4bf643a6fe61e"></a>
+complexo **&#160;</td><td class="memItemRight" valign="bottom"><b>expandMatrix</b> (complexo **matriz, int linhas, int colunas, int linhasExtras, int padding)</td></tr>
+<tr class="separator:a7b6aefb69421016701b4bf643a6fe61e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fc483247769776ab74af61caf8b616f"><td class="memItemLeft" align="right" valign="top"><a id="a6fc483247769776ab74af61caf8b616f"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_running_in_wsl</b> ()</td></tr>
+<tr class="separator:a6fc483247769776ab74af61caf8b616f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75acb5f2a6b6c148958a55c275cbdb11"><td class="memItemLeft" align="right" valign="top"><a id="a75acb5f2a6b6c148958a55c275cbdb11"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_wsl_there</b> ()</td></tr>
+<tr class="separator:a75acb5f2a6b6c148958a55c275cbdb11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top"><a id="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> ()</td></tr>
+<tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentação das funções</h2>
+<a id="ad3ef00a466212849dc5175bafdf784a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3ef00a466212849dc5175bafdf784a1">&#9670;&nbsp;</a></span>channel_gen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">complexo** channel_gen </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Nr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Nt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>minValue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>maxValue</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gera uma matriz complexa representando um canal de transferência. </p>
+<p>Esta função gera uma matriz complexa que representa um canal de transferência entre antenas transmissoras e antenas receptoras. Os elementos da matriz são números complexos aleatórios dentro do intervalo [minValue, maxValue], com a parte imaginária definida como zero.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Nr</td><td>O número de antenas receptoras. </td></tr>
+    <tr><td class="paramname">Nt</td><td>O número de antenas transmissoras. </td></tr>
+    <tr><td class="paramname">minValue</td><td>O valor mínimo para os elementos da matriz. </td></tr>
+    <tr><td class="paramname">maxValue</td><td>O valor máximo para os elementos da matriz.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Uma matriz complexa representando o canal de transferência gerado. O chamador é responsável por liberar a memória alocada utilizando a função free(). </dd></dl>
+
+</div>
+</div>
+<a id="ab2b3c8e848a59d549a6b741993d38897"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2b3c8e848a59d549a6b741993d38897">&#9670;&nbsp;</a></span>channel_rd_gen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">complexo** channel_rd_gen </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Nr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Nt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>minValue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>maxValue</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gera uma matriz de complexos representando o ruído do canal de comunicação. </p>
+<p>Esta função gera uma matriz de complexos representando o ruído do canal de comunicação. A matriz resultante possui dimensões Nr x Nt, onde Nr é o número de antenas receptoras e Nt é o número de antenas transmissoras. Os valores dos elementos da matriz são gerados aleatoriamente dentro do intervalo definido por minValue e maxValue.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Nr</td><td>Número de antenas receptoras. </td></tr>
+    <tr><td class="paramname">Nt</td><td>Número de antenas transmissoras. </td></tr>
+    <tr><td class="paramname">minValue</td><td>Valor mínimo para os elementos da matriz. </td></tr>
+    <tr><td class="paramname">maxValue</td><td>Valor máximo para os elementos da matriz.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>A matriz de complexos representando o ruído do canal de comunicação. </dd></dl>
+
+</div>
+</div>
+<a id="a253ab9e633bedd7bedcbf54813bdbae7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a253ab9e633bedd7bedcbf54813bdbae7">&#9670;&nbsp;</a></span>channel_transmission()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">complexo** channel_transmission </td>
+          <td>(</td>
+          <td class="paramtype">complexo **&#160;</td>
+          <td class="paramname"><em>H</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">complexo **&#160;</td>
+          <td class="paramname"><em>xp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Hlinhas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Hcolunas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>xpLinhas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>xpColunas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>r</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Realiza a transmissão do sinal através do canal de comunicação. </p>
+<p>Esta função realiza a transmissão do sinal de entrada xp através do canal de comunicação representado pela matriz H. O resultado da transmissão é calculado multiplicando a matriz H pelo vetor xp. Além disso, um ruído Rd é adicionado ao sinal transmitido para simular as características do canal de comunicação.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">H</td><td>Matriz representando o canal de comunicação. </td></tr>
+    <tr><td class="paramname">xp</td><td>Vetor de entrada a ser transmitido pelo canal. </td></tr>
+    <tr><td class="paramname">Hlinhas</td><td>O número de linhas da matriz H. </td></tr>
+    <tr><td class="paramname">Hcolunas</td><td>O número de colunas da matriz H. </td></tr>
+    <tr><td class="paramname">xpLinhas</td><td>O número de linhas do vetor xp. </td></tr>
+    <tr><td class="paramname">xpColunas</td><td>O número de colunas do vetor xp. </td></tr>
+    <tr><td class="paramname">r</td><td>O valor que define o intervalo do ruído a ser adicionado: 0 para [-0.001, 0.001], 1 para [-0.01, 0.01], 2 para [-0.5, 0.5], 3 para [-1, 1].</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>A matriz resultante da transmissão do sinal pelo canal, acrescido do ruído. </dd></dl>
+
+</div>
+</div>
+<a id="a86b7986db8bfdf925e8c6e14c1b4e02a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86b7986db8bfdf925e8c6e14c1b4e02a">&#9670;&nbsp;</a></span>gera_estatistica()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gera_estatistica </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>finals</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long int&#160;</td>
+          <td class="paramname"><em>numBytes</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gera estatísticas sobre os símbolos QAM transmitidos e recebidos. </p>
+<p>Esta função calcula estatísticas sobre os símbolos QAM transmitidos e recebidos, comparando o vetor de símbolos transmitidos <code>s</code> com o vetor de símbolos recebidos <code>finals</code>. A função conta o número de acertos e erros de transmissão e calcula a porcentagem de símbolos recebidos com erro em relação ao total de símbolos.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>O vetor de símbolos QAM transmitidos. </td></tr>
+    <tr><td class="paramname">finals</td><td>O vetor de símbolos QAM recebidos. </td></tr>
+    <tr><td class="paramname">numBytes</td><td>O número de bytes transmitidos (considerando 4 símbolos QAM por byte).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Nota</dt><dd>Esta função exibe as estatísticas na saída padrão. </dd></dl>
+
+</div>
+</div>
+<a id="ac913d43ccaf5bcca38ad71bec62e8a20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac913d43ccaf5bcca38ad71bec62e8a20">&#9670;&nbsp;</a></span>produto_matricial_geral()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">complexo** produto_matricial_geral </td>
+          <td>(</td>
+          <td class="paramtype">complexo **&#160;</td>
+          <td class="paramname"><em>mtx_a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">complexo **&#160;</td>
+          <td class="paramname"><em>mtx_b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>linhas_a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>colunas_a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>linhas_b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>colunas_b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Realiza a multiplicação de duas matrizes complexas. </p>
+<p>Esta função realiza a multiplicação de duas matrizes complexas <code>mtx_a</code> e <code>mtx_b</code>, resultando em uma nova matriz <code>matriz</code>. A validação da operação de multiplicação é feita verificando se o número de colunas da matriz <code>mtx_a</code> é igual ao número de linhas da matriz <code>mtx_b</code>. Caso não seja compatível, a função exibe uma mensagem de erro e encerra o programa.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mtx_a</td><td>A primeira matriz complexa a ser multiplicada. </td></tr>
+    <tr><td class="paramname">mtx_b</td><td>A segunda matriz complexa a ser multiplicada. </td></tr>
+    <tr><td class="paramname">linhas_a</td><td>O número de linhas da matriz <code>mtx_a</code>. </td></tr>
+    <tr><td class="paramname">colunas_a</td><td>O número de colunas da matriz <code>mtx_a</code>. </td></tr>
+    <tr><td class="paramname">linhas_b</td><td>O número de linhas da matriz <code>mtx_b</code>. </td></tr>
+    <tr><td class="paramname">colunas_b</td><td>O número de colunas da matriz <code>mtx_b</code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Uma nova matriz complexa resultante da multiplicação de <code>mtx_a</code> e <code>mtx_b</code>. O chamador é responsável por liberar a memória alocada utilizando a função free().</dd></dl>
+<dl class="section note"><dt>Nota</dt><dd>Esta função assume que as matrizes <code>mtx_a</code> e <code>mtx_b</code> foram alocadas corretamente e têm dimensões compatíveis para a multiplicação. </dd></dl>
+
+</div>
+</div>
+<a id="ac74b7bdbb1d3a2c1749d2238ebdd6733"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac74b7bdbb1d3a2c1749d2238ebdd6733">&#9670;&nbsp;</a></span>rx_combiner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">complexo** rx_combiner </td>
+          <td>(</td>
+          <td class="paramtype">complexo **&#160;</td>
+          <td class="paramname"><em>U</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">complexo **&#160;</td>
+          <td class="paramname"><em>xt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Ulinhas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Ucolunas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>xtLinhas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>xtColunas</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Realiza a multiplicação dos sinais recebidos pelas Nr antenas pela matriz U. </p>
+<p>Esta função utiliza a matriz transposta U e multiplica pelo o vetor xt que estamos transmitindo gerando o vetor combinado xc.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">U</td><td>Matriz U alocada. </td></tr>
+    <tr><td class="paramname">xt</td><td>Vetor xt transmitido. </td></tr>
+    <tr><td class="paramname">Ulinhas</td><td>O número de linhas da matriz U. </td></tr>
+    <tr><td class="paramname">Ucolunas</td><td>O número de colunas da matriz U. </td></tr>
+    <tr><td class="paramname">xtlinhas</td><td>O número de linhas do vetor xt. </td></tr>
+    <tr><td class="paramname">xtcolunas</td><td>O número de colunas do vetor xt.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Retorna o vetor xc </dd></dl>
+
+</div>
+</div>
+<a id="a93398a6e73daf2dd1866ab475486468c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93398a6e73daf2dd1866ab475486468c">&#9670;&nbsp;</a></span>rx_data_depadding()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int* rx_data_depadding </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long int&#160;</td>
+          <td class="paramname"><em>numBytes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Nstream</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retira os símbolos "nulos" que foram preenchidos (padding). </p>
+<p>Esta função desfaz o processamento feito pela a função data_padding fazendo com o que o nosso vetor volte ao tamanho original </p><dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>Ponteiro para o array de inteiros contendo os dados. </td></tr>
+    <tr><td class="paramname">numBytes</td><td>O número de bytes original antes do preenchimento. </td></tr>
+    <tr><td class="paramname">Nstream</td><td>O número de streams para o qual o tamanho do array deve ser um múltiplo. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Um ponteiro para o array de inteiros com os valores originais </dd></dl>
+
+</div>
+</div>
+<a id="ac1a0b1e728db06c6e0e3eb03eeae5bc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1a0b1e728db06c6e0e3eb03eeae5bc9">&#9670;&nbsp;</a></span>rx_data_write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rx_data_write </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long int&#160;</td>
+          <td class="paramname"><em>numBytes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>fileName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Recupera os bytes originais. </p>
+<p>Esta função recupera os bytes originais a cada 4 dígitos realizando o processo inverso da função data_read, pegando o vetor de inteiros s e decodificando em bytes de caracteres para gerar o arquivo fileName </p><dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>Ponteiro para o array de inteiros contendo os dados. </td></tr>
+    <tr><td class="paramname">numBytes</td><td>O número de bytes original antes do preenchimento. </td></tr>
+    <tr><td class="paramname">Nstream</td><td>O número de streams para o qual o tamanho do array deve ser um múltiplo. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Um ponteiro para o array de inteiros com os valores originais </dd></dl>
+
+</div>
+</div>
+<a id="a2e8d036544b7e74e391913edf992f155"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e8d036544b7e74e391913edf992f155">&#9670;&nbsp;</a></span>rx_feq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">complexo** rx_feq </td>
+          <td>(</td>
+          <td class="paramtype">complexo **&#160;</td>
+          <td class="paramname"><em>S</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">complexo **&#160;</td>
+          <td class="paramname"><em>xc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Slinhas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Scolunas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>xcLinhas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>xcColunas</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retira a interferência do canal H (matriz S da decomposição SVD) </p>
+<p>Esta função utiliza cada elemento não nulo da matriz S e e divide por cada elemento do vetor xc de mesma linha.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">S</td><td>Matriz S alocada. </td></tr>
+    <tr><td class="paramname">xc</td><td>Vetor xt transmitido. </td></tr>
+    <tr><td class="paramname">Slinhas</td><td>O número de linhas da matriz U. </td></tr>
+    <tr><td class="paramname">Scolunas</td><td>O número de colunas da matriz U. </td></tr>
+    <tr><td class="paramname">xctlinhas</td><td>O número de linhas do vetor xt. </td></tr>
+    <tr><td class="paramname">xcColunas</td><td>O número de colunas do vetor xt.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Retorna o vetor xf </dd></dl>
+
+</div>
+</div>
+<a id="af34debfab01a53ac162063f8df9286d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af34debfab01a53ac162063f8df9286d2">&#9670;&nbsp;</a></span>rx_layer_demapper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">complexo* rx_layer_demapper </td>
+          <td>(</td>
+          <td class="paramtype">complexo **&#160;</td>
+          <td class="paramname"><em>mtx_stream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Nstream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long int&#160;</td>
+          <td class="paramname"><em>numBytes</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mapeia os dados de um vetor para uma matriz de complexos. </p>
+<p>Esta função mapeia os dados de um vetor de complexos em uma matriz de complexos, onde cada posição da matriz representa um stream de transmissão. A função aloca memória dinamicamente para a matriz de complexos e retorna um ponteiro para a matriz.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mtx_stream</td><td>Ponteiro para o vetor de complexos contendo os dados a serem mapeados. </td></tr>
+    <tr><td class="paramname">Nstream</td><td>O número de streams de transmissão. </td></tr>
+    <tr><td class="paramname">numBytes</td><td>O número de bytes contidos no vetor de complexos. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Um ponteiro para a matriz de complexos que contém os dados mapeados, ou NULL em caso de erro na alocação de memória. </dd></dl>
+
+</div>
+</div>
+<a id="a6f4c4ca22fa77b6407d3e8d91118ee0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f4c4ca22fa77b6407d3e8d91118ee0a">&#9670;&nbsp;</a></span>rx_qam_demapper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int* rx_qam_demapper </td>
+          <td>(</td>
+          <td class="paramtype">complexo *&#160;</td>
+          <td class="paramname"><em>vmap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long int&#160;</td>
+          <td class="paramname"><em>numQAM</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Desmapeia os símbolos QAM para dados binários. </p>
+<p>Esta função recebe um vetor de complexos representando símbolos QAM e realiza o desmapeamento desses símbolos para dados binários. Cada símbolo QAM é associado a um valor binário, de acordo com a seguinte tabela:</p><ul>
+<li>(-1, 1) -&gt; 0</li>
+<li>(-1, -1) -&gt; 1</li>
+<li>(1, 1) -&gt; 2</li>
+<li>(1, -1) -&gt; 3</li>
+<li>Outros -&gt; 4</li>
+</ul>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vmap</td><td>Vetor de complexos representando os símbolos QAM. </td></tr>
+    <tr><td class="paramname">numQAM</td><td>O número de símbolos QAM no vetor.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Um vetor de inteiros contendo os dados binários desmapeados dos símbolos QAM. O chamador é responsável por liberar a memória alocada utilizando a função free(). </dd></dl>
+
+</div>
+</div>
+<a id="a573cdce01ea489eff0d0c6cf835f0fcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a573cdce01ea489eff0d0c6cf835f0fcb">&#9670;&nbsp;</a></span>square_channel_svd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void square_channel_svd </td>
+          <td>(</td>
+          <td class="paramtype">complexo **&#160;</td>
+          <td class="paramname"><em>H</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">complexo **&#160;</td>
+          <td class="paramname"><em>Uh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">complexo **&#160;</td>
+          <td class="paramname"><em>Sh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">complexo **&#160;</td>
+          <td class="paramname"><em>Vh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>linhas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>colunas</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Realiza a decomposição em valores singulares (SVD) de uma matriz quadrada. </p>
+<p>Esta função realiza a decomposição em valores singulares (SVD) de uma matriz quadrada, representada por uma matriz de complexos. A função utiliza apenas a parte real dos elementos da matriz para realizar o cálculo do SVD. A função aloca memória dinamicamente para as matrizes U, V e o vetor S, e armazena os resultados da decomposição nas matrizes Uh, Sh e Vh.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">H</td><td>Matriz quadrada de complexos a ser decomposta. </td></tr>
+    <tr><td class="paramname">Uh</td><td>Matriz U resultante da decomposição, contendo os autovetores à esquerda. </td></tr>
+    <tr><td class="paramname">Sh</td><td>Matriz S resultante da decomposição, contendo os valores singulares na diagonal. </td></tr>
+    <tr><td class="paramname">Vh</td><td>Matriz V resultante da decomposição, contendo os autovetores à direita. </td></tr>
+    <tr><td class="paramname">linhas</td><td>O número de linhas da matriz H. </td></tr>
+    <tr><td class="paramname">colunas</td><td>O número de colunas da matriz H.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Nota</dt><dd>Esta função considera apenas a parte real dos elementos da matriz H para o cálculo do SVD. A função imprime um aviso se elementos complexos forem detectados na matriz H, mas ignora a parte imaginária para o cálculo. </dd></dl>
+
+</div>
+</div>
+<a id="a734a93faf0ec02dc693c60447ae509d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a734a93faf0ec02dc693c60447ae509d6">&#9670;&nbsp;</a></span>transposed_channel_svd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void transposed_channel_svd </td>
+          <td>(</td>
+          <td class="paramtype">complexo **&#160;</td>
+          <td class="paramname"><em>H</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">complexo **&#160;</td>
+          <td class="paramname"><em>Uh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">complexo **&#160;</td>
+          <td class="paramname"><em>Sh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">complexo **&#160;</td>
+          <td class="paramname"><em>Vh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Tlinhas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Tcolunas</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Realiza a decomposição em valores singulares (SVD) de uma matriz transposta. </p>
+<p>Esta função realiza a decomposição em valores singulares (SVD) de uma matriz transposta, representada por uma matriz de complexos. A função utiliza apenas a parte real dos elementos da matriz para realizar o cálculo do SVD. A função aloca memória dinamicamente para as matrizes U, V e o vetor S, e armazena os resultados da decomposição nas matrizes Uh, Sh e Vh.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">H</td><td>Matriz transposta de complexos a ser decomposta. </td></tr>
+    <tr><td class="paramname">Uh</td><td>Matriz U resultante da decomposição, contendo os autovetores à esquerda. </td></tr>
+    <tr><td class="paramname">Sh</td><td>Matriz S resultante da decomposição, contendo os valores singulares na diagonal. </td></tr>
+    <tr><td class="paramname">Vh</td><td>Matriz V resultante da decomposição, contendo os autovetores à direita. </td></tr>
+    <tr><td class="paramname">Tlinhas</td><td>O número de linhas da matriz transposta H. </td></tr>
+    <tr><td class="paramname">Tcolunas</td><td>O número de colunas da matriz transposta H.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Nota</dt><dd>Esta função considera apenas a parte real dos elementos da matriz H para o cálculo do SVD. A função imprime um aviso se elementos complexos forem detectados na matriz H, mas ignora a parte imaginária para o cálculo.</dd></dl>
+<dl class="section remark"><dt>Observações</dt><dd>A função <code>transposed_channel_svd</code> é similar a função <code>square_channel_svd</code>, porém há uma diferença crucial entre elas. A função <code>square_channel_svd</code> recebe uma matriz quadrada como parâmetro, enquanto a função <code>transposed_channel_svd</code> recebe a matriz transposta como parâmetro. A matriz transposta é obtida trocando as linhas pelas colunas da matriz original. Portanto, enquanto a função <code>square_channel_svd</code> realiza a decomposição em valores singulares (SVD) de uma matriz quadrada, a função <code>transposed_channel_svd</code> realiza a decomposição SVD da matriz transposta. </dd></dl>
+
+</div>
+</div>
+<a id="a1c53251390c9eb0d28ab94ed4aae790f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c53251390c9eb0d28ab94ed4aae790f">&#9670;&nbsp;</a></span>tx_data_padding()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int* tx_data_padding </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long int&#160;</td>
+          <td class="paramname"><em>numBytes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Npadding</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Realiza o preenchimento (padding) dos dados com zeros. </p>
+<p>Esta função realiza o preenchimento (padding) dos dados com zeros para garantir que o tamanho do array de inteiros seja um múltiplo inteiro do número de streams (Nstream). Se o número de bytes (numBytes) for um múltiplo exato do número de streams, a função retorna o array de inteiros original sem alterações. Caso contrário, a função realoca memória para o array de inteiros e preenche o espaço adicional com zeros.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>Ponteiro para o array de inteiros contendo os dados. </td></tr>
+    <tr><td class="paramname">numBytes</td><td>O número de bytes original antes do preenchimento. </td></tr>
+    <tr><td class="paramname">Nstream</td><td>O número de streams para o qual o tamanho do array deve ser um múltiplo. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Um ponteiro para o array de inteiros com o preenchimento realizado, ou NULL em caso de erro na alocação de memória. </dd></dl>
+
+</div>
+</div>
+<a id="ab15359648110ac707e2aa5658f4a4312"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab15359648110ac707e2aa5658f4a4312">&#9670;&nbsp;</a></span>tx_data_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int* tx_data_read </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long int&#160;</td>
+          <td class="paramname"><em>numBytes</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lê os dados de um arquivo e os converte em um array de inteiros. </p>
+<p>Esta função lê os dados binários de um arquivo e os converte em um array de inteiros, em que cada inteiro representa 2 bits de dados. A função aloca memória dinamicamente para o array de inteiros e retorna um ponteiro para o início do array.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fp</td><td>Ponteiro para o arquivo a ser lido. </td></tr>
+    <tr><td class="paramname">numBytes</td><td>O número de bytes a serem lidos do arquivo. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Um ponteiro para o array de inteiros que contém os dados convertidos, ou NULL em caso de erro na alocação de memória.</dd></dl>
+<dl class="section note"><dt>Nota</dt><dd>O chamador é responsável por liberar a memória alocada para o array de inteiros quando não precisar mais dele, usando a função free(). </dd></dl>
+
+</div>
+</div>
+<a id="acf975ddcdcb95ab5e2fc261a9f32dfa3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf975ddcdcb95ab5e2fc261a9f32dfa3">&#9670;&nbsp;</a></span>tx_layer_mapper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">complexo** tx_layer_mapper </td>
+          <td>(</td>
+          <td class="paramtype">complexo *&#160;</td>
+          <td class="paramname"><em>v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Nstream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long int&#160;</td>
+          <td class="paramname"><em>Nsymbol</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mapeia os dados de um vetor para uma matriz de complexos. </p>
+<p>Esta função mapeia os dados de um vetor de complexos em uma matriz de complexos, onde cada posição da matriz representa um stream de transmissão. A função aloca memória dinamicamente para a matriz de complexos e retorna um ponteiro para a matriz.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>Ponteiro para o vetor de complexos contendo os dados a serem mapeados. </td></tr>
+    <tr><td class="paramname">Nstream</td><td>O número de streams de transmissão. </td></tr>
+    <tr><td class="paramname">numBytes</td><td>O número de bytes contidos no vetor de complexos. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Um ponteiro para a matriz de complexos que contém os dados mapeados, ou NULL em caso de erro na alocação de memória. </dd></dl>
+
+</div>
+</div>
+<a id="a7cb2e62a8dca68179c8f01f5a3dc6eb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cb2e62a8dca68179c8f01f5a3dc6eb7">&#9670;&nbsp;</a></span>tx_precoder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">complexo** tx_precoder </td>
+          <td>(</td>
+          <td class="paramtype">complexo **&#160;</td>
+          <td class="paramname"><em>V</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">complexo **&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Vlinhas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Vcolunas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>xlinhas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>xcolunas</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Realiza a multiplicação dos símbolos das streams pela matriz V resultante da decomposição SVD. </p>
+<p>Esta função utiliza a matriz V e multiplica pelo o vetor x que estamos transmitindo gerando o vetor precodificado xp .</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">V</td><td>Matriz V que foi alocada na main. </td></tr>
+    <tr><td class="paramname">x</td><td>Vetor x que está sendo transmitido </td></tr>
+    <tr><td class="paramname">Vlinhas</td><td>O número de linhas da matriz V. </td></tr>
+    <tr><td class="paramname">Vcolunas</td><td>O número de colunas da matriz V. </td></tr>
+    <tr><td class="paramname">xlinhas</td><td>O número de linhas do vetor x. </td></tr>
+    <tr><td class="paramname">xcolunas</td><td>O número de colunas do vetor x.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Retorna o vetor xp </dd></dl>
+
+</div>
+</div>
+<a id="a0e9ef869be44bc1f0821428f9fd46ce6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e9ef869be44bc1f0821428f9fd46ce6">&#9670;&nbsp;</a></span>tx_qam_mapper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">complexo* tx_qam_mapper </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long int&#160;</td>
+          <td class="paramname"><em>numQAM</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mapeia os dados binários em uma sequência de símbolos QAM. </p>
+<p>Esta função mapeia os dados binários em uma sequência de símbolos QAM (Quadrature Amplitude Modulation) representados por números complexos. A função aloca memória dinamicamente para o vetor de complexos e retorna um ponteiro para o vetor.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>Ponteiro para o array de inteiros contendo os dados binários. </td></tr>
+    <tr><td class="paramname">numBytes</td><td>O número de bytes contidos no array de inteiros. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Um ponteiro para o vetor de complexos que contém os símbolos QAM mapeados, ou NULL em caso de erro na alocação de memória. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_10885a9296a0c4572008c172e9c86d2e.html">MIMO</a></li><li class="navelem"><a class="el" href="pds__telecom_8c.html">pds_telecom.c</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+var pds__telecom_8c =
+[
+    [ "channel_gen", "pds__telecom_8c.html#ad3ef00a466212849dc5175bafdf784a1", null ],
+    [ "channel_rd_gen", "pds__telecom_8c.html#ab2b3c8e848a59d549a6b741993d38897", null ],
+    [ "channel_transmission", "pds__telecom_8c.html#a253ab9e633bedd7bedcbf54813bdbae7", null ],
+    [ "expandMatrix", "pds__telecom_8c.html#a7b6aefb69421016701b4bf643a6fe61e", null ],
+    [ "gera_estatistica", "pds__telecom_8c.html#a86b7986db8bfdf925e8c6e14c1b4e02a", null ],
+    [ "is_running_in_wsl", "pds__telecom_8c.html#a6fc483247769776ab74af61caf8b616f", null ],
+    [ "is_wsl_there", "pds__telecom_8c.html#a75acb5f2a6b6c148958a55c275cbdb11", null ],
+    [ "main", "pds__telecom_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4", null ],
+    [ "produto_matricial_geral", "pds__telecom_8c.html#ac913d43ccaf5bcca38ad71bec62e8a20", null ],
+    [ "rx_combiner", "pds__telecom_8c.html#ac74b7bdbb1d3a2c1749d2238ebdd6733", null ],
+    [ "rx_data_depadding", "pds__telecom_8c.html#a93398a6e73daf2dd1866ab475486468c", null ],
+    [ "rx_data_write", "pds__telecom_8c.html#ac1a0b1e728db06c6e0e3eb03eeae5bc9", null ],
+    [ "rx_feq", "pds__telecom_8c.html#a2e8d036544b7e74e391913edf992f155", null ],
+    [ "rx_layer_demapper", "pds__telecom_8c.html#af34debfab01a53ac162063f8df9286d2", null ],
+    [ "rx_qam_demapper", "pds__telecom_8c.html#a6f4c4ca22fa77b6407d3e8d91118ee0a", null ],
+    [ "square_channel_svd", "pds__telecom_8c.html#a573cdce01ea489eff0d0c6cf835f0fcb", null ],
+    [ "transposed_channel_svd", "pds__telecom_8c.html#a734a93faf0ec02dc693c60447ae509d6", null ],
+    [ "tx_data_padding", "pds__telecom_8c.html#a1c53251390c9eb0d28ab94ed4aae790f", null ],
+    [ "tx_data_read", "pds__telecom_8c.html#ab15359648110ac707e2aa5658f4a4312", null ],
+    [ "tx_layer_mapper", "pds__telecom_8c.html#acf975ddcdcb95ab5e2fc261a9f32dfa3", null ],
+    [ "tx_precoder", "pds__telecom_8c.html#a7cb2e62a8dca68179c8f01f5a3dc6eb7", null ],
+    [ "tx_qam_mapper", "pds__telecom_8c.html#a0e9ef869be44bc1f0821428f9fd46ce6", null ]
+];
