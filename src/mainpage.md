@@ -15,7 +15,7 @@ For more information: https://github.com/jvictorferreira3301/Projeto-de-Engenhar
 <div style="display: flex; justify-content: center;">
   <div style="display: flex; gap: 130px;">
     <img src="ufpa.png" alt="UFPA's logo" style="width: 300px;">
-    <img src="logo.png" alt="SBRT 2024 logo" style="width: 500px;">
+    <img src="logo.png" alt="SBRT 2024 logo" style="width: 200px;">
   </div>
 </div>
 
