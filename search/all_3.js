@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['pds_5ftelecom_2ec_5',['pds_telecom.c',['../pds__telecom_8c.html',1,'']]],
-  ['produto_5fmatricial_5fgeral_6',['produto_matricial_geral',['../pds__telecom_8c.html#ac913d43ccaf5bcca38ad71bec62e8a20',1,'pds_telecom.c']]]
+  ['hermitiana_8',['hermitiana',['../matrizes_8c.html#a4c238ca1a9358c2ed01b2d855575d528',1,'matrizes.c']]]
 ];

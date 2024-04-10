@@ -28,6 +28,14 @@ var NAVTREE =
     [ "My Complex", "index.html", [
       [ "Integrantes", "index.html#autotoc_md1", null ]
     ] ],
+    [ "Classes", "annotated.html", [
+      [ "Lista de componentes", "annotated.html", "annotated_dup" ],
+      [ "Índice dos componentes", "classes.html", null ],
+      [ "Componentes membro", "functions.html", [
+        [ "Tudo", "functions.html", null ],
+        [ "Variáveis", "functions_vars.html", null ]
+      ] ]
+    ] ],
     [ "Ficheiros", "files.html", [
       [ "Lista de ficheiros", "files.html", "files_dup" ],
       [ "Membros dos Ficheiros", "globals.html", [
@@ -40,7 +48,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"dir_10885a9296a0c4572008c172e9c86d2e.html"
+"annotated.html"
 ];
 
 var SYNCONMSG = 'clique para desativar a sincronização do painel';

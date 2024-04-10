@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['transposed_5fchannel_5fsvd_33',['transposed_channel_svd',['../pds__telecom_8c.html#a734a93faf0ec02dc693c60447ae509d6',1,'pds_telecom.c']]],
-  ['tx_5fdata_5fpadding_34',['tx_data_padding',['../pds__telecom_8c.html#a1c53251390c9eb0d28ab94ed4aae790f',1,'pds_telecom.c']]],
-  ['tx_5fdata_5fread_35',['tx_data_read',['../pds__telecom_8c.html#ab15359648110ac707e2aa5658f4a4312',1,'pds_telecom.c']]],
-  ['tx_5flayer_5fmapper_36',['tx_layer_mapper',['../pds__telecom_8c.html#acf975ddcdcb95ab5e2fc261a9f32dfa3',1,'pds_telecom.c']]],
-  ['tx_5fprecoder_37',['tx_precoder',['../pds__telecom_8c.html#a7cb2e62a8dca68179c8f01f5a3dc6eb7',1,'pds_telecom.c']]],
-  ['tx_5fqam_5fmapper_38',['tx_qam_mapper',['../pds__telecom_8c.html#a0e9ef869be44bc1f0821428f9fd46ce6',1,'pds_telecom.c']]]
+  ['printcomplex_57',['printComplex',['../matrizes_8c.html#ac55611891ace3a8f1ee1bd1061ac101d',1,'matrizes.c']]],
+  ['produto_5finterno_58',['produto_interno',['../matrizes_8c.html#ae9090c46635b64006efe6fa3ba3d0471',1,'matrizes.c']]],
+  ['produto_5fmatricial_59',['produto_matricial',['../matrizes_8c.html#a3892c48c33910aef73bc59273c596b5b',1,'matrizes.c']]],
+  ['produto_5fmatricial_5fgeral_60',['produto_matricial_geral',['../pds__telecom_8c.html#ac913d43ccaf5bcca38ad71bec62e8a20',1,'pds_telecom.c']]],
+  ['produto_5fpor_5fescalar_61',['produto_por_escalar',['../matrizes_8c.html#a55b2aefd735321dabcb5669eb4d14ffc',1,'matrizes.c']]]
 ];
