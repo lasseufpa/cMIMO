@@ -1,0 +1,13 @@
+#Arquivos a serem ser ignorados
+*.exe
+*.o
+*.bak
+.vscode
+/Doxyfiles/html
+/Doxyfiles/latex
+src/MIMO/output
+build/
+*.out
+Teste_*
+Tx_msg
+
