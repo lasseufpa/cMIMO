@@ -1,36 +1,38 @@
-name: CI-CD-Doxygen  # Nome do fluxo de trabalho
+name: CI-CD-Doxygen  # Workflow name
 
 on:
   push:
     branches:
-      - main  # O fluxo de trabalho será acionado quando houver um push na branch 'main'
+      - main  # The workflow will be triggered when there's a push to the 'main' branch
 
 jobs:
-  build:  # Define um job chamado 'build'
-    runs-on: ubuntu-latest  # O job será executado na última versão do Ubuntu disponível
+  build:  # Defines a job named 'build'
+    runs-on: ubuntu-latest  # The job will run on the latest available version of Ubuntu
 
-    steps:  # Define os passos que serão executados no job
-      - name: Checkout code  # Primeiro passo: fazer checkout do código
-        uses: actions/checkout@v2  # Usa a ação 'checkout' na versão 2
+    steps:  # Defines the steps that will be executed in the job
+      - name: Checkout code  # First step: checkout the code
+        uses: actions/checkout@v2  # Uses the 'checkout' action version 2
 
-      - name: Install Doxygen  # Segundo passo: instalar Doxygen
-        run: sudo apt-get install -y doxygen  # Executa o comando para instalar Doxygen
+      - name: Install Doxygen  # Second step: install Doxygen
+        run: sudo apt-get install -y doxygen  # Executes the command to install Doxygen
 
-      - name: Install Graphviz  # Terceiro passo: instalar Graphviz
-        run: sudo apt-get install -y graphviz  # Executa o comando para instalar Graphviz
+      - name: Install Graphviz  # Third step: install Graphviz
+        run: sudo apt-get install -y graphviz  # Executes the command to install Graphviz
 
-      - name: Clone Doxygen Awesome theme  # Quarto passo: clonar o tema Doxygen Awesome
-        run: git clone https://github.com/jothepro/doxygen-awesome-css.git doxygen-awesome
-
-      - name: Build Doxygen documentation  # Quinto passo: gerar documentação Doxygen
+      - name: Clone Doxygen Awesome theme and Mainpage # Fourth step: clone the Doxygen Awesome theme
         run: |
-          doxygen -u Doxyfile  # Atualiza o arquivo de configuração Doxygen
-          echo "GENERATE_HTML = YES" >> Doxyfile  # Habilita a geração de HTML
-          echo "HTML_EXTRA_STYLESHEET = doxygen-awesome/doxygen-awesome.css" >> Doxyfile  # Especifica o caminho para o tema Doxygen Awesome
-          doxygen Doxyfile  # Gera a documentação com as configurações atualizadas
+          sudo mv figures/mainpage.md ../src
+          git clone https://github.com/jothepro/doxygen-awesome-css.git doxygen-awesome
+
+      - name: Build Doxygen documentation  # Fifth step: generate Doxygen documentation
+        run: |
+          doxygen -u Doxyfile  # Updates the Doxygen configuration file
+          echo "GENERATE_HTML = YES" >> Doxyfile  # Enables HTML generation
+          echo "HTML_EXTRA_STYLESHEET = doxygen-awesome/doxygen-awesome.css" >> Doxyfile  # Specifies the path to the Doxygen Awesome theme
+          doxygen Doxyfile  # Generates the documentation with the updated settings
           
-      - name: Deploy to GitHub Pages  # Sexto passo: implantar a documentação no GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3  # Usa a ação 'actions-gh-pages' na versão 3
+      - name: Deploy to GitHub Pages  # Sixth step: deploy the documentation to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3  # Uses the 'actions-gh-pages' action version 3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}  # Usa o token do GitHub para autenticação
-          publish_dir: ./docs/html  # Define o diretório que será publicado no GitHub Pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # Uses the GitHub token for authentication
+          publish_dir: ./docs/html  # Defines the directory that will be published to GitHub Pages
