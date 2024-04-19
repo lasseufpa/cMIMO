@@ -1,4 +1,4 @@
-/// @file matrizes.c
+/// @file matrix.c
 #include <stdio.h>
 #include <stdlib.h>
 #include "matrix.h"
@@ -391,18 +391,29 @@ void teste_todos(void)
 
 	calc_svd (mtx_13, l_13, c_13); 
 }
-/**###Função Transposta: 
- * A função `transposta` implementa a operação de transposição de matriz. Essa operação consiste em trocar as linhas pelas colunas da matriz de entrada.
-- A função `transposta` recebe três parâmetros: `mtx` (uma matriz de números complexos), `linhas` (o número de linhas da matriz) e `colunas` (o número de colunas da matriz).
-- Ela declara uma variável do tipo `complexo**` chamada `matriz`, que será usada para armazenar a matriz transposta.
-- Em seguida, a função aloca memória para a matriz `matriz` usando a função `allocateComplexMatrix`. A matriz `matriz` tem o tamanho `colunas x linhas`, ou seja, o número de colunas da matriz de entrada se torna o número de linhas da matriz transposta, e o número de linhas da matriz de entrada se torna o número de colunas da matriz transposta.
-- A função usa dois loops aninhados para percorrer cada elemento da matriz `mtx`. O loop externo itera pelas linhas e o loop interno itera pelas colunas.
-- Dentro do loop, a função atribui o valor real do elemento da matriz de entrada `mtx[c][l].real` ao elemento correspondente da matriz `matriz[l][c].real`.
-- A função atribui também o valor da parte imaginária do elemento da matriz de entrada `mtx[c][l].img` ao elemento correspondente da matriz `matriz[l][c].img`.
-- Depois que todos os elementos da matriz `mtx` são processados, a função retorna a matriz `matriz`, que contém a matriz transposta resultante.
+
+/**###Transpose Function: 
+ * The `transpose` function implements the matrix transpose operation. This operation consists of swapping 
+ * the rows and columns of the input matrix.
+- The `transpose` function takes three parameters: `mtx` (a matrix of complex numbers), `linhas` 
+(the number of rows in the matrix), and `colunas` (the number of columns in the matrix).
+- It declares a variable of type `complexo**` called `matriz`, which will be used to store the transposed matrix.
+- Then, the function allocates memory for the `matriz` matrix using the `allocateComplexMatrix` 
+function. The `matriz` matrix has the size `colunas x linhas`, that is, the number of columns 
+in the input matrix becomes the number of rows in the transposed matrix, and the number of rows 
+in the input matrix becomes the number of columns in the transposed matrix.
+- The function uses two nested loops to go through each element of the `mtx` matrix. The outer 
+loop iterates over the rows and the inner loop iterates over the columns.
+- Inside the loop, the function assigns the real value of the input matrix element `mtx[c][l].real` 
+to the corresponding element of the `matriz[l][c].real`.
+- The function also assigns the value of the imaginary part of the input matrix element `mtx[c][l].img` to 
+the corresponding element of the `matriz[l][c].img`.
+- After all elements of the `mtx` matrix are processed, the function returns the `matriz` matrix, which 
+contains the resulting transposed matrix.
  * @param[in] mtx, linhas, colunas
  * @param[out] mtx_transposta
  * */
+
 complexo **transposta(complexo** mtx,int linhas, int colunas)
 {
         complexo** matriz;
@@ -418,18 +429,27 @@ complexo **transposta(complexo** mtx,int linhas, int colunas)
 		}
     return matriz;
 }
-/**###Função Conjugada:
- *A função `conjugada` implementa a operação de matriz conjugada. Essa operação consiste em inverter o sinal da parte imaginária de cada elemento da matriz de entrada.
-- A função `conjugada` recebe três parâmetros: `mtx` (uma matriz de números complexos), `linhas` (o número de linhas da matriz) e `colunas` (o número de colunas da matriz).
-- Ela declara uma variável do tipo `complexo**` chamada `matrix`, que será usada para armazenar a matriz conjugada.
-- Em seguida, a função aloca memória para a matriz `matrix` usando a função `allocateComplexMatrix`. A matriz `matrix` tem o mesmo tamanho da matriz de entrada `mtx`.
-- A função usa dois loops aninhados para percorrer cada elemento da matriz `mtx`. O loop externo itera pelas linhas e o loop interno itera pelas colunas.
-- Dentro do loop, a função atribui o valor real do elemento da matriz de entrada `mtx[l][c].real` ao elemento correspondente da matriz `matrix[l][c].real`, preservando o mesmo valor.
-- A função inverte o sinal da parte imaginária do elemento da matriz de entrada, multiplicando-a por -1: `matrix[l][c].img = -mtx[l][c].img`.
-- Depois que todos os elementos da matriz `mtx` são processados, a função retorna a matriz `matrix`, que contém a matriz conjugada resultante. 
+
+/**###Conjugate Function:
+ *The `conjugate` function implements the operation of conjugate matrix. This operation consists of inverting the sign 
+ of the imaginary part of each element of the input matrix.
+- The `conjugate` function takes three parameters: `mtx` (a matrix of complex numbers), `linhas` (the number of 
+rows in the matrix), and `colunas` (the number of columns in the matrix).
+- It declares a variable of type `complexo**` called `matrix`, which will be used to store the conjugate matrix.
+- Then, the function allocates memory for the `matrix` using the `allocateComplexMatrix` function. The `matrix` 
+has the same size as the input matrix `mtx`.
+- The function uses two nested loops to go through each element of the `mtx` matrix. The outer loop iterates 
+over the rows and the inner loop iterates over the columns.
+- Inside the loop, the function assigns the real value of the input matrix element `mtx[l][c].real` to the 
+corresponding element of the `matrix[l][c].real`, preserving the same value.
+- The function inverts the sign of the imaginary part of the input matrix element, multiplying it by -1: 
+`matrix[l][c].img = -mtx[l][c].img`.
+- After all elements of the `mtx` matrix are processed, the function returns the `matrix`, which contains 
+the resulting conjugate matrix. 
  * @param[in] mtx, linhas, colunas
  * @param[out] mtx_conjugada
  * */
+
 complexo **conjugada(complexo **mtx, int linhas, int colunas) 
 {
     complexo ** matrix;

@@ -1,4 +1,4 @@
-/// @file Main.H
+/// @file Matriz.H
 #ifndef _H_MYCOMPLEX
 #define _H_MYCOMPLEX
 
