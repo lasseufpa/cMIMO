@@ -21,7 +21,7 @@ jobs:
 
       - name: Clone Doxygen Awesome theme and Mainpage # Fourth step: clone the Doxygen Awesome theme
         run: |
-          sudo mv figures/mainpage.md ../src
+          mv figures/mainpage.md src
           git clone https://github.com/jothepro/doxygen-awesome-css.git doxygen-awesome
 
       - name: Build Doxygen documentation  # Fifth step: generate Doxygen documentation
