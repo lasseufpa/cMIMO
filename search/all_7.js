@@ -1,9 +1,10 @@
 var searchData=
 [
-  ['transposed_5fchannel_5fsvd_17',['transposed_channel_svd',['../pds__telecom_8c.html#a734a93faf0ec02dc693c60447ae509d6',1,'pds_telecom.c']]],
-  ['tx_5fdata_5fpadding_18',['tx_data_padding',['../pds__telecom_8c.html#a1c53251390c9eb0d28ab94ed4aae790f',1,'pds_telecom.c']]],
-  ['tx_5fdata_5fread_19',['tx_data_read',['../pds__telecom_8c.html#ab15359648110ac707e2aa5658f4a4312',1,'pds_telecom.c']]],
-  ['tx_5flayer_5fmapper_20',['tx_layer_mapper',['../pds__telecom_8c.html#acf975ddcdcb95ab5e2fc261a9f32dfa3',1,'pds_telecom.c']]],
-  ['tx_5fprecoder_21',['tx_precoder',['../pds__telecom_8c.html#a7cb2e62a8dca68179c8f01f5a3dc6eb7',1,'pds_telecom.c']]],
-  ['tx_5fqam_5fmapper_22',['tx_qam_mapper',['../pds__telecom_8c.html#a0e9ef869be44bc1f0821428f9fd46ce6',1,'pds_telecom.c']]]
+  ['real_19',['real',['../structcomplexo.html#a03b73fa1cd3a656bf6829ebb68049b29',1,'complexo']]],
+  ['rx_5fcombiner_20',['rx_combiner',['../pds__telecom_8c.html#ac74b7bdbb1d3a2c1749d2238ebdd6733',1,'pds_telecom.c']]],
+  ['rx_5fdata_5fdepadding_21',['rx_data_depadding',['../pds__telecom_8c.html#a93398a6e73daf2dd1866ab475486468c',1,'pds_telecom.c']]],
+  ['rx_5fdata_5fwrite_22',['rx_data_write',['../pds__telecom_8c.html#ac1a0b1e728db06c6e0e3eb03eeae5bc9',1,'pds_telecom.c']]],
+  ['rx_5ffeq_23',['rx_feq',['../pds__telecom_8c.html#a2e8d036544b7e74e391913edf992f155',1,'pds_telecom.c']]],
+  ['rx_5flayer_5fdemapper_24',['rx_layer_demapper',['../pds__telecom_8c.html#af34debfab01a53ac162063f8df9286d2',1,'pds_telecom.c']]],
+  ['rx_5fqam_5fdemapper_25',['rx_qam_demapper',['../pds__telecom_8c.html#a6f4c4ca22fa77b6407d3e8d91118ee0a',1,'pds_telecom.c']]]
 ];

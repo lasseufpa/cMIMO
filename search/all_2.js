@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['img_5',['img',['../structcomplexo.html#a8d7210c71c450c19407b8cee679ad241',1,'complexo']]]
+  ['gera_5festatistica_7',['gera_estatistica',['../pds__telecom_8c.html#a86b7986db8bfdf925e8c6e14c1b4e02a',1,'pds_telecom.c']]]
 ];
