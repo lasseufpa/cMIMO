@@ -25,6 +25,9 @@
 var NAVTREE =
 [
   [ "My Complex - Projeto de Engenharia II", "index.html", [
+    [ "My Complex", "index.html", [
+      [ "Integrantes", "index.html#autotoc_md1", null ]
+    ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
