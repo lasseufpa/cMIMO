@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "../matrizes/matrizes.h"
+#include "../matrix/matrix.h"
 #include <gsl/gsl_linalg.h>
 #include <time.h>
 #include <math.h>

@@ -8,37 +8,60 @@ This project was developed for the Engineering Project II course taught in the s
 
 <img src="Doxyfiles/figures/mimosystem.png" alt="mimo-implementação">
 
-### 💻 Prerequisites
+### 💻 Requisites
 
 - GSL Library (`gsl/gsl_linalg.h`): The GNU Scientific Library (GSL) is a numerical library for C and C++. In this case, the linear algebra part is being used.
 
 - Makefile: a utility that automates the process of building programs, managing dependencies between source files.
 
-## Makefile Guide
-The Makefile in this project is used to automate the building process of the C project. Here's a guide on how to use it:
+To install the dependencies above run `install_dependencies.sh` with the following command in the terminal:
 
-### Variables
+```bash
+❯ sh install_dependencies.sh
+```
 
-The Makefile sets some variables for directories and flags used in the compilation process:
+# Makefile Guide
 
-- `src`: The directory containing the source files.
-- `matrices`: The directory containing matrix files.
-- `obj`: The directory where object files and the executable will be stored.
-- `out`: The name of the executable file.
+This Makefile is used to compile and clean a C project that includes the `pds_telecom.c` file and a matrix library. Here's a step-by-step guide on how to use this Makefile.
+
+## Variables
+
+- `src`: The directory where the project's source code is located.
+- `matrix`: The directory where the source code for the matrix library is located.
+- `obj`: The directory where the object files and the executable will be placed.
+- `out`: The name of the executable.
 - `w`: Warning flags for the gcc compiler.
-- `gsl`: Flags for linking the GSL (GNU Scientific Library) library.
-- `math`: Flag for linking the math library.
-- `font`: The main source file of the project.
-- `test_file`: Filename pattern for test files.
+- `gsl`: Flags to link the GSL library.
+- `math`: Flag to link the math library.
+- `font`: The path to the `pds_telecom.c` file.
+- `test_arq`: A pattern that matches the test files.
 
-### Commands
+## Rules
 
-- `all`: This is the default command. It creates the `obj` directory (if it doesn't exist) and compiles the project.
-- `$(out)`: This command compiles the main source file and links with the GSL library and the math library.
-- `$(obj)/matrices.o`: This command compiles the matrix file and generates an object file.
-- `$(obj)`: This command creates the `obj` directory if it doesn't exist.
-- `test`: This command runs the executable file.
-- `clean`: This command cleans the `obj` directory and removes all test files.
+- `all`: This is the default rule. It creates the object directory (if needed) and compiles the executable.
+- `$(obj)/$(out)`: This rule compiles the executable. It depends on the object file of the matrix library and the `pds_telecom.c` file.
+- `$(obj)/matrix.o`: This rule compiles the object file of the matrix library. It depends on the source code file of the matrix library.
+- `$(obj)`: This rule creates the object directory, if it doesn't already exist.
+- `test`: This rule runs the executable.
+- `clean`: This rule removes the object directory and all test files.
 
-To use the Makefile, you can type `make <command>` in the terminal, replacing `<command>` with the command you want to execute. For example, `make all` to compile the project, or `make clean` to clean.
+## How to Use
+
+To compile the project, run the following command in the terminal:
+
+```bash
+❯ make
+```
+
+To run the project, run the following command in the terminal:
+
+```bash
+❯ make test
+```
+
+To clean the project (remove the object directory and all test files), run the following command in the terminal:
+
+```bash
+❯ make clean
+```
 

@@ -8,26 +8,24 @@ math = -lm
 font = ./src/MIMO/pds_telecom.c
 test_arq = Test*
 
-all: $(obj) $(out)
+all: $(obj) $(obj)/$(out)
 
-$(out): $(obj)/matrix.o $(font)
+$(obj)/$(out): $(obj)/matrix.o $(font)
 	@echo -e "\n=== Generanting the file $@... ==="
-	gcc $< -o $(obj)/$@ $(font) $(gsl) $(math) $(w)
-	@echo -e "\n=== To run the code from 'pds_telecom.c': run the file $(obj)/$@.exe or the rule command 'make test'!! ==="
+	gcc $^ -o $@ $(gsl) $(math) $(w)
+	@echo -e "\n=== To run the code from 'pds_telecom.c': run the file $@ or the rule command 'make test'!! ==="
 
-$(obj)/matrix.o: $(matrix)/matrix.c  
+$(obj)/matrix.o: $(matrix)/matrix.c $(obj)
 	@echo -e "\n=== Generating the file $@... ==="
-	gcc -c $< -J $(obj) -o $@ $(gsl) $(w)
+	gcc -c $< -o $@ $(gsl) $(w)
 
 $(obj):
-	mkdir $(obj)
+	mkdir -p $(obj)
 	
 test: $(obj)/$(out)
-	@ $(obj)/$(out)
+	@./$(obj)/$(out)
 
 clean:
 	@echo -e "\n=== Starting the repository cleaning ==="
-	rm -rf $(obj)/*.exe
-	rm -rf $(obj)/
+	rm -rf $(obj)/*
 	rm -rf $(test_arq)
-
