@@ -12,8 +12,7 @@ typedef struct complexo {
     double real; ///< Parte real
     double img; ///< Parte imaginária
 } complexo;
-//Função: Teste de todas as funções de álgebra matricial do código.
-void teste_todos(void);
+
 //Função: Transposição de uma matriz.
 complexo** transposta(complexo **mtx, int linhas, int colunas);
 //Função: Conjugada de uma matriz complexa.
@@ -30,14 +29,7 @@ complexo produto_interno(complexo **v1, complexo **v2, int linhas, int colunas);
 complexo** produto_matricial(complexo **mtx_a, complexo **mtx_b, int linhas, int colunas);
 //Função: Multiplicação por um escalar k.
 complexo** produto_por_escalar(complexo **mtx, int linhas, int colunas, int k);
-//Funções de teste.
-void teste_transposta(void);
-void teste_conjugada(void);
-void teste_hermetiana(void);
-void teste_soma(void);
-void teste_subtracao(void);
-void teste_produto_interno(void);
-void teste_produto_matricial(void);
+
 //Manipulação de memória.
 complexo** allocateComplexMatrix(int linhas, int colunas);
 void LiberarMatriz(complexo **mtx, int linhas);

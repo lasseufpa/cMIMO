@@ -754,14 +754,8 @@ complexo** expandMatrix(complexo** matriz, int linhas, int colunas, int linhasEx
     return novaMatriz;
 }
 
-bool is_running_in_wsl(){
-    const char* wsl_interop = getenv("WSL_INTEROP");
-    return wsl_interop != NULL;
-}
+void c_mimo(int Nr, int Nt, int r, FILE*fp){
 
-bool is_wsl_there(){
-    const char* wsl_distro = getenv("WSL_DISTRO_NAME");
-    return wsl_distro != NULL;
 }
 
 int main() {
@@ -794,61 +788,6 @@ int main() {
             system(comando);
             printf("Legal! Pasta testes criada! Pronto para inciar!\n");
         }
-    #elif defined(_WIN32) || defined(_WIN64)
-        #include <windows.h>
-        #include <unistd.h>
-        if (is_wsl_there()){
-            if (is_running_in_wsl()){
-                printf("Executando dentro do WSL\n");
-                ssize_t countt = readlink("/proc/self/exe", exec_path, sizeof(exec_path) - 1);
-                if (countt != -1) {
-                    exec_path[countt] = '\0';
-                    printf("Localização do executável: %s\n", exec_path);
-                }else{
-                    printf("Erro ao obter a localização do executável.\n");
-                }
-                char *exec_absolute_path = realpath(exec_path, NULL);
-                char *exec_absolute_dirname_path = dirname(exec_absolute_path);
-                destino[PATH_MAX];
-                snprintf(destino, sizeof(destino), "%s/testes", exec_absolute_dirname_path);
-                char filename[PATH_MAX];
-                snprintf(filename, sizeof(filename), "%s/Tx_msg", destino);
-                char fileName[PATH_MAX];
-                if (access(destino, F_OK) == 0) {
-                    printf("A pasta testes existe! Pronto para iniciar!\n");
-                }else{
-                    // Cria a pasta testes
-                    char comando[MAX_PATH];
-                    sprintf(comando, "mkdir %s", destino);
-                    system(comando);
-                    printf("Pasta testes criada! Pronto para inciar!\n");
-                }
-            }
-        }else{
-            printf("Executando dentro de Windows\n");
-            char exec_absolute_path[MAX_PATH];
-            DOWRD countt = GetModuleFileName(NULL, exec_absolute_path, MAX_PATH);
-            if (countt != 0){
-                printf("Localização do executável: %s\n", exec_absolute_path);
-            }else{
-                printf("Erro ao obter a localização do executável.\n");
-            }
-            char *exec_absolute_dirname_path = dirname(exec_absolute_path);
-            char filename[MAX_PATH];
-            snprintf(filename, sizeof(filename), "%s/Tx_msg", destino);
-            char fileName[MAX_PATH];
-            if (access(destino, F_OK) == 0) {
-                printf("Legal! A pasta testes existe! Pronto para iniciar!\n");
-            }else{
-                // Cria a pasta testes
-                char comando[MAX_PATH];
-                sprintf(comando, "mkdir %s", destino);
-                system(comando);
-                printf("Pasta testes criada! Pronto para inciar!\n");
-            }
-        }
-    #else 
-        #error Plataforma de sistema operacional não suportada
     #endif
     FILE *fp;
     fp = fopen(filename, "w+");
@@ -860,152 +799,138 @@ int main() {
     fprintf(fp, "%s", mensagem);
     // Fechar o arquivo
     fclose(fp);
-
-    int num_teste = 16; // Numero de testes necessarios //scanf("%d",&num_teste)
-    if(num_teste > 16){
-        printf("\nNumero de testes inviavel. saindo...");
-        system("pause");
-        exit(1);
-    }
-    for(int teste = 1; teste <= num_teste; teste++){
-        
-        printf("\n===================== Teste %d ===================\n\n", teste);
-        fp = fopen(filename, "rb");
-
-        if (fp == NULL) {
-            printf("Impossivel abrir o arquivo\n");
-            return 1; // Encerra o programa se a abertura do arquivo falhar
-        }
-        // Calculando o número de bytes do arquivo.
-        printf("Arquivo criado com sucesso!\n");
-        fseek(fp, 0, SEEK_END);
-        long int numBytes = ftell(fp);
-        fseek(fp, 0, SEEK_SET);
-    
-        int Nr; // Número de antenas recpetoras
-        int Nt; // Número de antenas transmissoras
-        if(teste <= 4){
-            Nr = 2;
-            Nt = 4;
-        }else if (teste > 4 && teste <= 8){
-            Nr = 8;
-            Nt = 8;
-        }else if (teste > 8 && teste <= 12){
-            Nr = 8;
-            Nt = 32;
-        }else if (teste > 12 && teste <= 16){
-            Nr = 16;
-            Nt = 32;
-        } 
-        //Declarando o número de fluxos
-        int Nstream;
-        if (Nr <= Nt){
-            Nstream = Nr;
-        }else{
-            Nstream = Nt;
-        }
-        printf("\nNumero de antenas recpetoras Nr: %d\nNumero de antenas transmissoras Nt: %d\nNumero de fluxos Nstream: %d", Nr, Nt, Nstream);
-        // Leitura do arquivo
-        printf("\nRealizando leitura do Arquivo...");
-        int * s= tx_data_read(fp, numBytes);
-        // Calculando número de símbolos necessário para (numBytes*4 + Npadding) % Nstream == 0.
-        int Npadding;
-        if ((numBytes*4) % Nstream == 0){
-            Npadding = 0;
-        }else{ 
-            Npadding = (Nstream - (numBytes*4)%Nstream);
-        }
-        printf("\nQuantidade de simbolos de preenchimento: %d", Npadding);
-        //Preenchimento por meio do data_padding
-        int *pad = tx_data_padding(s, numBytes, Npadding);
-        // Calculando número de símbolos
-        long int Nsymbol = (numBytes*4 + Npadding);
-        // Mapeamento dos bits do arquivo
-        complexo *map = tx_qam_mapper(pad, Nsymbol);
-        //Transformando o vetor complexo do mapaeamento para uma matriz complexa Nstream linhas
-        printf("\nMapeando a matriz stream Nstream x (Nsymbols/Nstream)...");
-        complexo **mtx= tx_layer_mapper(map, Nstream, Nsymbol);
-        complexo **rx_mtx= allocateComplexMatrix(Nstream, Nsymbol/Nstream); // matriz receptora
-        // Criação do Canal H com range entre -1 e 1
-        printf("\nCriando canal de transferencia de dados...");
-        complexo ** H = channel_gen(Nr, Nt, -1, 1);
         int r;
-        //Escolhendo intervalo de ruído : 0 para [-0.01,0.01], 1 para [-0.1,0.1], 2 para [-0.5,0.5], 3 para [-1,1]
-        if(teste == 1 || teste == 5 || teste == 9 || teste == 13){
-            r = 0;
+    /*
+    Escolhendo intervalo de ruído : 
+    0 para [-0.01,0.01], 
+    1 para [-0.1,0.1], 
+    2 para [-0.5,0.5], 
+    3 para [-1,1]  
+    */
+    r = 3;
+    
+    /*
+    Declarando o Número de antenas:
+    Nr = Antenas recpetoras
+    Nt = Antenas transmissoras
+    Nstream = Número de fluxos
+    */
+    int Nr = 4; 
+    int Nt = 2;
+
+    int Nstream;
+    if (Nr <= Nt){
+        Nstream = Nr;
+    }else{
+        Nstream = Nt;
+    }
+
+    int teste = 1; // Numero de testes necessarios //scanf("%d",&num_teste)
+
+    printf("\n===================== Teste %d ===================\n\n", teste);
+    fp = fopen(filename, "rb");
+
+    if (fp == NULL) {
+        printf("Impossivel abrir o arquivo\n");
+        return 1; // Encerra o programa se a abertura do arquivo falhar
+    }
+        // Calculando o número de bytes do arquivo.
+    printf("Arquivo criado com sucesso!\n");
+    fseek(fp, 0, SEEK_END);
+    long int numBytes = ftell(fp);
+    fseek(fp, 0, SEEK_SET);
+    
+
+
+    printf("\nNumero de antenas receptoras Nr: %d\nNumero de antenas transmissoras Nt: %d\nNumero de fluxos Nstream: %d", Nr, Nt, Nstream);
+    // Leitura do arquivo
+    printf("\nRealizando leitura do Arquivo...");
+    int * s= tx_data_read(fp, numBytes);
+    // Calculando número de símbolos necessário para (numBytes*4 + Npadding) % Nstream == 0.
+    int Npadding;
+    if ((numBytes*4) % Nstream == 0){
+        Npadding = 0;
+    }else{ 
+        Npadding = (Nstream - (numBytes*4)%Nstream);
+    }
+    printf("\nQuantidade de simbolos de preenchimento: %d", Npadding);
+    //Preenchimento por meio do data_padding
+    int *pad = tx_data_padding(s, numBytes, Npadding);
+    // Calculando número de símbolos
+    long int Nsymbol = (numBytes*4 + Npadding);
+    // Mapeamento dos bits do arquivo
+    complexo *map = tx_qam_mapper(pad, Nsymbol);
+    //Transformando o vetor complexo do mapaeamento para uma matriz complexa Nstream linhas
+    printf("\nMapeando a matriz stream Nstream x (Nsymbols/Nstream)...");
+    complexo **mtx= tx_layer_mapper(map, Nstream, Nsymbol);
+    complexo **rx_mtx= allocateComplexMatrix(Nstream, Nsymbol/Nstream); // matriz receptora
+    // Criação do Canal H com range entre -1 e 1
+    printf("\nCriando canal de transferencia de dados...");
+    complexo ** H = channel_gen(Nr, Nt, -1, 1);
+   
+
+    //Inciando transmissão pelo canal de Nsymbol/Nstream tempos de transmissão
+    printf("\nIniciando segmentação de transmissão...");
+    for (int Nx = 0; Nx < Nsymbol/Nstream; Nx++){
+        complexo ** x = allocateComplexMatrix(Nstream, 1);
+        for(int l = 0; l < Nstream; l++){
+            x[l][0].real = mtx[l][Nx].real;
+            x[l][0].img = mtx[l][Nx].img;
         }
-        else if(teste == 2 || teste == 6 || teste == 10 || teste == 14){
-            r = 1;
-        }
-        else if(teste == 3 || teste == 7 || teste == 11 || teste == 15){
-            r = 2;
-        }
-        else if(teste == 4 || teste == 8 || teste == 12 || teste == 16){
-            r = 3;
-        }
-        //Inciando transmissão pelo canal de Nsymbol/Nstream tempos de transmissão
-        printf("\nIniciando segmentação de transmissão...");
-        for (int Nx = 0; Nx < Nsymbol/Nstream; Nx++){
+        if (Nr < Nt){
+            printf("\nTransmissão do vetor v%d da matriz de dados em stream...", Nx);
+            complexo ** T = transposta(H, Nr, Nt);
+            complexo ** U = allocateComplexMatrix(Nr, Nr);
+            complexo ** S = allocateComplexMatrix(Nr, Nr);
+            complexo ** V = allocateComplexMatrix(Nt, Nr);
+            transposed_channel_svd(T, V, S, U, Nt, Nr);
+            complexo ** xp = tx_precoder (V, x, Nt, Nr, Nstream, 1);
+            complexo ** xt = channel_transmission(H, xp, Nr, Nt, Nt, 1, r);
+            complexo ** xc = rx_combiner(U, xt, Nr, Nr, Nstream, 1);
+            complexo ** xf = rx_feq(S, xc, Nr, Nr, Nstream, 1);
+            for(int l = 0; l < Nstream; l++){
+                rx_mtx[l][Nx].real = xf[l][0].real;
+                rx_mtx[l][Nx].img = xf[l][0].img;
+            }
+        }else if (Nr >= Nt){
             complexo ** x = allocateComplexMatrix(Nstream, 1);
             for(int l = 0; l < Nstream; l++){
                 x[l][0].real = mtx[l][Nx].real;
                 x[l][0].img = mtx[l][Nx].img;
             }
-            if (Nr < Nt){
-                printf("\nTransmissão do vetor v%d da matriz de dados em stream...", Nx);
-                complexo ** T = transposta(H, Nr, Nt);
-                complexo ** U = allocateComplexMatrix(Nr, Nr);
-                complexo ** S = allocateComplexMatrix(Nr, Nr);
-                complexo ** V = allocateComplexMatrix(Nt, Nr);
-                transposed_channel_svd(T, V, S, U, Nt, Nr);
-                complexo ** xp = tx_precoder (V, x, Nt, Nr, Nstream, 1);
-                complexo ** xt = channel_transmission(H, xp, Nr, Nt, Nt, 1, r);
-                complexo ** xc = rx_combiner(U, xt, Nr, Nr, Nstream, 1);
-                complexo ** xf = rx_feq(S, xc, Nr, Nr, Nstream, 1);
-                for(int l = 0; l < Nstream; l++){
-                    rx_mtx[l][Nx].real = xf[l][0].real;
-                    rx_mtx[l][Nx].img = xf[l][0].img;
-                }
-            }else if (Nr >= Nt){
-                complexo ** x = allocateComplexMatrix(Nstream, 1);
-                for(int l = 0; l < Nstream; l++){
-                    x[l][0].real = mtx[l][Nx].real;
-                    x[l][0].img = mtx[l][Nx].img;
-                }
-                printf("\nTransmissão do vetor %d da matriz de dados em stream...", Nx);
-                complexo ** U = allocateComplexMatrix(Nr, Nt);
-                complexo ** S = allocateComplexMatrix(Nt, Nt);
-                complexo ** V = allocateComplexMatrix(Nt, Nt);
-                square_channel_svd(H, U, S, V, Nr, Nt);
-                complexo ** xp = tx_precoder (V, x, Nt, Nt, Nstream, 1);
-                complexo ** xt = channel_transmission(H, xp, Nr, Nt, Nt, 1, r);
-                complexo ** xc = rx_combiner(U, xt, Nr, Nt, Nr, 1);
-                complexo ** xf = rx_feq(S, xc, Nt, Nt, Nstream, 1);
-                for(int l = 0; l < Nstream; l++){
-                    rx_mtx[l][Nx].real = xf[l][0].real;
-                    rx_mtx[l][Nx].img = xf[l][0].img;
-                }
+            printf("\nTransmissão do vetor %d da matriz de dados em stream...", Nx);
+            complexo ** U = allocateComplexMatrix(Nr, Nt);
+            complexo ** S = allocateComplexMatrix(Nt, Nt);
+            complexo ** V = allocateComplexMatrix(Nt, Nt);
+            square_channel_svd(H, U, S, V, Nr, Nt);
+            complexo ** xp = tx_precoder (V, x, Nt, Nt, Nstream, 1);
+            complexo ** xt = channel_transmission(H, xp, Nr, Nt, Nt, 1, r);
+            complexo ** xc = rx_combiner(U, xt, Nr, Nt, Nr, 1);
+            complexo ** xf = rx_feq(S, xc, Nt, Nt, Nstream, 1);
+            for(int l = 0; l < Nstream; l++){
+                rx_mtx[l][Nx].real = xf[l][0].real;
+                rx_mtx[l][Nx].img = xf[l][0].img;
             }
         }
-        printf("\nCompondo o vetor de complexos rx_map..");
-        complexo *rx_map = rx_layer_demapper(rx_mtx, Nstream, Nsymbol);
-        for(int i = 0; i < Nsymbol; i++){
-            rx_map[i].real = round(rx_map[i].real);
-            rx_map[i].img = round(rx_map[i].img);
-        }
-        // Desmapeamento dos bits do arquivo
-        printf("\nRealizando desmapeamento dos bits do arquivo em rx_qam_mapper...");
-        int *a = rx_qam_demapper(rx_map, Nsymbol);
-        printf("\nRemovendo simbolos nulos em rx_depadding...");
-        int *s_rest = rx_data_depadding(a, numBytes, Nstream);
-        // Leitura Final dos Dados
-        printf("\nSalvando arquivo com a mensagem enviada no arquivo Teste_%d_Nr%d_Nt%d_Rd%d\n", teste, Nr, Nt, r);
-        
-        sprintf(fileName, "%s/Teste_%d_Nr%d_Nt%d_Rd%d", destino, teste, Nr, Nt, r); // Formata o nome do arquivo com base no valor de i
-        rx_data_write(s_rest, numBytes, fileName);
-        gera_estatistica(s,s_rest,numBytes);
-        printf("================== Fim do teste %d================\n", teste);
     }
+    printf("\nCompondo o vetor de complexos rx_map..");
+    complexo *rx_map = rx_layer_demapper(rx_mtx, Nstream, Nsymbol);
+    for(int i = 0; i < Nsymbol; i++){
+        rx_map[i].real = round(rx_map[i].real);
+        rx_map[i].img = round(rx_map[i].img);
+    }
+    // Desmapeamento dos bits do arquivo
+    printf("\nRealizando desmapeamento dos bits do arquivo em rx_qam_mapper...");
+    int *a = rx_qam_demapper(rx_map, Nsymbol);
+    printf("\nRemovendo simbolos nulos em rx_depadding...");
+    int *s_rest = rx_data_depadding(a, numBytes, Nstream);
+    // Leitura Final dos Dados
+    printf("\nSalvando arquivo com a mensagem enviada no arquivo Teste_%d_Nr%d_Nt%d_Rd%d\n", teste, Nr, Nt, r);
+        
+    sprintf(fileName, "%s/Teste_%d_Nr%d_Nt%d_Rd%d", destino, teste, Nr, Nt, r); // Formata o nome do arquivo com base no valor de i
+    rx_data_write(s_rest, numBytes, fileName);
+    gera_estatistica(s,s_rest,numBytes);
+    printf("================== Fim do teste %d================\n", teste);
     fclose(fp);
     return 0;
 }
