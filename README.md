@@ -1,8 +1,8 @@
-# Engineering Project II - Implementation of MIMO Digital Communication System
+# C MIMO - Implementation of MIMO Digital Communication System
 
 This project was developed for the Engineering Project II course taught in the second semester at the Faculty of Computing and Telecommunications of the Federal University of Pará. The objective of this project is to develop a C library containing functions that implement matrix operations. The resulting library will be used to implement a Multiple-in, Multiple-out (MIMO) Digital Communication System in C language. The system to be implemented is described in the image below:
 
-<img src="./figures/mimosystem.png" alt="mimo-implementação">
+<img src="./figures/mimosystem.png" alt="topology">
 
 ## 💻 Requisites
 
