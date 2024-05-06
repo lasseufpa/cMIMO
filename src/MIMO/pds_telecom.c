@@ -21,9 +21,6 @@ void getUserInput(int* Nr, int* Nt, int* r) {
     printf("Digite o valor para r: ");
     scanf("%d", r);
 }
-
-
-
 /**
  * @brief Lê os dados de um arquivo e os converte em um array de inteiros.
  *
@@ -110,26 +107,31 @@ int * tx_data_padding(int* s, long int numBytes, int Npadding){
 complexo* tx_qam_mapper(int *s, long int numQAM){
     // Aloca memória para o vetor de complexos
     complexo *c1 = (complexo *)malloc(numQAM * sizeof(complexo));   
+    if (c1 == NULL) {
+        printf("Erro na alocação de memória\n");
+        return NULL;
+    }
     for(int i= 0; i<numQAM;i++){
-        if(s[i]==0){
-            c1[i].real = -1;
-            c1[i].img = 1;
-        }
-        else if (s[i]==1){
-            c1[i].real = -1;
-            c1[i].img = -1;
-        }
-        else if (s[i]==2){
-            c1[i].real = 1;
-            c1[i].img = 1;
-        }
-        else if(s[i]==3){
-            c1[i].real = 1;
-            c1[i].img = -1;
-        }
-        else{
-            c1[i].real = 0;
-            c1[i].img = 0;
+        switch(s[i]){
+            case 0:
+                c1[i].real = -1;
+                c1[i].img = 1;
+                break;
+            case 1:
+                c1[i].real = -1;
+                c1[i].img = -1;
+                break;
+            case 2:
+                c1[i].real = 1;
+                c1[i].img = 1;
+                break;
+            case 3:
+                c1[i].real = 1;
+                c1[i].img = -1;
+                break;
+            default:
+                c1[i].real = 0;
+                c1[i].img = 0;
         }
     }
     return c1;
@@ -370,28 +372,26 @@ complexo** produto_matricial_geral(complexo** mtx_a, complexo** mtx_b, int linha
  * @return Uma matriz complexa representando o canal de transferência gerado.
  *         O chamador é responsável por liberar a memória alocada utilizando a função free().
  */
-complexo ** channel_gen(int Nr, int Nt, float minValue, float maxValue) {
-    complexo** H;
-	
-    H = (complexo **) malloc(Nr * sizeof(complexo *));
-	
+complexo ** channel_gen(int Nr, int Nt, float minValue, float maxValue){
+    complexo** H = (complexo **) malloc(Nr * sizeof(complexo*));
     if (H == NULL) {
         printf("Memory allocation failed.\n");
-        exit(1);
+        return NULL;
     }
 
-    // Alocação de memória para cada linha da matriz
     for (int i = 0; i < Nr; i++) {
         H[i] = (complexo *) malloc(Nt * sizeof(complexo));
         if (H[i] == NULL) {
-            printf("Memory allocation failed.\n");
-            exit(1);
+            printf("Memory allocation failed\n");
+            // Free previously allocated memory
+            for (int j = 0; j < i; j++) {
+                free(H[j]);
+            }
+            free(H);
+            return NULL;
         }
     }
 
-    srand(time(NULL));
-
-    // Preenchimento da matriz com números complexos aleatórios
     for (int i = 0; i < Nr; i++) {
         for (int j = 0; j < Nt; j++) {
             H[i][j].real = ((double)rand() / RAND_MAX) * (maxValue - minValue) + minValue;
@@ -401,7 +401,6 @@ complexo ** channel_gen(int Nr, int Nt, float minValue, float maxValue) {
 
     return H;
 }
-
 /**
  * @brief Gera uma matriz de complexos representando o ruído do canal de comunicação.
  *
@@ -419,33 +418,32 @@ complexo ** channel_gen(int Nr, int Nt, float minValue, float maxValue) {
  */
 
 complexo ** channel_rd_gen(int Nr, int Nt, float minValue, float maxValue){
-    complexo** H;
-	
-    H = (complexo **) malloc(Nr*sizeof(complexo*));
-	
-    if (H == NULL)
-    {
-        printf("Memory alocation failed.");
-        exit(1);
+    complexo** H = (complexo **) malloc(Nr * sizeof(complexo*));
+    if (H == NULL) {
+        printf("Memory allocation failed.\n");
+        return NULL;
     }
-    //Alocação de memória para cada linha da matriz
-    for (int i = 0; i < Nr; i++)
-    {
-        H[i] = (complexo *) malloc(Nt*sizeof(complexo));
-        if (H[i] == NULL)
-        {
+
+    for (int i = 0; i < Nr; i++) {
+        H[i] = (complexo *) malloc(Nt * sizeof(complexo));
+        if (H[i] == NULL) {
             printf("Memory allocation failed\n");
-            exit(1);
+            // Free previously allocated memory
+            for (int j = 0; j < i; j++) {
+                free(H[j]);
+            }
+            free(H);
+            return NULL;
         }
     }
-    srand(time(NULL));
+
     for (int i = 0; i < Nr; i++) {
         for (int j = 0; j < Nt; j++) {
             H[i][j].real = ((double)rand() / RAND_MAX) * (maxValue - minValue) + minValue;
             H[i][j].img = ((double)rand() / RAND_MAX) * (maxValue - minValue) + minValue;
         }
-    
     }
+
     return H;
 }
 
@@ -641,22 +639,43 @@ complexo ** tx_precoder(complexo ** V, complexo **x, int Vlinhas, int Vcolunas, 
 
 complexo ** channel_transmission(complexo ** H, complexo ** xp, int Hlinhas, int Hcolunas, int xpLinhas, int xpColunas, int r){
     complexo **xh = produto_matricial_geral(H, xp, Hlinhas, Hcolunas, xpLinhas, xpColunas);
-    complexo ** Rd;
-    if (r == 0){
-        Rd = channel_rd_gen(Hlinhas, xpColunas, -0.001, 0.001);
-    }else if (r == 1){
-        Rd = channel_rd_gen(Hlinhas, xpColunas, -0.01, 0.01);
-    }else if (r == 2){
-        Rd = channel_rd_gen(Hlinhas, xpColunas, -0.5, 0.5);
-    }else if (r == 3){
-        Rd = channel_rd_gen(Hlinhas, xpColunas, -1, 1);
+    if (xh == NULL) {
+        printf("Erro na multiplicação de matrizes\n");
+        return NULL;
     }
+
+    complexo ** Rd;
+    switch(r){
+        case 0:
+            Rd = channel_rd_gen(Hlinhas, xpColunas, -0.001, 0.001);
+            break;
+        case 1:
+            Rd = channel_rd_gen(Hlinhas, xpColunas, -0.01, 0.01);
+            break;
+        case 2:
+            Rd = channel_rd_gen(Hlinhas, xpColunas, -0.5, 0.5);
+            break;
+        case 3:
+            Rd = channel_rd_gen(Hlinhas, xpColunas, -1, 1);
+            break;
+    }
+    if (Rd == NULL) {
+        printf("Erro na geração do ruído do canal\n");
+        free(xh);
+        return NULL;
+    }
+
     complexo ** xt = soma(xh, Rd, Hlinhas, xpColunas);
-    /*printf("\nVetor Ruído\n");
-    for (int l = 0 ; l < Hlinhas; l++){
-		printComplex(Rd[l][0]);
-        printf("\n");
-	}*/
+    if (xt == NULL) {
+        printf("Erro na soma de matrizes\n");
+        free(xh);
+        free(Rd);
+        return NULL;
+    }
+
+    free(xh);
+    free(Rd);
+
     return xt;
 }
 /**
@@ -733,9 +752,9 @@ void gera_estatistica(int *s, int *finals, long int numBytes, int teste, int Nr,
             cont_erros = cont_erros + 1;
         }
     }
-    float porcentagem_erro = (cont_erros*100)/(4*numBytes);
+    double porcentagem_erro = (cont_erros*100)/(4*numBytes);
     printf("Número de símbolos QAM recebidos com erro: %d\n",cont_erros);
-    printf("Porcentagem de símbolos QAM recebidos com erro: %0.2f%%\n\n",porcentagem_erro);
+    printf("Porcentagem de símbolos QAM recebidos com erro: %0.4f%%\n\n",porcentagem_erro);
 
     // Cada símbolo QAM errado representa 2 bits errados
     long int total_bits = 2 * numBytes * 4;
@@ -803,6 +822,7 @@ bool is_wsl_there(){
 }
 
 int main() {
+    srand(time(NULL));
     system("clear");
     char exec_path[1024];
     #ifdef __unix__
@@ -892,7 +912,7 @@ int main() {
     fp = fopen(filename, "w+");
     // Solicitar ao usuário que escreva a mensagem
     printf("Digite a mensagem que quer enviar:\n");
-    char mensagem[1000];
+    char mensagem[10000];
     fgets(mensagem, sizeof(mensagem), stdin);
     // Escrever a mensagem no arquivo
     fprintf(fp, "%s", mensagem);
@@ -901,22 +921,24 @@ int main() {
 
     int Nr, Nt, r;
     int mode;
-    int num_teste = 32; // número de testes predefinidos
+    int num_teste = 30; // número de testes predefinidos
 
     printf("Digite 1 para o modo predefinido ou 2 para o modo personalizado: ");
     scanf("%d", &mode);
+  
 
     if (mode == 2) {
         getUserInput(&Nr, &Nt, &r);
-        num_teste = 1; // apenas um teste será executado no modo personalizado
+        num_teste = 25; // apenas um teste será executado no modo personalizado
     }
 
-    if(num_teste > 32){
+    if(num_teste > 61){
         printf("\nNumero de testes inviavel. saindo...");
         system("pause");
         exit(1);
     }
-
+    printf("Quantos testes deseja realizar? (1-61): ");
+    scanf("%d", &num_teste);
     for(int teste = 1; teste <= num_teste; teste++){
             
         printf("\n===================== Teste %d ===================\n\n", teste);
@@ -935,31 +957,25 @@ int main() {
         // Número de antenas recpetoras
         // Número de antenas transmissoras
         if(mode == 1) {
+            //if(teste % 2 == 0){
+            //    Nr = teste;
+            //    Nt = teste;
+            //}else{
+            //    Nr = teste * 2;
+            //    Nt = teste * 2;
+            //}          
+
             if(teste <= 4){
-                Nr = 2;
-                Nt = 4;
+                Nr = 5;
+                Nt = 10;
             }else if (teste > 4 && teste <= 8){
-                Nr = 8;
-                Nt = 8;
+                Nr = 10;
+                Nt = 20;
             }else if (teste > 8 && teste <= 12){
-                Nr = 8;
-                Nt = 32;
-            }else if (teste > 12 && teste <= 16){
-                Nr = 16;
-                Nt = 32;
-            }else if (teste > 16 && teste <= 20){
-                Nr = 32;
-                Nt = 64;
-            }else if (teste > 20 && teste <= 24){
-                Nr = 64;
-                Nt = 128;
-            }else if (teste > 24 && teste <= 28){
-                Nr = 128;
-                Nt = 256;
-            }else if (teste > 28 && teste <= 32){
-                Nr = 256;
-                Nt = 512;
+                Nr = 20;
+                Nt = 40;
             }
+
 
             // Choosing noise interval: 0 for [-0.01,0.01], 1 for [-0.1,0.1], 2 for [-0.5,0.5], 3 for [-1,1]
             r = (teste - 1) % 4;
