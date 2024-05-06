@@ -1,7 +1,7 @@
 /// @file Matriz.H
 #ifndef _H_MYCOMPLEX
 #define _H_MYCOMPLEX
-
+#include <complex.h>
 #include <stdlib.h>
 
 /** A definição do código apresenta uma estrutura chamada `complexo` que é utilizada para representar números complexos. A estrutura possui dois campos: `real` e `img`, ambos do tipo `float`. 
@@ -15,13 +15,13 @@ typedef struct complexo {
 //Função: Teste de todas as funções de álgebra matricial do código.
 void teste_todos(void);
 //Função: Transposição de uma matriz.
-complexo** transposta(complexo **mtx, int linhas, int colunas);
+double complex** transposta(double complex **mtx, int linhas, int colunas);
 //Função: Conjugada de uma matriz complexa.
 complexo** conjugada(complexo **mtx, int linhas, int colunas);
 //Função: Hermitiana de uma matriz complexa.
 complexo** hermitiana(complexo **mtx, int linhas, int colunas);
 //Função: Soma entre duas matrizes complexas.
-complexo** soma(complexo **mtx_a, complexo **mtx_b, int linhas, int colunas);
+double complex** soma(double complex **mtx_a, double complex **mtx_b, int linhas, int colunas);
 //Função: Subtração entre duas matrizes complexas.
 complexo** subtracao(complexo **mtx_a, complexo **mtx_b, int linhas, int colunas);
 //Função: Produto interno entre dois vetores complexos.
@@ -39,7 +39,7 @@ void teste_subtracao(void);
 void teste_produto_interno(void);
 void teste_produto_matricial(void);
 //Manipulação de memória.
-complexo** allocateComplexMatrix(int linhas, int colunas);
+double complex** allocateComplexMatrix(int linhas, int colunas);
 void LiberarMatriz(complexo **mtx, int linhas);
 //Manipulação de números complexos.
 void printComplex(complexo c);

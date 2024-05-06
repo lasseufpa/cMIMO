@@ -10,6 +10,17 @@
 #include <libgen.h> // para usar dirame()
 #include <stdbool.h> // para usar o tipo bool
 
+
+void getUserInput(int* Nr, int* Nt, int* r) {
+    printf("Digite o valor para Nr: ");
+    scanf("%d", Nr);
+
+    printf("Digite o valor para Nt: ");
+    scanf("%d", Nt);
+
+    printf("Digite o valor para r: ");
+    scanf("%d", r);
+}
 /**
  * @brief Lê os dados de um arquivo e os converte em um array de inteiros.
  *
@@ -93,34 +104,37 @@ int * tx_data_padding(int* s, long int numBytes, int Npadding){
  *         em caso de erro na alocação de memória.
  */
 
-complexo* tx_qam_mapper(int *s, long int numQAM){
+#include <complex.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+double complex* tx_qam_mapper(int *s, long int numQAM){
     // Aloca memória para o vetor de complexos
-    complexo *c1 = (complexo *)malloc(numQAM * sizeof(complexo));   
+    double complex *c1 = (double complex *)malloc(numQAM * sizeof(double complex));   
+    if (c1 == NULL) {
+        printf("Erro na alocação de memória\n");
+        return NULL;
+    }
     for(int i= 0; i<numQAM;i++){
-        if(s[i]==0){
-            c1[i].real = -1;
-            c1[i].img = 1;
-        }
-        else if (s[i]==1){
-            c1[i].real = -1;
-            c1[i].img = -1;
-        }
-        else if (s[i]==2){
-            c1[i].real = 1;
-            c1[i].img = 1;
-        }
-        else if(s[i]==3){
-            c1[i].real = 1;
-            c1[i].img = -1;
-        }
-        else{
-            c1[i].real = 0;
-            c1[i].img = 0;
+        switch(s[i]){
+            case 0:
+                c1[i] = -1 + 1*I;
+                break;
+            case 1:
+                c1[i] = -1 - 1*I;
+                break;
+            case 2:
+                c1[i] = 1 + 1*I;
+                break;
+            case 3:
+                c1[i] = 1 - 1*I;
+                break;
+            default:
+                c1[i] = 0;
         }
     }
     return c1;
 }
-
 /**
  * @brief Mapeia os dados de um vetor para uma matriz de complexos.
  *
@@ -135,13 +149,16 @@ complexo* tx_qam_mapper(int *s, long int numQAM){
  *         em caso de erro na alocação de memória.
  */
 
-complexo ** tx_layer_mapper(complexo *v, int Nstream, long int Nsymbol){
+#include <complex.h>
+#include <stdlib.h>
+
+double complex** tx_layer_mapper(double complex *v, int Nstream, long int Nsymbol){
     // Aloca memória para a matriz de complexos
-    complexo **mtx_stream;
-    mtx_stream = (complexo**) malloc(Nstream*sizeof(complexo*));
+    double complex **mtx_stream;
+    mtx_stream = (double complex**) malloc(Nstream*sizeof(double complex*));
 
     for(int i = 0; i < Nstream; i++){
-        mtx_stream[i] = (complexo *) malloc((Nsymbol/Nstream)*sizeof(complexo));
+        mtx_stream[i] = (double complex *) malloc((Nsymbol/Nstream)*sizeof(double complex));
     }
     // Mapeia os dados do vetor para a matriz de complexos
     for (int i = 0; i < Nsymbol; i++){
@@ -163,9 +180,12 @@ complexo ** tx_layer_mapper(complexo *v, int Nstream, long int Nsymbol){
  *         em caso de erro na alocação de memória.
  */
 
-complexo* rx_layer_demapper(complexo** mtx_stream, int Nstream, long int numBytes) {
+#include <complex.h>
+#include <stdlib.h>
+
+double complex* rx_layer_demapper(double complex** mtx_stream, int Nstream, long int numBytes) {
     // Aloca memória para o vetor de complexos
-    complexo* v = (complexo*) malloc(numBytes * sizeof(complexo));
+    double complex* v = (double complex*) malloc(numBytes * sizeof(double complex));
     if (v == NULL) {
         printf("Erro na alocação de memória.\n");
         return NULL;
@@ -197,23 +217,27 @@ complexo* rx_layer_demapper(complexo** mtx_stream, int Nstream, long int numByte
  * @return Um vetor de inteiros contendo os dados binários desmapeados dos símbolos QAM.
  *         O chamador é responsável por liberar a memória alocada utilizando a função free().
  */
-int* rx_qam_demapper(complexo *vmap, long int numQAM) {
+#include <complex.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+int* rx_qam_demapper(double complex *vmap, long int numQAM) {
     // Aloca memória para o vetor de inteiros
     int *vetor = (int *)malloc(numQAM * sizeof(int));
     if (vetor == NULL) {
         printf("Erro na alocação de memória\n");
-        return (int *)1;
+        return NULL;
     }
 
     // Desmapeia os símbolos QAM para dados binários
     for (int i = 0; i < numQAM; i++) {
-        if (vmap[i].real == -1.0 && vmap[i].img == 1.0) {
+        if (creal(vmap[i]) == -1.0 && cimag(vmap[i]) == 1.0) {
             vetor[i] = 0;
-        } else if (vmap[i].real == -1.0 && vmap[i].img == -1.0) {
+        } else if (creal(vmap[i]) == -1.0 && cimag(vmap[i]) == -1.0) {
             vetor[i] = 1;
-        } else if (vmap[i].real == 1.0 && vmap[i].img == 1.0) {
+        } else if (creal(vmap[i]) == 1.0 && cimag(vmap[i]) == 1.0) {
             vetor[i] = 2;
-        } else if (vmap[i].real == 1.0 && vmap[i].img == -1.0) {
+        } else if (creal(vmap[i]) == 1.0 && cimag(vmap[i]) == -1.0) {
             vetor[i] = 3;
         } else {
             vetor[i] = 4;
@@ -222,7 +246,6 @@ int* rx_qam_demapper(complexo *vmap, long int numQAM) {
 
     return vetor;
 }
-
 /**
  * @brief Retira os símbolos "nulos" que foram preenchidos (padding).
  *
@@ -308,7 +331,11 @@ void rx_data_write(int* s, long int numBytes, char* fileName) {
  *       e têm dimensões compatíveis para a multiplicação.
  */
 
-complexo** produto_matricial_geral(complexo** mtx_a, complexo** mtx_b, int linhas_a, int colunas_a, int linhas_b, int colunas_b)
+#include <complex.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+double complex** produto_matricial_geral(double complex** mtx_a, double complex** mtx_b, int linhas_a, int colunas_a, int linhas_b, int colunas_b)
 {
     // Validação da operação de multiplicação (colunas_a == linhas_b).
     if (colunas_a != linhas_b)
@@ -317,24 +344,21 @@ complexo** produto_matricial_geral(complexo** mtx_a, complexo** mtx_b, int linha
         exit(1);
     }
     
-    complexo** matriz;
-    matriz = allocateComplexMatrix(linhas_a, colunas_b);
+    double complex** matriz;
+    matriz = allocateComplexMatrix(linhas_a, colunas_b); // Supondo que allocateComplexMatrix foi adaptado para double complex
     
     for (int l = 0; l < linhas_a; l++)
     {
         for (int c = 0; c < colunas_b; c++)
         {
-            complexo acumulador;
-            acumulador.real = 0;
-            acumulador.img = 0;
+            double complex acumulador = 0;
             
             for (int i = 0; i < colunas_a; i++)
             {
-                acumulador = soma_complexo(acumulador, multcomp(mtx_a[l][i], mtx_b[i][c]));
+                acumulador += mtx_a[l][i] * mtx_b[i][c];
             }
             
-            matriz[l][c].real = acumulador.real;
-            matriz[l][c].img = acumulador.img;
+            matriz[l][c] = acumulador;
         }
     }
     
@@ -356,38 +380,40 @@ complexo** produto_matricial_geral(complexo** mtx_a, complexo** mtx_b, int linha
  * @return Uma matriz complexa representando o canal de transferência gerado.
  *         O chamador é responsável por liberar a memória alocada utilizando a função free().
  */
-complexo ** channel_gen(int Nr, int Nt, float minValue, float maxValue) {
-    complexo** H;
-	
-    H = (complexo **) malloc(Nr * sizeof(complexo *));
-	
+#include <complex.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+double complex** channel_gen(int Nr, int Nt, float minValue, float maxValue){
+    double complex** H = (double complex **) malloc(Nr * sizeof(double complex*));
     if (H == NULL) {
         printf("Memory allocation failed.\n");
-        exit(1);
+        return NULL;
     }
 
-    // Alocação de memória para cada linha da matriz
     for (int i = 0; i < Nr; i++) {
-        H[i] = (complexo *) malloc(Nt * sizeof(complexo));
+        H[i] = (double complex *) malloc(Nt * siz
+    if (mode == 2) {
+        getUserInput(&Nr, &Nteof(double complex));
         if (H[i] == NULL) {
-            printf("Memory allocation failed.\n");
-            exit(1);
+            printf("Memory allocation failed\n");
+            // Free previously allocated memory
+            for (int j = 0; j < i; j++) {
+                free(H[j]);
+            }
+            free(H);
+            return NULL;
         }
     }
 
-    srand(time(NULL));
-
-    // Preenchimento da matriz com números complexos aleatórios
     for (int i = 0; i < Nr; i++) {
         for (int j = 0; j < Nt; j++) {
-            H[i][j].real = ((double)rand() / RAND_MAX) * (maxValue - minValue) + minValue;
-            H[i][j].img = 0;
+            H[i][j] = ((double)rand() / RAND_MAX) * (maxValue - minValue) + minValue;
         }
     }
 
     return H;
 }
-
 /**
  * @brief Gera uma matriz de complexos representando o ruído do canal de comunicação.
  *
@@ -404,33 +430,38 @@ complexo ** channel_gen(int Nr, int Nt, float minValue, float maxValue) {
  * @return A matriz de complexos representando o ruído do canal de comunicação.
  */
 
-complexo ** channel_rd_gen(int Nr, int Nt, float minValue, float maxValue){
-    complexo** H;
-	
-    H = (complexo **) malloc(Nr*sizeof(complexo*));
-	
-    if (H == NULL)
-    {
-        printf("Memory alocation failed.");
-        exit(1);
+#include <complex.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+double complex** channel_rd_gen(int Nr, int Nt, float minValue, float maxValue){
+    double complex** H = (double complex **) malloc(Nr * sizeof(double complex*));
+    if (H == NULL) {
+        printf("Memory allocation failed.\n");
+        return NULL;
     }
-    //Alocação de memória para cada linha da matriz
-    for (int i = 0; i < Nr; i++)
-    {
-        H[i] = (complexo *) malloc(Nt*sizeof(complexo));
-        if (H[i] == NULL)
-        {
+
+    for (int i = 0; i < Nr; i++) {
+        H[i] = (double complex *) malloc(Nt * sizeof(double complex));
+        if (H[i] == NULL) {
             printf("Memory allocation failed\n");
-            exit(1);
+            // Free previously allocated memory
+            for (int j = 0; j < i; j++) {
+                free(H[j]);
+            }
+            free(H);
+            return NULL;
         }
     }
-    srand(time(NULL));
+
     for (int i = 0; i < Nr; i++) {
         for (int j = 0; j < Nt; j++) {
-            H[i][j].real = ((double)rand() / RAND_MAX) * (maxValue - minValue) + minValue;
-            H[i][j].img = ((double)rand() / RAND_MAX) * (maxValue - minValue) + minValue;
+            double real_part = ((double)rand() / RAND_MAX) * (maxValue - minValue) + minValue;
+            double img_part = ((double)rand() / RAND_MAX) * (maxValue - minValue) + minValue;
+            H[i][j] = real_part + img_part * I;
         }
     }
+
     return H;
 }
 
@@ -462,58 +493,43 @@ complexo ** channel_rd_gen(int Nr, int Nt, float minValue, float maxValue){
  *         a decomposição SVD da matriz transposta.
  */
 
-void transposed_channel_svd(complexo **H, complexo **Uh, complexo **Sh, complexo **Vh, int Tlinhas, int Tcolunas){
-    for (int l = 0; l < Tlinhas; l++){
-		for (int c = 0; c < Tcolunas; c++){
-			if (H[l][c].img != 0){
-				printf("Warning: complex matrix injected as parameter, fuction will use only real part from matrix\n");
-				break;
-			}
-		}
-	}
-    gsl_matrix * U = gsl_matrix_alloc(Tlinhas, Tcolunas); // Matriz U lxc
-    gsl_matrix * V = gsl_matrix_alloc(Tcolunas, Tcolunas); // Matriz V cxc
-    gsl_vector * S = gsl_vector_alloc(Tcolunas); // Vetor S cx1
+#include <complex.h>
+#include <gsl/gsl_linalg.h>
+#include <stdio.h>
+
+void transposed_channel_svd(double complex **H, double complex **Uh, double complex **Sh, double complex **Vh, int Tlinhas, int Tcolunas){
+    gsl_matrix * U = gsl_matrix_alloc(Tlinhas, Tcolunas);
+    gsl_matrix * V = gsl_matrix_alloc(Tcolunas, Tcolunas);
+    gsl_vector * S = gsl_vector_alloc(Tcolunas);
     gsl_vector * work = gsl_vector_alloc(Tcolunas);
     
     for(int l=0; l<Tlinhas; l++){
         for(int c=0; c<Tcolunas; c++){
-           // printf("%+.1f ", H[l][c].real);
-            gsl_matrix_set(U, l, c, H[l][c].real);
+            gsl_matrix_set(U, l, c, creal(H[l][c]));
         }
-        //printf("\n");
     }
 
     gsl_linalg_SV_decomp(U, V, S, work);
     for(int l=0; l<Tlinhas; l++){
         for(int c=0; c<Tcolunas; c++){
-            Uh[l][c].real = gsl_matrix_get(U, l, c);
-            Uh[l][c].img = 0;
-            //printf("%f ", gsl_matrix_get(U, l, c));
+            Uh[l][c] = gsl_matrix_get(U, l, c);
         }
-       // printf("\n");
     }
     for(int l=0; l<Tcolunas; l++){
         for(int c=0; c<Tcolunas; c++){
-            Vh[l][c].real = gsl_matrix_get(V, l, c);
-            Vh[l][c].img = 0;
-           // printf("%f ", gsl_matrix_get(V, l, c));
+            Vh[l][c] = gsl_matrix_get(V, l, c);
         }
-        //printf("\n");
     }
     for (int l = 0; l < Tcolunas; l++){
         for (int c = 0; c < Tcolunas; c++){
             if (l == c){
-                Sh[l][c].real = gsl_vector_get(S,c);
-                Sh[l][c].img = 0;
+                Sh[l][c] = gsl_vector_get(S,c);
             }else{
-                Sh[l][c].real = 0;
-                Sh[l][c].img = 0;
+                Sh[l][c] = 0;
             }
         }
     }
 }
-
 /**
  * @brief Realiza a decomposição em valores singulares (SVD) de uma matriz quadrada.
  *
@@ -534,51 +550,39 @@ void transposed_channel_svd(complexo **H, complexo **Uh, complexo **Sh, complexo
  *       A função imprime um aviso se elementos complexos forem detectados na matriz H, mas ignora
  *       a parte imaginária para o cálculo.
  */
-void square_channel_svd(complexo **H,  complexo **Uh, complexo **Sh, complexo **Vh, int linhas, int colunas) {
-    for (int l = 0; l < linhas; l++) {
-        for (int c = 0; c < colunas; c++) {
-            if (H[l][c].img != 0) {
-                printf("Warning: complex matrix injected as parameter, function will use only real part from matrix\n");
-                break;
-            }
-        }
-    }
-    
-    gsl_matrix *U = gsl_matrix_alloc(linhas, colunas); // Matriz U lxc
-    gsl_matrix *V = gsl_matrix_alloc(colunas, colunas); // Matriz V cxc
-    gsl_vector *S = gsl_vector_alloc(colunas); // Vetor S cx1
+#include <complex.h>
+#include <gsl/gsl_linalg.h>
+#include <stdio.h>
+
+void square_channel_svd(double complex **H, double complex **Uh, double complex **Sh, double complex **Vh, int linhas, int colunas){
+    gsl_matrix *U = gsl_matrix_alloc(linhas, colunas);
+    gsl_matrix *V = gsl_matrix_alloc(colunas, colunas);
+    gsl_vector *S = gsl_vector_alloc(colunas);
     gsl_vector *work = gsl_vector_alloc(colunas);
     
-    for (int l = 0; l < linhas; l++) {
-        for (int c = 0; c < colunas; c++) {
-            gsl_matrix_set(U, l, c, H[l][c].real);
+    for(int l=0; l<linhas; l++){
+        for(int c=0; c<colunas; c++){
+            gsl_matrix_set(U, l, c, creal(H[l][c]));
         }
     }
 
     gsl_linalg_SV_decomp(U, V, S, work);
-    
-    for (int l = 0; l < linhas; l++) {
-        for (int c = 0; c < colunas; c++) {
-            Uh[l][c].real = gsl_matrix_get(U, l, c);
-            Uh[l][c].img = 0;
+    for(int l=0; l<linhas; l++){
+        for(int c=0; c<colunas; c++){
+            Uh[l][c] = gsl_matrix_get(U, l, c);
         }
     }
-    
-    for (int l = 0; l < colunas; l++) {
-        for (int c = 0; c < colunas; c++) {
-            Vh[l][c].real = gsl_matrix_get(V, l, c);
-            Vh[l][c].img = 0;
+    for(int l=0; l<colunas; l++){
+        for(int c=0; c<colunas; c++){
+            Vh[l][c] = gsl_matrix_get(V, l, c);
         }
     }
-    
-    for (int l = 0; l < colunas; l++) {
-        for (int c = 0; c < colunas; c++) {
-            if (l == c) {
-                Sh[l][c].real = gsl_vector_get(S, c);
-                Sh[l][c].img = 0;
-            } else {
-                Sh[l][c].real = 0;
-                Sh[l][c].img = 0;
+    for (int l = 0; l < colunas; l++){
+        for (int c = 0; c < colunas; c++){
+            if (l == c){
+                Sh[l][c] = gsl_vector_get(S,c);
+            }else{
+                Sh[l][c] = 0;
             }
         }
     }
@@ -599,8 +603,10 @@ void square_channel_svd(complexo **H,  complexo **Uh, complexo **Sh, complexo **
  * @return Retorna o vetor xp
  */
 
-complexo ** tx_precoder(complexo ** V, complexo **x, int Vlinhas, int Vcolunas, int xlinhas, int xcolunas){
-    complexo **xp = produto_matricial_geral(V, x, Vlinhas, Vcolunas, xlinhas, xcolunas);
+#include <complex.h>
+
+double complex** tx_precoder(double complex** V, double complex** x, int Vlinhas, int Vcolunas, int xlinhas, int xcolunas){
+    double complex** xp = produto_matricial_geral(V, x, Vlinhas, Vcolunas, xlinhas, xcolunas);
     return xp;
 }
 
@@ -624,24 +630,47 @@ complexo ** tx_precoder(complexo ** V, complexo **x, int Vlinhas, int Vcolunas, 
  * @return A matriz resultante da transmissão do sinal pelo canal, acrescido do ruído.
  */
 
-complexo ** channel_transmission(complexo ** H, complexo ** xp, int Hlinhas, int Hcolunas, int xpLinhas, int xpColunas, int r){
-    complexo **xh = produto_matricial_geral(H, xp, Hlinhas, Hcolunas, xpLinhas, xpColunas);
-    complexo ** Rd;
-    if (r == 0){
-        Rd = channel_rd_gen(Hlinhas, xpColunas, -0.001, 0.001);
-    }else if (r == 1){
-        Rd = channel_rd_gen(Hlinhas, xpColunas, -0.01, 0.01);
-    }else if (r == 2){
-        Rd = channel_rd_gen(Hlinhas, xpColunas, -0.5, 0.5);
-    }else if (r == 3){
-        Rd = channel_rd_gen(Hlinhas, xpColunas, -1, 1);
+#include <complex.h>
+
+double complex** channel_transmission(double complex** H, double complex** xp, int Hlinhas, int Hcolunas, int xpLinhas, int xpColunas, int r){
+    double complex** xh = produto_matricial_geral(H, xp, Hlinhas, Hcolunas, xpLinhas, xpColunas);
+    if (xh == NULL) {
+        printf("Erro na multiplicação de matrizes\n");
+        return NULL;
     }
-    complexo ** xt = soma(xh, Rd, Hlinhas, xpColunas);
-    /*printf("\nVetor Ruído\n");
-    for (int l = 0 ; l < Hlinhas; l++){
-		printComplex(Rd[l][0]);
-        printf("\n");
-	}*/
+
+    double complex** Rd;
+    switch(r){
+        case 0:
+            Rd = channel_rd_gen(Hlinhas, xpColunas, -0.001, 0.001);
+            break;
+        case 1:
+            Rd = channel_rd_gen(Hlinhas, xpColunas, -0.01, 0.01);
+            break;
+        case 2:
+            Rd = channel_rd_gen(Hlinhas, xpColunas, -0.5, 0.5);
+            break;
+        case 3:
+            Rd = channel_rd_gen(Hlinhas, xpColunas, -1, 1);
+            break;
+    }
+    if (Rd == NULL) {
+        printf("Erro na geração do ruído do canal\n");
+        free(xh);
+        return NULL;
+    }
+
+    double complex** xt = soma(xh, Rd, Hlinhas, xpColunas);
+    if (xt == NULL) {
+        printf("Erro na soma de matrizes\n");
+        free(xh);
+        free(Rd);
+        return NULL;
+    }
+
+    free(xh);
+    free(Rd);
+
     return xt;
 }
 /**
@@ -660,8 +689,10 @@ complexo ** channel_transmission(complexo ** H, complexo ** xp, int Hlinhas, int
  * @return Retorna o vetor xc
  */
 
-complexo ** rx_combiner(complexo ** U, complexo ** xt, int Ulinhas, int Ucolunas, int xtLinhas, int xtColunas){
-    complexo ** xc = produto_matricial_geral(transposta(U, Ulinhas, Ucolunas), xt, Ucolunas, Ulinhas, xtLinhas, xtColunas);
+#include <complex.h>
+
+double complex** rx_combiner(double complex** U, double complex** xt, int Ulinhas, int Ucolunas, int xtLinhas, int xtColunas){
+    double complex** xc = produto_matricial_geral(transposta(U, Ulinhas, Ucolunas), xt, Ucolunas, Ulinhas, xtLinhas, xtColunas);
     return xc;
 }
 /**
@@ -679,19 +710,19 @@ complexo ** rx_combiner(complexo ** U, complexo ** xt, int Ulinhas, int Ucolunas
  *
  * @return Retorna o vetor xf
  */
-complexo ** rx_feq(complexo ** S, complexo ** xc, int Slinhas, int Scolunas, int xcLinhas, int xcColunas){
-    complexo ** xf = allocateComplexMatrix(xcLinhas, xcColunas);
+#include <complex.h>
+
+double complex** rx_feq(double complex** S, double complex** xc, int Slinhas, int Scolunas, int xcLinhas, int xcColunas){
+    double complex** xf = allocateComplexMatrix(xcLinhas, xcColunas); // Supondo que allocateComplexMatrix foi adaptado para double complex
     for (int l = 0; l < Slinhas; l++){
         for (int c = 0; c < Scolunas; c++){
             if (l == c){
-                xf[l][0].real = xc[l][0].real/S[l][c].real;
-                xf[l][0].img = xc[l][0].img/S[l][c].real;
+                xf[l][0] = xc[l][0] / S[l][c];
             }
         }
     }
     return xf;
 }
-
 /**
  * @brief Gera estatísticas sobre os símbolos QAM transmitidos e recebidos.
  *
@@ -706,7 +737,7 @@ complexo ** rx_feq(complexo ** S, complexo ** xc, int Slinhas, int Scolunas, int
  *
  * @note Esta função exibe as estatísticas na saída padrão.
  */
-void gera_estatistica(int *s, int *finals, long int numBytes){
+void gera_estatistica(int *s, int *finals, long int numBytes, int teste, int Nr, int Nt, double r){
     int cont_acertos=0;
     int cont_erros=0;
     printf("\nNúmeros de simbolos QAM Transmitidos: %ld\n",numBytes*4);
@@ -718,21 +749,58 @@ void gera_estatistica(int *s, int *finals, long int numBytes){
             cont_erros = cont_erros + 1;
         }
     }
-    float porcentagem_erro = (cont_erros*100)/(4*numBytes);
+    double porcentagem_erro = (double)(cont_erros*100)/(4*numBytes);
     printf("Número de símbolos QAM recebidos com erro: %d\n",cont_erros);
-    printf("Porcentagem de símbolos QAM recebidos com erro: %0.2f%%\n\n",porcentagem_erro);
+    printf("Porcentagem de símbolos QAM recebidos com erro: %0.4lf%%\n\n",porcentagem_erro);
+
+    // Cada símbolo QAM errado representa 2 bits errados
+    long int total_bits = 2 * numBytes * 4;
+    int erro_bits = 2 * cont_erros;
+
+    float ber = (float)erro_bits / total_bits;
+
+    printf("BER: %f\n", ber);
+
+    FILE *file;
+
+    // Abra o arquivo em modo de anexação, para não sobrescrever os dados existentes
+    file = fopen("output.csv", "a");
+
+    if (file == NULL) {
+        printf("Não foi possível abrir o arquivo\n");
+        return;
+    }
+
+    // Escreva os dados no arquivo
+    fprintf(file, "%d,%d,%d,%f,%f,%f\n", teste, Nr, Nt, r, porcentagem_erro, ber);
+
+    fclose(file);
 }
 
-complexo** expandMatrix(complexo** matriz, int linhas, int colunas, int linhasExtras, int padding){
+#include <complex.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+double complex** expandMatrix(double complex** matriz, int linhas, int colunas, int linhasExtras, int padding){
     // Calcula o novo número total de linhas
     int Nlinhas = linhas + linhasExtras;
     // Aloca uma nova matriz com as dimensões atualizadas
-    complexo** novaMatriz = (complexo**) malloc(Nlinhas * sizeof(complexo*));
+    double complex** novaMatriz = (double complex**) malloc(Nlinhas * sizeof(double complex*));
     if (novaMatriz == NULL){
         printf("Erro de alocacao\n");
+        return NULL;
     }
     for (int i = 0; i < Nlinhas; i++) {
-        novaMatriz[i] = (complexo*) malloc(colunas * sizeof(complexo));
+        novaMatriz[i] = (double complex*) malloc(colunas * sizeof(double complex));
+        if (novaMatriz[i] == NULL) {
+            printf("Erro de alocacao\n");
+            // Free previously allocated memory
+            for (int j = 0; j < i; j++) {
+                free(novaMatriz[j]);
+            }
+            free(novaMatriz);
+            return NULL;
+        }
     }
     // Copia os elementos da matriz original para a nova matriz
     for (int i = 0; i < linhas; i++) {
@@ -741,13 +809,10 @@ complexo** expandMatrix(complexo** matriz, int linhas, int colunas, int linhasEx
         }
     }
     // Preenchimento da matriz aumentada com nulos.
-    if (padding == 0){
-        return novaMatriz;
-    }else if (padding == 1){
+    if (padding == 1){
        for (int l = linhas; l < Nlinhas; l++){
         for (int c = 0; c < colunas; c++){
-            novaMatriz[l][c].real = 0;
-            novaMatriz[l][c].img = 0;
+            novaMatriz[l][c] = 0;
             }
         }
     }
@@ -765,6 +830,7 @@ bool is_wsl_there(){
 }
 
 int main() {
+    srand(time(NULL));
     system("clear");
     char exec_path[1024];
     #ifdef __unix__
@@ -854,21 +920,35 @@ int main() {
     fp = fopen(filename, "w+");
     // Solicitar ao usuário que escreva a mensagem
     printf("Digite a mensagem que quer enviar:\n");
-    char mensagem[1000];
+    char mensagem[10000];
     fgets(mensagem, sizeof(mensagem), stdin);
     // Escrever a mensagem no arquivo
     fprintf(fp, "%s", mensagem);
     // Fechar o arquivo
     fclose(fp);
 
-    int num_teste = 16; // Numero de testes necessarios //scanf("%d",&num_teste)
-    if(num_teste > 16){
+    int Nr, Nt, r;
+    int mode;
+    int num_teste = 30; // número de testes predefinidos
+
+    printf("Digite 1 para o modo predefinido ou 2 para o modo personalizado: ");
+    scanf("%d", &mode);
+  
+
+    if (mode == 2) {
+        getUserInput(&Nr, &Nt, &r);
+        num_teste = 25; // apenas um teste será executado no modo personalizado
+    }
+
+    if(num_teste > 61){
         printf("\nNumero de testes inviavel. saindo...");
         system("pause");
         exit(1);
     }
+    printf("Quantos testes deseja realizar? (1-61): ");
+    scanf("%d", &num_teste);
     for(int teste = 1; teste <= num_teste; teste++){
-        
+            
         printf("\n===================== Teste %d ===================\n\n", teste);
         fp = fopen(filename, "rb");
 
@@ -881,22 +961,33 @@ int main() {
         fseek(fp, 0, SEEK_END);
         long int numBytes = ftell(fp);
         fseek(fp, 0, SEEK_SET);
-    
-        int Nr; // Número de antenas recpetoras
-        int Nt; // Número de antenas transmissoras
-        if(teste <= 4){
-            Nr = 2;
-            Nt = 4;
-        }else if (teste > 4 && teste <= 8){
-            Nr = 8;
-            Nt = 8;
-        }else if (teste > 8 && teste <= 12){
-            Nr = 8;
-            Nt = 32;
-        }else if (teste > 12 && teste <= 16){
-            Nr = 16;
-            Nt = 32;
-        } 
+
+        // Número de antenas recpetoras
+        // Número de antenas transmissoras
+        if(mode == 1) {
+            //if(teste % 2 == 0){
+            //    Nr = teste;
+            //    Nt = teste;
+            //}else{
+            //    Nr = teste * 2;
+            //    Nt = teste * 2;
+            //}          
+
+            if(teste <= 4){
+                Nr = 5;
+                Nt = 10;
+            }else if (teste > 4 && teste <= 8){
+                Nr = 10;
+                Nt = 20;
+            }else if (teste > 8 && teste <= 12){
+                Nr = 20;
+                Nt = 40;
+            }
+
+
+            // Choosing noise interval: 0 for [-0.01,0.01], 1 for [-0.1,0.1], 2 for [-0.5,0.5], 3 for [-1,1]
+            r = (teste - 1) % 4;
+        }
         //Declarando o número de fluxos
         int Nstream;
         if (Nr <= Nt){
@@ -921,77 +1012,59 @@ int main() {
         // Calculando número de símbolos
         long int Nsymbol = (numBytes*4 + Npadding);
         // Mapeamento dos bits do arquivo
-        complexo *map = tx_qam_mapper(pad, Nsymbol);
+        double complex *map = tx_qam_mapper(pad, Nsymbol);
         //Transformando o vetor complexo do mapaeamento para uma matriz complexa Nstream linhas
         printf("\nMapeando a matriz stream Nstream x (Nsymbols/Nstream)...");
-        complexo **mtx= tx_layer_mapper(map, Nstream, Nsymbol);
-        complexo **rx_mtx= allocateComplexMatrix(Nstream, Nsymbol/Nstream); // matriz receptora
+        double complex**mtx= tx_layer_mapper(map, Nstream, Nsymbol);
+        double complex**rx_mtx= allocateComplexMatrix(Nstream, Nsymbol/Nstream); // matriz receptora
         // Criação do Canal H com range entre -1 e 1
         printf("\nCriando canal de transferencia de dados...");
-        complexo ** H = channel_gen(Nr, Nt, -1, 1);
-        int r;
-        //Escolhendo intervalo de ruído : 0 para [-0.01,0.01], 1 para [-0.1,0.1], 2 para [-0.5,0.5], 3 para [-1,1]
-        if(teste == 1 || teste == 5 || teste == 9 || teste == 13){
-            r = 0;
-        }
-        else if(teste == 2 || teste == 6 || teste == 10 || teste == 14){
-            r = 1;
-        }
-        else if(teste == 3 || teste == 7 || teste == 11 || teste == 15){
-            r = 2;
-        }
-        else if(teste == 4 || teste == 8 || teste == 12 || teste == 16){
-            r = 3;
-        }
+        double complex** H = channel_gen(Nr, Nt, -1, 1);
         //Inciando transmissão pelo canal de Nsymbol/Nstream tempos de transmissão
         printf("\nIniciando segmentação de transmissão...");
         for (int Nx = 0; Nx < Nsymbol/Nstream; Nx++){
-            complexo ** x = allocateComplexMatrix(Nstream, 1);
+            double complex** x = allocateComplexMatrix(Nstream, 1); // Supondo que allocateComplexMatrix foi adaptado para double complex
             for(int l = 0; l < Nstream; l++){
-                x[l][0].real = mtx[l][Nx].real;
-                x[l][0].img = mtx[l][Nx].img;
+                x[l][0] = mtx[l][Nx];
             }
             if (Nr < Nt){
                 printf("\nTransmissão do vetor v%d da matriz de dados em stream...", Nx);
-                complexo ** T = transposta(H, Nr, Nt);
-                complexo ** U = allocateComplexMatrix(Nr, Nr);
-                complexo ** S = allocateComplexMatrix(Nr, Nr);
-                complexo ** V = allocateComplexMatrix(Nt, Nr);
+                double complex** T = transposta(H, Nr, Nt);
+                double complex** U = allocateComplexMatrix(Nr, Nr);
+                double complex** S = allocateComplexMatrix(Nr, Nr);
+                double complex** V = allocateComplexMatrix(Nt, Nr);
                 transposed_channel_svd(T, V, S, U, Nt, Nr);
-                complexo ** xp = tx_precoder (V, x, Nt, Nr, Nstream, 1);
-                complexo ** xt = channel_transmission(H, xp, Nr, Nt, Nt, 1, r);
-                complexo ** xc = rx_combiner(U, xt, Nr, Nr, Nstream, 1);
-                complexo ** xf = rx_feq(S, xc, Nr, Nr, Nstream, 1);
+                double complex** xp = tx_precoder (V, x, Nt, Nr, Nstream, 1);
+                double complex** xt = channel_transmission(H, xp, Nr, Nt, Nt, 1, r);
+                double complex** xc = rx_combiner(U, xt, Nr, Nr, Nstream, 1);
+                double complex** xf = rx_feq(S, xc, Nr, Nr, Nstream, 1);
                 for(int l = 0; l < Nstream; l++){
-                    rx_mtx[l][Nx].real = xf[l][0].real;
-                    rx_mtx[l][Nx].img = xf[l][0].img;
+                    rx_mtx[l][Nx] = xf[l][0];
                 }
             }else if (Nr >= Nt){
-                complexo ** x = allocateComplexMatrix(Nstream, 1);
+                double complex** x = allocateComplexMatrix(Nstream, 1); // Supondo que allocateComplexMatrix foi adaptado para double complex
                 for(int l = 0; l < Nstream; l++){
-                    x[l][0].real = mtx[l][Nx].real;
-                    x[l][0].img = mtx[l][Nx].img;
+                    x[l][0] = mtx[l][Nx];
                 }
                 printf("\nTransmissão do vetor %d da matriz de dados em stream...", Nx);
-                complexo ** U = allocateComplexMatrix(Nr, Nt);
-                complexo ** S = allocateComplexMatrix(Nt, Nt);
-                complexo ** V = allocateComplexMatrix(Nt, Nt);
+                double complex** U = allocateComplexMatrix(Nr, Nt);
+                double complex** S = allocateComplexMatrix(Nt, Nt);
+                double complex** V = allocateComplexMatrix(Nt, Nt);
                 square_channel_svd(H, U, S, V, Nr, Nt);
-                complexo ** xp = tx_precoder (V, x, Nt, Nt, Nstream, 1);
-                complexo ** xt = channel_transmission(H, xp, Nr, Nt, Nt, 1, r);
-                complexo ** xc = rx_combiner(U, xt, Nr, Nt, Nr, 1);
-                complexo ** xf = rx_feq(S, xc, Nt, Nt, Nstream, 1);
+                double complex** xp = tx_precoder (V, x, Nt, Nt, Nstream, 1);
+                double complex** xt = channel_transmission(H, xp, Nr, Nt, Nt, 1, r);
+                double complex** xc = rx_combiner(U, xt, Nr, Nt, Nr, 1);
+                double complex** xf = rx_feq(S, xc, Nt, Nt, Nstream, 1);
                 for(int l = 0; l < Nstream; l++){
-                    rx_mtx[l][Nx].real = xf[l][0].real;
-                    rx_mtx[l][Nx].img = xf[l][0].img;
+                    rx_mtx[l][Nx] = xf[l][0];
                 }
-            }
         }
         printf("\nCompondo o vetor de complexos rx_map..");
-        complexo *rx_map = rx_layer_demapper(rx_mtx, Nstream, Nsymbol);
+        double complex *rx_map = rx_layer_demapper(rx_mtx, Nstream, Nsymbol);
         for(int i = 0; i < Nsymbol; i++){
-            rx_map[i].real = round(rx_map[i].real);
-            rx_map[i].img = round(rx_map[i].img);
+            double real_part = round(creal(rx_map[i]));
+            double imag_part = round(cimag(rx_map[i]));
+            rx_map[i] = real_part + imag_part * I;
         }
         // Desmapeamento dos bits do arquivo
         printf("\nRealizando desmapeamento dos bits do arquivo em rx_qam_mapper...");
@@ -1003,9 +1076,10 @@ int main() {
         
         sprintf(fileName, "%s/Teste_%d_Nr%d_Nt%d_Rd%d", destino, teste, Nr, Nt, r); // Formata o nome do arquivo com base no valor de i
         rx_data_write(s_rest, numBytes, fileName);
-        gera_estatistica(s,s_rest,numBytes);
+        gera_estatistica(s, s_rest, numBytes, teste, Nr, Nt, r);
         printf("================== Fim do teste %d================\n", teste);
+        
     }
     fclose(fp);
     return 0;
-}
+}}
