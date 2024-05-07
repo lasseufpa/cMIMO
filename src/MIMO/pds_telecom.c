@@ -10,6 +10,7 @@
 #include <libgen.h> // para usar dirame()
 #include <stdbool.h> // para usar o tipo bool
 
+
 double calculate_EVM(complexo **original_signal, complexo **received_signal, int Nstream, long int Nsymbol) {
     double error_power = 0.0;
     double signal_power = 0.0;
@@ -26,7 +27,8 @@ double calculate_EVM(complexo **original_signal, complexo **received_signal, int
     if (signal_power == 0) {
         return INFINITY; // If there's no signal, return infinity
     } else {
-        return sqrt(error_power / signal_power); // Calculate EVM
+        double evm = sqrt(error_power / signal_power); // Calculate EVM
+        return 20 * log10(evm); // Convert EVM to dB
     }
 }
 
@@ -430,7 +432,7 @@ complexo ** channel_gen(int Nr, int Nt, float minValue, float maxValue){
             return NULL;
         }
     }
-
+    //TO DO: GAUSSIANO, MODELO DE CANAL
     for (int i = 0; i < Nr; i++) {
         for (int j = 0; j < Nt; j++) {
             H[i][j].real = ((double)rand() / RAND_MAX) * (maxValue - minValue) + minValue;
@@ -475,7 +477,7 @@ complexo ** channel_rd_gen(int Nr, int Nt, float minValue, float maxValue){
             return NULL;
         }
     }
-
+    //TO  DO: noise~N(0,N0)
     for (int i = 0; i < Nr; i++) {
         for (int j = 0; j < Nt; j++) {
             H[i][j].real = ((double)rand() / RAND_MAX) * (maxValue - minValue) + minValue;

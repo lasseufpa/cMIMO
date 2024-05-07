@@ -22,7 +22,7 @@ data['NoiseLevel'] = data['NoiseLevel'].map(noise_intervals)
 
 # Group the data by Nt and NoiseLevel and calculate the mean of ErrorPercentage
 grouped = data.groupby(['EVM', 'NoiseLevel'])['BER'].mean().reset_index()
-grouped['BER'] = -np.log10(grouped['BER'])
+#grouped['BER'] = -np.log10(grouped['BER'])
 
 # Create a line plot for each noi# Create a line plot for each noise level
 sns.set_style("whitegrid")
@@ -41,7 +41,7 @@ plt.show()
 #data = data.head(16) # Considerar apenas os 24 primeiros registros
 # Repeat for the second plot
 grouped = data.groupby(['EVM', 'NoiseLevel'])['BER'].mean().reset_index()
-grouped['BER'] = np.log10(grouped['BER'])
+#grouped['BER'] = np.log10(grouped['BER'])
 
 
 plt.figure(figsize=(10, 6))
