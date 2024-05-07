@@ -10,6 +10,45 @@
 #include <libgen.h> // para usar dirame()
 #include <stdbool.h> // para usar o tipo bool
 
+double calculate_EVM(complexo **original_signal, complexo **received_signal, int Nstream, long int Nsymbol) {
+    double error_power = 0.0;
+    double signal_power = 0.0;
+
+    for (int i = 0; i < Nstream; i++) {
+        for (int j = 0; j < Nsymbol/Nstream; j++) {
+            double real_diff = original_signal[i][j].real - received_signal[i][j].real;
+            double img_diff = original_signal[i][j].img - received_signal[i][j].img;
+            error_power += real_diff * real_diff + img_diff * img_diff;
+            signal_power += original_signal[i][j].real * original_signal[i][j].real + original_signal[i][j].img * original_signal[i][j].img;
+        }
+    }
+
+    if (signal_power == 0) {
+        return INFINITY; // If there's no signal, return infinity
+    } else {
+        return sqrt(error_power / signal_power); // Calculate EVM
+    }
+}
+
+double calculate_SNR(complexo **original_signal, complexo **received_signal, int Nstream, long int Nsymbol) {
+    double signal_power = 0.0;
+    double noise_power = 0.0;
+
+    for (int i = 0; i < Nstream; i++) {
+        for (int j = 0; j < Nsymbol/Nstream; j++) {
+            double real_diff = original_signal[i][j].real - received_signal[i][j].real;
+            double img_diff = original_signal[i][j].img - received_signal[i][j].img;
+            noise_power += real_diff * real_diff + img_diff * img_diff;
+            signal_power += original_signal[i][j].real * original_signal[i][j].real + original_signal[i][j].img * original_signal[i][j].img;
+        }
+    }
+
+    if (noise_power == 0) {
+        return INFINITY; // If there's no noise, return infinity
+    } else {
+        return 10 * log10(signal_power / noise_power); // Calculate SNR in dB
+    }
+}
 
 void getUserInput(int* Nr, int* Nt, int* r) {
     printf("Digite o valor para Nr: ");
@@ -740,7 +779,7 @@ complexo ** rx_feq(complexo ** S, complexo ** xc, int Slinhas, int Scolunas, int
  *
  * @note Esta função exibe as estatísticas na saída padrão.
  */
-void gera_estatistica(int *s, int *finals, long int numBytes, int teste, int Nr, int Nt, double r){
+void gera_estatistica(int *s, int *finals, long int numBytes, int teste, int Nr, int Nt, double r, complexo **original_signal, complexo **received_signal, int Nstream, long int Nsymbol){
     int cont_acertos=0;
     int cont_erros=0;
     printf("\nNúmeros de simbolos QAM Transmitidos: %ld\n",numBytes*4);
@@ -764,9 +803,17 @@ void gera_estatistica(int *s, int *finals, long int numBytes, int teste, int Nr,
 
     printf("BER: %f\n", ber);
 
+    // Calculate SNR
+    double snr = calculate_SNR(original_signal, received_signal, Nstream, Nsymbol);
+    printf("SNR: %f dB\n", snr);
+
+    // Calculate EVM
+    double evm = calculate_EVM(original_signal, received_signal, Nstream, Nsymbol);
+    printf("EVM: %f\n", evm);
+
     FILE *file;
 
-    // Abra o arquivo em modo de anexação, para não sobrescrever os dados existentes
+    // Open the file in append mode, so as not to overwrite existing data
     file = fopen("output.csv", "a");
 
     if (file == NULL) {
@@ -774,8 +821,8 @@ void gera_estatistica(int *s, int *finals, long int numBytes, int teste, int Nr,
         return;
     }
 
-    // Escreva os dados no arquivo
-    fprintf(file, "%d,%d,%d,%f,%f,%f\n", teste, Nr, Nt, r, porcentagem_erro, ber);
+    // Write the data to the file, including the SNR and EVM
+    fprintf(file, "%d,%d,%d,%f,%f,%f,%f,%f\n", teste, Nr, Nt, r, porcentagem_erro, ber, snr, evm);
 
     fclose(file);
 }
@@ -966,14 +1013,32 @@ int main() {
             //}          
 
             if(teste <= 4){
-                Nr = 5;
-                Nt = 10;
-            }else if (teste > 4 && teste <= 8){
-                Nr = 10;
-                Nt = 20;
+                Nr = 2;
+                Nt = 4;
+            }else if (teste > 4 && teste <= 8 ){
+                Nr = 4;
+                Nt = 8;
             }else if (teste > 8 && teste <= 12){
-                Nr = 20;
-                Nt = 40;
+                Nr = 8;
+                Nt = 16;
+            }else if (teste > 12 && teste <= 16){
+                Nr = 16;
+                Nt = 32;
+            }else if (teste > 16 && teste <= 20){
+                Nr = 32;
+                Nt = 64;
+            }else if (teste > 20 && teste <= 24){
+                Nr = 64;
+                Nt = 128;
+            }else if (teste > 24 && teste <= 28){
+                Nr = 128;
+                Nt = 256;
+            }else if (teste > 28 && teste <= 32){
+                Nr = 256;
+                Nt = 512;
+            }else if (teste > 32 && teste <= 36){
+                Nr = 512;
+                Nt = 1024;
             }
 
 
@@ -1072,9 +1137,12 @@ int main() {
         
         sprintf(fileName, "%s/Teste_%d_Nr%d_Nt%d_Rd%d", destino, teste, Nr, Nt, r); // Formata o nome do arquivo com base no valor de i
         rx_data_write(s_rest, numBytes, fileName);
-        gera_estatistica(s, s_rest, numBytes, teste, Nr, Nt, r);
+        gera_estatistica(s, s_rest, numBytes, teste, Nr, Nt, r, mtx, rx_mtx, Nstream, Nsymbol);        
         printf("================== Fim do teste %d================\n", teste);
-        
+        double snr = calculate_SNR(mtx, rx_mtx, Nstream, Nsymbol);
+        printf("SNR: %f dB\n", snr);
+        double evm = calculate_EVM(mtx, rx_mtx, Nstream, Nsymbol);
+        printf("EVM: %f\n", evm);
     }
     fclose(fp);
     return 0;
