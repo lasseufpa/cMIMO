@@ -10,6 +10,10 @@
 #include <libgen.h> // para usar dirame()
 #include <stdbool.h> // para usar o tipo bool
 
+double calculate_capacity(double snr_dB) {
+    double snr = pow(10,snr_dB/10);
+    return log2(1 + snr);  // Capacity in bits per symbol
+}
 
 double calculate_EVM(complexo **original_signal, complexo **received_signal, int Nstream, long int Nsymbol) {
     double error_power = 0.0;
@@ -432,7 +436,7 @@ complexo ** channel_gen(int Nr, int Nt, float minValue, float maxValue){
             return NULL;
         }
     }
-    //TO DO: GAUSSIANO, MODELO DE CANAL
+    
     for (int i = 0; i < Nr; i++) {
         for (int j = 0; j < Nt; j++) {
             H[i][j].real = ((double)rand() / RAND_MAX) * (maxValue - minValue) + minValue;
@@ -477,7 +481,7 @@ complexo ** channel_rd_gen(int Nr, int Nt, float minValue, float maxValue){
             return NULL;
         }
     }
-    //TO  DO: noise~N(0,N0)
+    // TO DO: noise~N(0,N0)
     for (int i = 0; i < Nr; i++) {
         for (int j = 0; j < Nt; j++) {
             H[i][j].real = ((double)rand() / RAND_MAX) * (maxValue - minValue) + minValue;
@@ -785,6 +789,7 @@ void gera_estatistica(int *s, int *finals, long int numBytes, int teste, int Nr,
     int cont_acertos=0;
     int cont_erros=0;
     printf("\nNúmeros de simbolos QAM Transmitidos: %ld\n",numBytes*4);
+    printf("numBytes=%ld\n",numBytes);
     for(int i =0; i<numBytes*4; i++){
         if(s[i]==finals[i]){
             cont_acertos = cont_acertos + 1;
@@ -794,24 +799,26 @@ void gera_estatistica(int *s, int *finals, long int numBytes, int teste, int Nr,
         }
     }
     double porcentagem_erro = (cont_erros*100)/(4*numBytes);
-    printf("Número de símbolos QAM recebidos com erro: %d\n",cont_erros);
-    printf("Porcentagem de símbolos QAM recebidos com erro: %0.4f%%\n\n",porcentagem_erro);
+    printf("Número de bits recebidos com erro: %d\n",cont_erros);
+    printf("Porcentagem de bits recebidos com erro: %0.4f%%\n\n",porcentagem_erro);
 
     // Cada símbolo QAM errado representa 2 bits errados
     long int total_bits = 2 * numBytes * 4;
     int erro_bits = 2 * cont_erros;
 
     float ber = (float)erro_bits / total_bits;
-
     printf("BER: %f\n", ber);
 
     // Calculate SNR
-    double snr = calculate_SNR(original_signal, received_signal, Nstream, Nsymbol);
-    printf("SNR: %f dB\n", snr);
+    double snr_dB = calculate_SNR(original_signal, received_signal, Nstream, Nsymbol);
+    printf("SNR: %f dB\n", snr_dB);
 
     // Calculate EVM
-    double evm = calculate_EVM(original_signal, received_signal, Nstream, Nsymbol);
-    printf("EVM: %f\n", evm);
+    double evm_dB = calculate_EVM(original_signal, received_signal, Nstream, Nsymbol);
+    printf("EVM: %f dB\n", evm_dB);
+
+    double cap = calculate_capacity(snr_dB);
+    printf("Capacity: %f bit/symbol\n", cap);
 
     FILE *file;
 
@@ -824,7 +831,7 @@ void gera_estatistica(int *s, int *finals, long int numBytes, int teste, int Nr,
     }
 
     // Write the data to the file, including the SNR and EVM
-    fprintf(file, "%d,%d,%d,%f,%f,%f,%f,%f\n", teste, Nr, Nt, r, porcentagem_erro, ber, snr, evm);
+    fprintf(file, "%d,%d,%d,%f,%f,%f,%f,%f\n", teste, Nr, Nt, r, porcentagem_erro, ber, snr_dB, evm_dB);
 
     fclose(file);
 }
@@ -1043,7 +1050,6 @@ int main() {
                 Nt = 1024;
             }
 
-
             // Choosing noise interval: 0 for [-0.01,0.01], 1 for [-0.1,0.1], 2 for [-0.5,0.5], 3 for [-1,1]
             r = (teste - 1) % 4;
         }
@@ -1141,10 +1147,6 @@ int main() {
         rx_data_write(s_rest, numBytes, fileName);
         gera_estatistica(s, s_rest, numBytes, teste, Nr, Nt, r, mtx, rx_mtx, Nstream, Nsymbol);        
         printf("================== Fim do teste %d================\n", teste);
-        double snr = calculate_SNR(mtx, rx_mtx, Nstream, Nsymbol);
-        printf("SNR: %f dB\n", snr);
-        double evm = calculate_EVM(mtx, rx_mtx, Nstream, Nsymbol);
-        printf("EVM: %f\n", evm);
     }
     fclose(fp);
     return 0;
