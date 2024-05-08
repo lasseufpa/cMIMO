@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['allocatecomplexmatrix_47',['allocateComplexMatrix',['../matrix_8c.html#aa90aee15388876e1b634c4ad52ac00a6',1,'matrix.c']]]
+  ['allocatecomplexmatrix_48',['allocateComplexMatrix',['../matrix_8c.html#aa90aee15388876e1b634c4ad52ac00a6',1,'matrix.c']]]
 ];

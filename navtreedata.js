@@ -25,8 +25,10 @@
 var NAVTREE =
 [
   [ "C MIMO", "index.html", [
+    [ "Implementation of the MIMO Digital Communication System", "index.html", [
+      [ "Members", "index.html#autotoc_md1", null ]
+    ] ],
     [ "Classes", "annotated.html", [
-      [ "Members", "index.html#autotoc_md0", null ],
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
       [ "Class Members", "functions.html", [
