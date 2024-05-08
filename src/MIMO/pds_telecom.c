@@ -20,7 +20,7 @@ double calculate_EVM(complexo **original_signal, complexo **received_signal, int
             double real_diff = original_signal[i][j].real - received_signal[i][j].real;
             double img_diff = original_signal[i][j].img - received_signal[i][j].img;
             error_power += real_diff * real_diff + img_diff * img_diff;
-            signal_power += original_signal[i][j].real * original_signal[i][j].real + original_signal[i][j].img * original_signal[i][j].img;
+            signal_power += received_signal[i][j].real * received_signal[i][j].real + received_signal[i][j].img * received_signal[i][j].img;
         }
     }
 
@@ -41,7 +41,7 @@ double calculate_SNR(complexo **original_signal, complexo **received_signal, int
             double real_diff = original_signal[i][j].real - received_signal[i][j].real;
             double img_diff = original_signal[i][j].img - received_signal[i][j].img;
             noise_power += real_diff * real_diff + img_diff * img_diff;
-            signal_power += original_signal[i][j].real * original_signal[i][j].real + original_signal[i][j].img * original_signal[i][j].img;
+            signal_power += received_signal[i][j].real * received_signal[i][j].real + received_signal[i][j].img * received_signal[i][j].img;
         }
     }
 
