@@ -1,4 +1,4 @@
-# C MIMO - Implementation of MIMO Digital Communication System
+# Implementation of MIMO Digital Communication System
 
 This project was developed for the Engineering Project II course taught in the second semester at the Faculty of Computing and Telecommunications of the Federal University of Pará. The objective of this project is to develop a C library containing functions that implement matrix operations. The resulting library will be used to implement a Multiple-in, Multiple-out (MIMO) Digital Communication System in C language. The system to be implemented is described in the image below:
 
@@ -21,19 +21,19 @@ To install the dependencies above run `install_dependencies.sh` with the followi
 To compile the project, run the following command in the terminal:
 
 ```bash
-❯ make
+make
 ```
 
 To run the project, run the following command in the terminal:
 
 ```bash
-❯ make test
+make test
 ```
 
 To clean the project (remove the object directory and all test files), run the following command in the terminal:
 
 ```bash
-❯ make clean
+make clean
 ```
 
 # Makefile Guide
