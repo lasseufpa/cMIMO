@@ -72,4 +72,6 @@ plt.ylabel('BER', fontsize=13)
 plt.title('BER by number of antennas and SNR', fontsize=16)
 plt.legend(title='Antenna configurations')
 plt.show()
+plt.hist(data['BER'], bins=10)
+plt.show()
 
