@@ -415,11 +415,12 @@ complexo** produto_matricial_geral(complexo** mtx_a, complexo** mtx_b, int linha
  * @param Nt O número de antenas transmissoras.
  * @param minValue O valor mínimo para os elementos da matriz.
  * @param maxValue O valor máximo para os elementos da matriz.
+ * @param sigma O valor do desvio padrão da criação do canal
  *
  * @return Uma matriz complexa representando o canal de transferência gerado.
  *         O chamador é responsável por liberar a memória alocada utilizando a função free().
  */
-complexo ** channel_gen(int Nr, int Nt, float minValue, float maxValue){
+complexo ** channel_gen(int Nr, int Nt, double sigma){
     complexo** H = (complexo **) malloc(Nr * sizeof(complexo*));
     if (H == NULL) {
         printf("Memory allocation failed.\n");
@@ -438,10 +439,13 @@ complexo ** channel_gen(int Nr, int Nt, float minValue, float maxValue){
             return NULL;
         }
     }
-    
+    gsl_rng * r = gsl_rng_alloc (gsl_rng_default);
+    sigma = 1.0;
+
     for (int i = 0; i < Nr; i++) {
         for (int j = 0; j < Nt; j++) {
-            H[i][j].real = ((double)rand() / RAND_MAX) * (maxValue - minValue) + minValue;
+            gsl_rng_set(r, rand()%10000);
+            H[i][j].real = gsl_ran_gaussian(r, sigma);
             H[i][j].img = 0;
         }
     }
@@ -458,13 +462,12 @@ complexo ** channel_gen(int Nr, int Nt, float minValue, float maxValue){
  *
  * @param Nr Número de antenas receptoras.
  * @param Nt Número de antenas transmissoras.
- * @param minValue Valor mínimo para os elementos da matriz.
- * @param maxValue Valor máximo para os elementos da matriz.
+ * @param sigma Valor do desvio padrão do ruído.
  *
  * @return A matriz de complexos representando o ruído do canal de comunicação.
  */
 
-complexo ** channel_rd_gen(int Nr, int Nt, float minValue, float maxValue){
+complexo ** channel_rd_gen(int Nr, int Nt, double sigma){
     complexo** H = (complexo **) malloc(Nr * sizeof(complexo*));
     if (H == NULL) {
         printf("Memory allocation failed.\n");
@@ -485,14 +488,14 @@ complexo ** channel_rd_gen(int Nr, int Nt, float minValue, float maxValue){
     }
     gsl_rng * r = gsl_rng_alloc (gsl_rng_default);
     
-    double sigma = 1.0;
+    sigma = 1.0;
 
     // TO DO: noise~N(0,N0)
     for (int i = 0; i < Nr; i++) {
         for (int j = 0; j < Nt; j++) {
             gsl_rng_set(r, rand()%10000);
-            H[i][j].real = gsl_ran_gaussian(r, sigma);;
-            H[i][j].img = gsl_ran_gaussian(r, sigma);;
+            H[i][j].real = gsl_ran_gaussian(r, sigma);
+            H[i][j].img = gsl_ran_gaussian(r, sigma);
         }
     }
 
@@ -699,16 +702,16 @@ complexo ** channel_transmission(complexo ** H, complexo ** xp, int Hlinhas, int
     complexo ** Rd;
     switch(r){
         case 0:
-            Rd = channel_rd_gen(Hlinhas, xpColunas, -0.001, 0.001);
+            Rd = channel_rd_gen(Hlinhas, xpColunas, 0.001);
             break;
         case 1:
-            Rd = channel_rd_gen(Hlinhas, xpColunas, -0.01, 0.01);
+            Rd = channel_rd_gen(Hlinhas, xpColunas, 0.01);
             break;
         case 2:
-            Rd = channel_rd_gen(Hlinhas, xpColunas, -0.5, 0.5);
+            Rd = channel_rd_gen(Hlinhas, xpColunas, 0.5);
             break;
         case 3:
-            Rd = channel_rd_gen(Hlinhas, xpColunas, -1, 1);
+            Rd = channel_rd_gen(Hlinhas, xpColunas, 1);
             break;
     }
     if (Rd == NULL) {
@@ -1059,7 +1062,7 @@ int main() {
 
             // Choosing noise interval: 0 for [-0.01,0.01], 1 for [-0.1,0.1], 2 for [-0.5,0.5], 3 for [-1,1]
             // r = (teste - 1) % 4;
-            r = 3;
+            r = 0;
         }
         //Declarando o número de fluxos
         int Nstream;
@@ -1092,7 +1095,7 @@ int main() {
         complexo **rx_mtx= allocateComplexMatrix(Nstream, Nsymbol/Nstream); // matriz receptora
         // Criação do Canal H com range entre -1 e 1
         printf("\nCriando canal de transferencia de dados...");
-        complexo ** H = channel_gen(Nr, Nt, -1, 1);
+        complexo ** H = channel_gen(Nr, Nt, 1);
         //Inciando transmissão pelo canal de Nsymbol/Nstream tempos de transmissão
         printf("\nIniciando segmentação de transmissão...");
         for (int Nx = 0; Nx < Nsymbol/Nstream; Nx++){
