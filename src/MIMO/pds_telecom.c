@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include "../matrix/matrix.h"
 #include <gsl/gsl_linalg.h>
+#include <gsl/gsl_rng.h>
+#include <gsl/gsl_randist.h>
 #include <time.h>
 #include <math.h>
 #include <string.h>
@@ -481,11 +483,16 @@ complexo ** channel_rd_gen(int Nr, int Nt, float minValue, float maxValue){
             return NULL;
         }
     }
+    gsl_rng * r = gsl_rng_alloc (gsl_rng_default);
+    
+    double sigma = 1.0;
+
     // TO DO: noise~N(0,N0)
     for (int i = 0; i < Nr; i++) {
         for (int j = 0; j < Nt; j++) {
-            H[i][j].real = ((double)rand() / RAND_MAX) * (maxValue - minValue) + minValue;
-            H[i][j].img = ((double)rand() / RAND_MAX) * (maxValue - minValue) + minValue;
+            gsl_rng_set(r, rand()%10000);
+            H[i][j].real = gsl_ran_gaussian(r, sigma);;
+            H[i][j].img = gsl_ran_gaussian(r, sigma);;
         }
     }
 
@@ -1051,7 +1058,8 @@ int main() {
             }
 
             // Choosing noise interval: 0 for [-0.01,0.01], 1 for [-0.1,0.1], 2 for [-0.5,0.5], 3 for [-1,1]
-            r = (teste - 1) % 4;
+            // r = (teste - 1) % 4;
+            r = 3;
         }
         //Declarando o número de fluxos
         int Nstream;
