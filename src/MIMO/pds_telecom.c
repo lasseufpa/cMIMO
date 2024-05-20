@@ -9,8 +9,9 @@
 #include <time.h>
 #include <math.h>
 #include <string.h>
-#include <libgen.h> // para usar dirame()
-#include <stdbool.h> // para usar o tipo bool
+#include <libgen.h> 
+#include <stdbool.h> 
+#include <unistd.h>
 
 double calculate_capacity(double snr_dB) {
     double snr = pow(10,snr_dB/10);
@@ -816,7 +817,7 @@ void gera_estatistica(int *s, int *finals, long int numBytes, int teste, int Nr,
     long int total_bits = 2 * numBytes * 4;
     int erro_bits = 2 * cont_erros;
 
-    float ber = (float)erro_bits / total_bits;
+    double ber = (double)erro_bits / total_bits;
     printf("BER: %f\n", ber);
 
     // Calculate SNR
@@ -841,8 +842,7 @@ void gera_estatistica(int *s, int *finals, long int numBytes, int teste, int Nr,
     }
 
     // Write the data to the file, including the SNR and EVM
-    fprintf(file, "%d,%d,%d,%f,%f,%f,%f,%f\n", teste, Nr, Nt, r, porcentagem_erro, ber, snr_dB, evm_dB);
-
+    fprintf(file, "%d,%d,%d,%f,%f,%f,%f,%f,%f\n", teste, Nr, Nt, r, porcentagem_erro, ber, snr_dB, evm_dB, cap);
     fclose(file);
 }
 
@@ -893,7 +893,7 @@ int main() {
     char exec_path[1024];
     #ifdef __unix__
     // Código específico para sistemas Unix
-        #include <unistd.h>
+        
         printf("Executando dentro de Unix\n");
         ssize_t countt = readlink("/proc/self/exe", exec_path, sizeof(exec_path) - 1);
         if (countt != -1) {
@@ -978,7 +978,7 @@ int main() {
     fp = fopen(filename, "w+");
     // Solicitar ao usuário que escreva a mensagem
     printf("Digite a mensagem que quer enviar:\n");
-    char mensagem[10000];
+    char mensagem[50000];
     fgets(mensagem, sizeof(mensagem), stdin);
     // Escrever a mensagem no arquivo
     fprintf(fp, "%s", mensagem);
@@ -1041,8 +1041,8 @@ int main() {
                 Nr = 8;
                 Nt = 16;
             }else if (teste > 12 && teste <= 16){
-                Nr = 16;
-                Nt = 32;
+                Nr = 32;
+                Nt = 16;
             }else if (teste > 16 && teste <= 20){
                 Nr = 32;
                 Nt = 64;
@@ -1061,8 +1061,8 @@ int main() {
             }
 
             // Choosing noise interval: 0 for [-0.01,0.01], 1 for [-0.1,0.1], 2 for [-0.5,0.5], 3 for [-1,1]
-            // r = (teste - 1) % 4;
-            r = 0;
+            r = (teste - 1) % 4;
+            // r = 3;
         }
         //Declarando o número de fluxos
         int Nstream;
