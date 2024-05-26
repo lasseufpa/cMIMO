@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['gera_5festatistica_7',['gera_estatistica',['../pds__telecom_8c.html#a86b7986db8bfdf925e8c6e14c1b4e02a',1,'pds_telecom.c']]]
+  ['general_5fmatrix_5fproduct_10',['general_matrix_product',['../pds__telecom_8c.html#a298d2f00fa7ec79d743a4d672c769ab2',1,'pds_telecom.c']]],
+  ['generate_5fstatistics_11',['generate_statistics',['../pds__telecom_8c.html#a0d55c8ce5c8bae89bbd6dd43a1dd7b55',1,'pds_telecom.c']]],
+  ['getuserinput_12',['getUserInput',['../pds__telecom_8c.html#ac83844d4b0d2fd01030ef22aee1f07e9',1,'pds_telecom.c']]]
 ];
