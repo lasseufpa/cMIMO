@@ -14,25 +14,38 @@
 #include <unistd.h>
 
 /**
- * @brief Calculate the capacity of a channel given the SNR in dB.
+ * @brief This function calculates the capacity of a communication channel.
  * 
- * @param snr_dB Signal-to-noise ratio in decibels.
- * @return double Capacity in bits per symbol.
+ * The capacity is calculated using the Shannon Capacity formula, which is based on the signal-to-noise ratio (SNR).
+ * The SNR is provided in decibels (dB) and is converted to linear scale inside the function.
+ * The capacity is returned in bits per symbol.
+ * 
+ * @param snr_dB The signal-to-noise ratio (SNR) in decibels (dB).
+ * @return The capacity of the channel in bits per symbol.
  */
 double calculate_capacity(double snr_dB) {
-    double snr = pow(10,snr_dB/10);
-    return log2(1 + snr);  // Capacity in bits per symbol
+    double snr = pow(10,snr_dB/10);  // Convert SNR from dB to linear scale
+    return log2(1 + snr);  // Calculate and return the capacity in bits per symbol
 }
-
 /**
- * @brief Calculate the Error Vector Magnitude (EVM) of a signal.
+ * @brief This function calculates the Error Vector Magnitude (EVM) of a signal.
  * 
- * @param original_signal The original transmitted signal.
- * @param received_signal The signal received after transmission.
+ * EVM is a measure of the performance of a digital radio transmitter or receiver. 
+ * A lower EVM means a better performance. In this function, the EVM is calculated 
+ * by comparing the original transmitted signal with the received signal.
+ * 
+ * The function first calculates the power of the error signal and the power of the received signal.
+ * Then, it calculates the EVM as the square root of the ratio of the error power to the signal power.
+ * If the signal power is zero, the function returns infinity.
+ * Finally, the EVM is converted to decibels (dB) before being returned.
+ * 
+ * @param original_signal A 2D array of complex numbers representing the original transmitted signal.
+ * @param received_signal A 2D array of complex numbers representing the signal received after transmission.
  * @param Nstream The number of streams in the signal.
  * @param Nsymbol The total number of symbols in the signal.
- * @return double The calculated EVM of the signal in dB.
+ * @return The calculated EVM of the signal in dB. If the signal power is zero, returns infinity.
  */
+
 double calculate_EVM(complexo **original_signal, complexo **received_signal, int Nstream, long int Nsymbol) {
     double error_power = 0.0;
     double signal_power = 0.0;
@@ -55,13 +68,23 @@ double calculate_EVM(complexo **original_signal, complexo **received_signal, int
 }
 
 /**
- * @brief Calculate the Signal-to-Noise Ratio (SNR) of a signal.
+ * @brief This function calculates the Signal-to-Noise Ratio (SNR) of a signal.
  * 
- * @param original_signal The original transmitted signal.
- * @param received_signal The signal received after transmission.
+ * SNR is a measure that compares the level of a desired signal to the level of background noise.
+ * It is defined as the ratio of signal power to the noise power. A higher SNR indicates a signal 
+ * less affected by noise. In this function, the SNR is calculated by comparing the original 
+ * transmitted signal with the received signal.
+ * 
+ * The function takes as input two 2D arrays of complex numbers representing the original and 
+ * received signals, the number of streams in the signal, and the total number of symbols in the signal.
+ * 
+ * The calculated SNR is returned in decibels (dB).
+ * 
+ * @param original_signal A 2D array of complex numbers representing the original transmitted signal.
+ * @param received_signal A 2D array of complex numbers representing the signal received after transmission.
  * @param Nstream The number of streams in the signal.
  * @param Nsymbol The total number of symbols in the signal.
- * @return double The calculated SNR of the signal in dB.
+ * @return The calculated SNR of the signal in dB.
  */
 double calculate_SNR(complexo **original_signal, complexo **received_signal, int Nstream, long int Nsymbol) {
     double signal_power = 0.0;
@@ -84,7 +107,7 @@ double calculate_SNR(complexo **original_signal, complexo **received_signal, int
 }
 
 /**
- * @brief Get user input for the values of Nr, Nt, and r.
+ * @brief Get user input for the values of Nr, Nt, and r to custom mode.
  * 
  * @param Nr Pointer to an integer where the value for Nr will be stored.
  * @param Nt Pointer to an integer where the value for Nt will be stored.
@@ -97,7 +120,7 @@ void getUserInput(int* Nr, int* Nt, int* r) {
     printf("Enter the value for Nt: ");
     scanf("%d", Nt);
 
-    printf("Enter the value for r: ");
+    printf("Enter the value for r:f ");
     scanf("%d", r);
 }
 /**
@@ -833,19 +856,41 @@ complexo ** rx_feq(complexo ** S, complexo ** xc, int Slinhas, int Scolunas, int
 }
 
 /**
- * @brief Generates statistics about the transmitted and received QAM symbols.
+ * @brief Generates and outputs statistics about the transmitted and received QAM symbols.
  *
- * This function calculates statistics about the transmitted and received QAM symbols,
- * comparing the transmitted symbols vector `s` with the received symbols vector
- * `finals`. The function counts the number of correct and incorrect transmissions and calculates the
- * percentage of symbols received with errors in relation to the total symbols.
+ * This function calculates and outputs statistics about the transmitted and received QAM symbols,
+ * comparing the transmitted symbols vector `s` with the received symbols vector `finals`. 
+ * It counts the number of correct and incorrect transmissions and calculates the percentage of symbols 
+ * received with errors in relation to the total symbols. It also calculates the Bit Error Rate (BER), 
+ * Signal-to-Noise Ratio (SNR), Error Vector Magnitude (EVM), and the capacity of the communication channel.
+ * The results are displayed on the standard output and also saved to a CSV file named "output.csv".
+ *
+ * The CSV file contains the following columns:
+ * 1. `test`: An integer parameter used for testing.
+ * 2. `Nr`: The number of receive antennas.
+ * 3. `Nt`: The number of transmit antennas.
+ * 4. `r`: Noise interval.
+ * 5. `error_percentage`: The percentage of symbols received with errors in relation to the total symbols.
+ * 6. `ber`: The Bit Error Rate (BER).
+ * 7. `snr_dB`: The Signal-to-Noise Ratio (SNR) in decibels.
+ * 8. `evm_dB`: The Error Vector Magnitude (EVM) in decibels.
+ * 9. `cap`: The capacity of the communication channel in bits per symbol.
  *
  * @param s The vector of transmitted QAM symbols.
  * @param finals The vector of received QAM symbols.
  * @param numBytes The number of transmitted bytes (considering 4 QAM symbols per byte).
+ * @param teste An integer parameter used for testing.
+ * @param Nr The number of receive antennas.
+ * @param Nt The number of transmit antennas.
+ * @param r The radius of the QAM constellation.
+ * @param original_signal A 2D array of complex numbers representing the original transmitted signal.
+ * @param received_signal A 2D array of complex numbers representing the signal received after transmission.
+ * @param Nstream The number of streams in the signal.
+ * @param Nsymbol The total number of symbols in the signal.
  *
- * @note This function displays the statistics on the standard output.
+ * @note This function displays the statistics on the standard output and also writes them to a CSV file.
  */
+
 void generate_statistics(int *s, int *finals, long int numBytes, int teste, int Nr, int Nt, double r, complexo **original_signal, complexo **received_signal, int Nstream, long int Nsymbol){
     int correct_count=0;
     int error_count=0;
