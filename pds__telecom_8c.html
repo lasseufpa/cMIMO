@@ -124,16 +124,16 @@ Include dependency graph for pds_telecom.c:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a6f66531e71ad9182d91d808b3982dc7a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pds__telecom_8c.html#a6f66531e71ad9182d91d808b3982dc7a">calculate_capacity</a> (double snr_dB)</td></tr>
-<tr class="memdesc:a6f66531e71ad9182d91d808b3982dc7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the capacity of a channel given the SNR in dB.  <a href="pds__telecom_8c.html#a6f66531e71ad9182d91d808b3982dc7a">More...</a><br /></td></tr>
+<tr class="memdesc:a6f66531e71ad9182d91d808b3982dc7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function calculates the capacity of a communication channel.  <a href="pds__telecom_8c.html#a6f66531e71ad9182d91d808b3982dc7a">More...</a><br /></td></tr>
 <tr class="separator:a6f66531e71ad9182d91d808b3982dc7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cec802e673a884207ba799d1d0a98b7"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pds__telecom_8c.html#a7cec802e673a884207ba799d1d0a98b7">calculate_EVM</a> (<a class="el" href="structcomplexo.html">complexo</a> **original_signal, <a class="el" href="structcomplexo.html">complexo</a> **received_signal, int Nstream, long int Nsymbol)</td></tr>
-<tr class="memdesc:a7cec802e673a884207ba799d1d0a98b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the Error Vector Magnitude (EVM) of a signal.  <a href="pds__telecom_8c.html#a7cec802e673a884207ba799d1d0a98b7">More...</a><br /></td></tr>
+<tr class="memdesc:a7cec802e673a884207ba799d1d0a98b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function calculates the Error Vector Magnitude (EVM) of a signal.  <a href="pds__telecom_8c.html#a7cec802e673a884207ba799d1d0a98b7">More...</a><br /></td></tr>
 <tr class="separator:a7cec802e673a884207ba799d1d0a98b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a493369f2202b00e5400d4bcb9f8eb6d9"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pds__telecom_8c.html#a493369f2202b00e5400d4bcb9f8eb6d9">calculate_SNR</a> (<a class="el" href="structcomplexo.html">complexo</a> **original_signal, <a class="el" href="structcomplexo.html">complexo</a> **received_signal, int Nstream, long int Nsymbol)</td></tr>
-<tr class="memdesc:a493369f2202b00e5400d4bcb9f8eb6d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the Signal-to-Noise Ratio (SNR) of a signal.  <a href="pds__telecom_8c.html#a493369f2202b00e5400d4bcb9f8eb6d9">More...</a><br /></td></tr>
+<tr class="memdesc:a493369f2202b00e5400d4bcb9f8eb6d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function calculates the Signal-to-Noise Ratio (SNR) of a signal.  <a href="pds__telecom_8c.html#a493369f2202b00e5400d4bcb9f8eb6d9">More...</a><br /></td></tr>
 <tr class="separator:a493369f2202b00e5400d4bcb9f8eb6d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac83844d4b0d2fd01030ef22aee1f07e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pds__telecom_8c.html#ac83844d4b0d2fd01030ef22aee1f07e9">getUserInput</a> (int *Nr, int *Nt, int *r)</td></tr>
-<tr class="memdesc:ac83844d4b0d2fd01030ef22aee1f07e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get user input for the values of Nr, Nt, and r.  <a href="pds__telecom_8c.html#ac83844d4b0d2fd01030ef22aee1f07e9">More...</a><br /></td></tr>
+<tr class="memdesc:ac83844d4b0d2fd01030ef22aee1f07e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get user input for the values of Nr, Nt, and r to custom mode.  <a href="pds__telecom_8c.html#ac83844d4b0d2fd01030ef22aee1f07e9">More...</a><br /></td></tr>
 <tr class="separator:ac83844d4b0d2fd01030ef22aee1f07e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab15359648110ac707e2aa5658f4a4312"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pds__telecom_8c.html#ab15359648110ac707e2aa5658f4a4312">tx_data_read</a> (FILE *fp, long int numBytes)</td></tr>
 <tr class="memdesc:ab15359648110ac707e2aa5658f4a4312"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data from a file and converts it into an array of integers.  <a href="pds__telecom_8c.html#ab15359648110ac707e2aa5658f4a4312">More...</a><br /></td></tr>
@@ -187,7 +187,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a2e8d036544b7e74e391913edf992f155"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the interference from the H channel (S matrix from the SVD decomposition)  <a href="pds__telecom_8c.html#a2e8d036544b7e74e391913edf992f155">More...</a><br /></td></tr>
 <tr class="separator:a2e8d036544b7e74e391913edf992f155"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d55c8ce5c8bae89bbd6dd43a1dd7b55"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pds__telecom_8c.html#a0d55c8ce5c8bae89bbd6dd43a1dd7b55">generate_statistics</a> (int *s, int *finals, long int numBytes, int teste, int Nr, int Nt, double r, <a class="el" href="structcomplexo.html">complexo</a> **original_signal, <a class="el" href="structcomplexo.html">complexo</a> **received_signal, int Nstream, long int Nsymbol)</td></tr>
-<tr class="memdesc:a0d55c8ce5c8bae89bbd6dd43a1dd7b55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates statistics about the transmitted and received QAM symbols.  <a href="pds__telecom_8c.html#a0d55c8ce5c8bae89bbd6dd43a1dd7b55">More...</a><br /></td></tr>
+<tr class="memdesc:a0d55c8ce5c8bae89bbd6dd43a1dd7b55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates and outputs statistics about the transmitted and received QAM symbols.  <a href="pds__telecom_8c.html#a0d55c8ce5c8bae89bbd6dd43a1dd7b55">More...</a><br /></td></tr>
 <tr class="separator:a0d55c8ce5c8bae89bbd6dd43a1dd7b55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b6aefb69421016701b4bf643a6fe61e"><td class="memItemLeft" align="right" valign="top"><a id="a7b6aefb69421016701b4bf643a6fe61e"></a>
 <a class="el" href="structcomplexo.html">complexo</a> **&#160;</td><td class="memItemRight" valign="bottom"><b>expandMatrix</b> (<a class="el" href="structcomplexo.html">complexo</a> **matriz, int linhas, int colunas, int linhasExtras, int padding)</td></tr>
@@ -219,14 +219,15 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> ()</td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Calculate the capacity of a channel given the SNR in dB. </p>
+<p>This function calculates the capacity of a communication channel. </p>
+<p>The capacity is calculated using the Shannon Capacity formula, which is based on the signal-to-noise ratio (SNR). The SNR is provided in decibels (dB) and is converted to linear scale inside the function. The capacity is returned in bits per symbol.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">snr_dB</td><td>Signal-to-noise ratio in decibels. </td></tr>
+    <tr><td class="paramname">snr_dB</td><td>The signal-to-noise ratio (SNR) in decibels (dB). </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>double Capacity in bits per symbol. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The capacity of the channel in bits per symbol. </dd></dl>
 
 </div>
 </div>
@@ -268,17 +269,19 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> ()</td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Calculate the Error Vector Magnitude (EVM) of a signal. </p>
+<p>This function calculates the Error Vector Magnitude (EVM) of a signal. </p>
+<p>EVM is a measure of the performance of a digital radio transmitter or receiver. A lower EVM means a better performance. In this function, the EVM is calculated by comparing the original transmitted signal with the received signal.</p>
+<p>The function first calculates the power of the error signal and the power of the received signal. Then, it calculates the EVM as the square root of the ratio of the error power to the signal power. If the signal power is zero, the function returns infinity. Finally, the EVM is converted to decibels (dB) before being returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">original_signal</td><td>The original transmitted signal. </td></tr>
-    <tr><td class="paramname">received_signal</td><td>The signal received after transmission. </td></tr>
+    <tr><td class="paramname">original_signal</td><td>A 2D array of complex numbers representing the original transmitted signal. </td></tr>
+    <tr><td class="paramname">received_signal</td><td>A 2D array of complex numbers representing the signal received after transmission. </td></tr>
     <tr><td class="paramname">Nstream</td><td>The number of streams in the signal. </td></tr>
     <tr><td class="paramname">Nsymbol</td><td>The total number of symbols in the signal. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>double The calculated EVM of the signal in dB. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The calculated EVM of the signal in dB. If the signal power is zero, returns infinity. </dd></dl>
 
 </div>
 </div>
@@ -320,17 +323,20 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> ()</td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Calculate the Signal-to-Noise Ratio (SNR) of a signal. </p>
+<p>This function calculates the Signal-to-Noise Ratio (SNR) of a signal. </p>
+<p>SNR is a measure that compares the level of a desired signal to the level of background noise. It is defined as the ratio of signal power to the noise power. A higher SNR indicates a signal less affected by noise. In this function, the SNR is calculated by comparing the original transmitted signal with the received signal.</p>
+<p>The function takes as input two 2D arrays of complex numbers representing the original and received signals, the number of streams in the signal, and the total number of symbols in the signal.</p>
+<p>The calculated SNR is returned in decibels (dB).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">original_signal</td><td>The original transmitted signal. </td></tr>
-    <tr><td class="paramname">received_signal</td><td>The signal received after transmission. </td></tr>
+    <tr><td class="paramname">original_signal</td><td>A 2D array of complex numbers representing the original transmitted signal. </td></tr>
+    <tr><td class="paramname">received_signal</td><td>A 2D array of complex numbers representing the signal received after transmission. </td></tr>
     <tr><td class="paramname">Nstream</td><td>The number of streams in the signal. </td></tr>
     <tr><td class="paramname">Nsymbol</td><td>The total number of symbols in the signal. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>double The calculated SNR of the signal in dB. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The calculated SNR of the signal in dB. </dd></dl>
 
 </div>
 </div>
@@ -650,17 +656,36 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> ()</td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Generates statistics about the transmitted and received QAM symbols. </p>
-<p>This function calculates statistics about the transmitted and received QAM symbols, comparing the transmitted symbols vector <code>s</code> with the received symbols vector <code>finals</code>. The function counts the number of correct and incorrect transmissions and calculates the percentage of symbols received with errors in relation to the total symbols.</p>
+<p>Generates and outputs statistics about the transmitted and received QAM symbols. </p>
+<p>This function calculates and outputs statistics about the transmitted and received QAM symbols, comparing the transmitted symbols vector <code>s</code> with the received symbols vector <code>finals</code>. It counts the number of correct and incorrect transmissions and calculates the percentage of symbols received with errors in relation to the total symbols. It also calculates the Bit Error Rate (BER), Signal-to-Noise Ratio (SNR), Error Vector Magnitude (EVM), and the capacity of the communication channel. The results are displayed on the standard output and also saved to a CSV file named "output.csv".</p>
+<p>The CSV file contains the following columns:</p><ol type="1">
+<li><code>test</code>: An integer parameter used for testing.</li>
+<li><code>Nr</code>: The number of receive antennas.</li>
+<li><code>Nt</code>: The number of transmit antennas.</li>
+<li><code>r</code>: Noise interval.</li>
+<li><code>error_percentage</code>: The percentage of symbols received with errors in relation to the total symbols.</li>
+<li><code>ber</code>: The Bit Error Rate (BER).</li>
+<li><code>snr_dB</code>: The Signal-to-Noise Ratio (SNR) in decibels.</li>
+<li><code>evm_dB</code>: The Error Vector Magnitude (EVM) in decibels.</li>
+<li><code>cap</code>: The capacity of the communication channel in bits per symbol.</li>
+</ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The vector of transmitted QAM symbols. </td></tr>
     <tr><td class="paramname">finals</td><td>The vector of received QAM symbols. </td></tr>
-    <tr><td class="paramname">numBytes</td><td>The number of transmitted bytes (considering 4 QAM symbols per byte).</td></tr>
+    <tr><td class="paramname">numBytes</td><td>The number of transmitted bytes (considering 4 QAM symbols per byte). </td></tr>
+    <tr><td class="paramname">teste</td><td>An integer parameter used for testing. </td></tr>
+    <tr><td class="paramname">Nr</td><td>The number of receive antennas. </td></tr>
+    <tr><td class="paramname">Nt</td><td>The number of transmit antennas. </td></tr>
+    <tr><td class="paramname">r</td><td>The radius of the QAM constellation. </td></tr>
+    <tr><td class="paramname">original_signal</td><td>A 2D array of complex numbers representing the original transmitted signal. </td></tr>
+    <tr><td class="paramname">received_signal</td><td>A 2D array of complex numbers representing the signal received after transmission. </td></tr>
+    <tr><td class="paramname">Nstream</td><td>The number of streams in the signal. </td></tr>
+    <tr><td class="paramname">Nsymbol</td><td>The total number of symbols in the signal.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>This function displays the statistics on the standard output. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This function displays the statistics on the standard output and also writes them to a CSV file. </dd></dl>
 
 </div>
 </div>
@@ -696,7 +721,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> ()</td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get user input for the values of Nr, Nt, and r. </p>
+<p>Get user input for the values of Nr, Nt, and r to custom mode. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">Nr</td><td>Pointer to an integer where the value for Nr will be stored. </td></tr>

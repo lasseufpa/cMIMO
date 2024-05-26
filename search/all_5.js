@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['matrix_2ec_16',['matrix.c',['../matrix_8c.html',1,'']]],
-  ['multcomp_17',['multcomp',['../matrix_8c.html#af4484a42d3c830bc933a292cdfea2d4a',1,'matrix.c']]]
+  ['square_5fchannel_5fsvd_20',['square_channel_svd',['../pds__telecom_8c.html#a573cdce01ea489eff0d0c6cf835f0fcb',1,'pds_telecom.c']]]
 ];

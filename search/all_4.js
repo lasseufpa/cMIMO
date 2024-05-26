@@ -1,5 +1,10 @@
 var searchData=
 [
-  ['img_14',['img',['../structcomplexo.html#a8d7210c71c450c19407b8cee679ad241',1,'complexo']]],
-  ['implementation_20of_20the_20mimo_20digital_20communication_20system_15',['Implementation of the MIMO Digital Communication System',['../index.html',1,'']]]
+  ['real_13',['real',['../structcomplexo.html#a03b73fa1cd3a656bf6829ebb68049b29',1,'complexo']]],
+  ['rx_5fcombiner_14',['rx_combiner',['../pds__telecom_8c.html#ac74b7bdbb1d3a2c1749d2238ebdd6733',1,'pds_telecom.c']]],
+  ['rx_5fdata_5fdepadding_15',['rx_data_depadding',['../pds__telecom_8c.html#a93398a6e73daf2dd1866ab475486468c',1,'pds_telecom.c']]],
+  ['rx_5fdata_5fwrite_16',['rx_data_write',['../pds__telecom_8c.html#ac1a0b1e728db06c6e0e3eb03eeae5bc9',1,'pds_telecom.c']]],
+  ['rx_5ffeq_17',['rx_feq',['../pds__telecom_8c.html#a2e8d036544b7e74e391913edf992f155',1,'pds_telecom.c']]],
+  ['rx_5flayer_5fdemapper_18',['rx_layer_demapper',['../pds__telecom_8c.html#af34debfab01a53ac162063f8df9286d2',1,'pds_telecom.c']]],
+  ['rx_5fqam_5fdemapper_19',['rx_qam_demapper',['../pds__telecom_8c.html#a6f4c4ca22fa77b6407d3e8d91118ee0a',1,'pds_telecom.c']]]
 ];

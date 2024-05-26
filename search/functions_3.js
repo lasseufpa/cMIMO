@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hermitiana_64',['hermitiana',['../matrix_8c.html#a4c238ca1a9358c2ed01b2d855575d528',1,'matrix.c']]]
+  ['square_5fchannel_5fsvd_44',['square_channel_svd',['../pds__telecom_8c.html#a573cdce01ea489eff0d0c6cf835f0fcb',1,'pds_telecom.c']]]
 ];

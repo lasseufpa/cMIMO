@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['general_5fmatrix_5fproduct_10',['general_matrix_product',['../pds__telecom_8c.html#a298d2f00fa7ec79d743a4d672c769ab2',1,'pds_telecom.c']]],
-  ['generate_5fstatistics_11',['generate_statistics',['../pds__telecom_8c.html#a0d55c8ce5c8bae89bbd6dd43a1dd7b55',1,'pds_telecom.c']]],
-  ['getuserinput_12',['getUserInput',['../pds__telecom_8c.html#ac83844d4b0d2fd01030ef22aee1f07e9',1,'pds_telecom.c']]]
+  ['img_10',['img',['../structcomplexo.html#a8d7210c71c450c19407b8cee679ad241',1,'complexo']]],
+  ['implementation_20of_20the_20mimo_20digital_20communication_20system_11',['Implementation of the MIMO Digital Communication System',['../index.html',1,'']]]
 ];
