@@ -13,8 +13,9 @@ Access source code: https://github.com/lasseufpa/c_mimo
 - [Marco Antonio do Espirito Santo Maues Junior](https://github.com/Mauesjr)
 
 <div style="display: flex; justify-content: center;">
-  <div style="display: flex; gap: 150px;">
+  <div style="display: flex; gap: 80px;">
     <img src="ufpa.png" alt="UFPA's logo" style="width: 150px;">
+    <img src="lasse.png" alt="UFPA's logo" style="width: 190px;">   
     <img src="logo.png" alt="SBRT 2024 logo" style="width: 200px;">
   </div>
 </div>
