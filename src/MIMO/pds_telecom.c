@@ -1034,8 +1034,8 @@ int main() {
                 Nr = 8;
                 Nt = 16;
             }else if (teste == 4){
-                Nr = 32;
-                Nt = 16;
+                Nr = 16;
+                Nt = 32;
             }else if (teste == 5){
                 Nr = 32;
                 Nt = 64;
