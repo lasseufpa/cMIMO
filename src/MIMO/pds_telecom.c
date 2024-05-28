@@ -831,19 +831,19 @@ void gera_estatistica(int *s, int *finals, long int numBytes, int teste, int Nr,
     double cap = calculate_capacity(snr_dB);
     printf("Capacity: %f bit/symbol\n", cap);
 
-    FILE *file;
+    // FILE *file;
 
-    // Open the file in append mode, so as not to overwrite existing data
-    file = fopen("output.csv", "a");
+    // // Open the file in append mode, so as not to overwrite existing data
+    // file = fopen("output.csv", "a");
 
-    if (file == NULL) {
-        printf("Não foi possível abrir o arquivo\n");
-        return;
-    }
+    // if (file == NULL) {
+    //     printf("Não foi possível abrir o arquivo\n");
+    //     return;
+    // }
 
-    // Write the data to the file, including the SNR and EVM
-    fprintf(file, "%d,%d,%d,%f,%f,%f,%f,%f,%f\n", teste, Nr, Nt, r, porcentagem_erro, ber, snr_dB, evm_dB, cap);
-    fclose(file);
+    // // Write the data to the file, including the SNR and EVM
+    // fprintf(file, "%d,%d,%d,%f,%f,%f,%f,%f,%f\n", teste, Nr, Nt, r, porcentagem_erro, ber, snr_dB, evm_dB, cap);
+    // fclose(file);
 }
 
 complexo** expandMatrix(complexo** matriz, int linhas, int colunas, int linhasExtras, int padding){
@@ -987,7 +987,7 @@ int main() {
 
     int Nr, Nt, r;
     int mode;
-    int num_teste = 30; // número de testes predefinidos
+    int num_teste = 7; // número de testes predefinidos
 
     printf("Digite 1 para o modo predefinido ou 2 para o modo personalizado: ");
     scanf("%d", &mode);
@@ -1003,8 +1003,8 @@ int main() {
         system("pause");
         exit(1);
     }
-    printf("Quantos testes deseja realizar? (1-61): ");
-    scanf("%d", &num_teste);
+    // printf("Quantos testes deseja realizar? (1-61): ");
+    // scanf("%d", &num_teste);
     for(int teste = 1; teste <= num_teste; teste++){
             
         printf("\n===================== Teste %d ===================\n\n", teste);
@@ -1022,47 +1022,64 @@ int main() {
 
         // Número de antenas recpetoras
         // Número de antenas transmissoras
-        if(mode == 1) {
-            //if(teste % 2 == 0){
-            //    Nr = teste;
-            //    Nt = teste;
-            //}else{
-            //    Nr = teste * 2;
-            //    Nt = teste * 2;
-            //}          
-
-            if(teste <= 4){
+        if(mode == 1) {     
+            r = 3;
+            if(teste == 1){
                 Nr = 2;
                 Nt = 4;
-            }else if (teste > 4 && teste <= 8 ){
+            }else if (teste == 2){
                 Nr = 4;
                 Nt = 8;
-            }else if (teste > 8 && teste <= 12){
+            }else if (teste == 3){
                 Nr = 8;
                 Nt = 16;
-            }else if (teste > 12 && teste <= 16){
+            }else if (teste == 4){
                 Nr = 32;
                 Nt = 16;
-            }else if (teste > 16 && teste <= 20){
+            }else if (teste == 5){
                 Nr = 32;
                 Nt = 64;
-            }else if (teste > 20 && teste <= 24){
+            }else if (teste == 6){
                 Nr = 64;
                 Nt = 128;
-            }else if (teste > 24 && teste <= 28){
+            }else if (teste == 7){
                 Nr = 128;
                 Nt = 256;
-            }else if (teste > 28 && teste <= 32){
-                Nr = 256;
-                Nt = 512;
-            }else if (teste > 32 && teste <= 36){
-                Nr = 512;
-                Nt = 1024;
             }
+                            
+            // if(teste <= 4){
+            //     Nr = 2;
+            //     Nt = 4;
+            // }else if (teste > 4 && teste <= 8 ){
+            //     Nr = 4;
+            //     Nt = 8;
+            // }else if (teste > 8 && teste <= 12){
+            //     Nr = 8;
+            //     Nt = 16;
+            // }else if (teste > 12 && teste <= 16){
+            //     Nr = 32;
+            //     Nt = 16;
+            // }else if (teste > 16 && teste <= 20){
+            //     Nr = 32;
+            //     Nt = 64;
+            // }else if (teste > 20 && teste <= 24){
+            //     Nr = 64;
+            //     Nt = 128;
+            // }else if (teste > 24 && teste <= 28){
+            //     Nr = 128;
+            //     Nt = 256;
+            // }else if (teste > 28 && teste <= 32){
+            //     Nr = 256;
+            //     Nt = 512;
+            // }else if (teste > 32 && teste <= 36){
+            //     Nr = 512;
+            //     Nt = 1024;
+            // }
 
             // Choosing noise interval: 0 for [-0.01,0.01], 1 for [-0.1,0.1], 2 for [-0.5,0.5], 3 for [-1,1]
-            r = (teste - 1) % 4;
+            // r = (teste - 1) % 4;
             // r = 3;
+
         }
         //Declarando o número de fluxos
         int Nstream;
@@ -1119,6 +1136,23 @@ int main() {
                     rx_mtx[l][Nx].real = xf[l][0].real;
                     rx_mtx[l][Nx].img = xf[l][0].img;
                 }
+                if (Nx+1 == Nsymbol/Nstream){
+                    FILE *fp;
+                    fp = fopen("lambsa.csv", "a+");
+                    if (fp == NULL){
+                        printf("Erro ao abrir o arquivo\n");
+                        return 1;
+                    }
+                    fprintf(fp, "%d, %d", Nr,Nt);
+                    for(int i=0; i<Nstream; i++){
+                        for(int j=0; j<Nstream; j++){
+                            if(i==j)
+                                fprintf(fp, ", %f",r, S[i][j].real);
+                        }
+                    }
+                    fprintf(fp, "\n");
+                }
+
             }else if (Nr >= Nt){
                 complexo ** x = allocateComplexMatrix(Nstream, 1);
                 for(int l = 0; l < Nstream; l++){
@@ -1140,6 +1174,10 @@ int main() {
                 }
             }
         }
+
+
+
+
         printf("\nCompondo o vetor de complexos rx_map..");
         complexo *rx_map = rx_layer_demapper(rx_mtx, Nstream, Nsymbol);
         for(int i = 0; i < Nsymbol; i++){
