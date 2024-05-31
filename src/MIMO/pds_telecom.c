@@ -889,6 +889,8 @@ complexo ** rx_feq(complexo ** S, complexo ** xc, int Slinhas, int Scolunas, int
  * @param Nsymbol The total number of symbols in the signal.
  *
  * @note This function displays the statistics on the standard output and also writes them to a CSV file.
+ * Visualizations of these statistics can be viewed in the following Jupyter notebook: 
+ * https://colab.research.google.com/github/lasseufpa/C_MIMO/blob/1-implement-command-line-parsing-for-antenna-or-similar-configuration-in-mimo-system-simulation/analyzer.ipynb
  */
 
 void generate_statistics(int *s, int *finals, long int numBytes, int teste, int Nr, int Nt, double r, complexo **original_signal, complexo **received_signal, int Nstream, long int Nsymbol){
