@@ -1138,7 +1138,7 @@ int main() {
                 }
                 if (Nx+1 == Nsymbol/Nstream){
                     FILE *fp;
-                    fp = fopen("lambsa.csv", "a+");
+                    fp = fopen("lambda.csv", "a+");
                     if (fp == NULL){
                         printf("Erro ao abrir o arquivo\n");
                         return 1;
