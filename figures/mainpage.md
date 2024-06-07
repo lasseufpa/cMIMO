@@ -8,15 +8,15 @@ Access source code: https://github.com/lasseufpa/c_mimo
 
 ## Members
 
-- [João Victor Santos Brito Ferreira](https://github.com/jvictorferreira3301) 
-- [Kauan Miranda Tavares](https://github.com/kkauanjjk)
-- [Marco Antonio do Espirito Santo Maues Junior](https://github.com/Mauesjr)
+- [João Victor Ferreira](https://github.com/jvictorferreira3301) 
+- [Kauan Tavares](https://github.com/kkauanjjk)
+- [Marco Maues](https://github.com/Mauesjr)
+- [Pedro Rendeiro](https://github.com/pedro-rendeiro)
 
 <div style="display: flex; justify-content: center;">
-  <div style="display: flex; gap: 80px;">
+  <div style="display: flex; gap: 160px;">
     <img src="ufpa.png" alt="UFPA's logo" style="width: 150px;">
     <img src="lasse.png" alt="UFPA's logo" style="width: 190px;">   
-    <img src="logo.png" alt="SBRT 2024 logo" style="width: 200px;">
   </div>
 </div>
 
