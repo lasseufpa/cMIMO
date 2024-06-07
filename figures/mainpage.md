@@ -17,10 +17,15 @@ Access source code: https://github.com/lasseufpa/c_mimo
 
 <div style="display: flex; justify-content: center;">
   <div style="display: flex; gap: 160px;">
-    <img src="ufpa.png" alt="UFPA's logo" style="width: 150px;">
-    <img src="lasse.png" alt="UFPA's logo" style="width: 190px;">   
+    <a href="https://ufpa.br/">
+      <img src="ufpa.png" alt="UFPA's logo" style="width: 150px;">
+    </a>
+    <a href="https://www.lasse.ufpa.br/">
+      <img src="lasse.png" alt="LASSE's logo" style="width: 190px;">   
+    </a>
   </div>
 </div>
+
 
 
 
