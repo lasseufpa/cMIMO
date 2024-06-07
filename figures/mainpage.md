@@ -6,12 +6,14 @@ This project was developed for the Engineering Project II course taught in the s
 
 Access source code: https://github.com/lasseufpa/c_mimo
 
-## Members
+## Developers
 
 - [João Victor Ferreira](https://github.com/jvictorferreira3301) 
 - [Kauan Tavares](https://github.com/kkauanjjk)
 - [Marco Maues](https://github.com/Mauesjr)
 - [Pedro Rendeiro](https://github.com/pedro-rendeiro)
+
+## Organizations
 
 <div style="display: flex; justify-content: center;">
   <div style="display: flex; gap: 160px;">
