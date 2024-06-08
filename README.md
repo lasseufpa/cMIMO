@@ -1,10 +1,32 @@
 # C MIMO - Implementation of MIMO Digital Communication System
 
-This project was developed for the Engineering Project II course taught in the second semester at the Faculty of Computing and Telecommunications of the Federal University of Pará. The objective of this project is to develop a C library containing functions that implement matrix operations. The resulting library will be used to implement a Multiple-in, Multiple-out (MIMO) Digital Communication System in C language. The system to be implemented is described in the image below:
+**Table of Contents**
 
-<img src="./figures/mimosystem.png" alt="topology">
+- [C MIMO - Implementation of MIMO Digital Communication System](#c-mimo---implementation-of-mimo-digital-communication-system)
+    - [Project Description](#project-description)
+    - [Requisites](#requisites-💻)
+    - [How to Use](#how-to-use-🚀)
+        - [Custom Mode](#custom-mode)
+        - [Pre-setting Mode](#pre-setting-mode)
+    - [Results Analysis](#results-analysis)
+    - [Makefile Guide](#makefile-guide)
+        - [Variables](#variables)
+        - [Rules](#rules)
 
-## 💻 Requisites
+
+# Project Description
+This project was developed for the Engineering Project II course taught in the second semester at the Faculty of Computing and Telecommunications of the Federal University of Pará. The objective of this project is to develop a Multiple Input Multiple Output (MIMO) Digital Communication System in C language. The system to be implemented is described in the image below:
+
+<div align="center">
+    <img src="./figures/mimosystem.png" alt="topology">
+</div>
+
+Since its initial development, this project has been enhanced with new features and evaluation metrics, further expanding its capabilities and usefulness to now serve as an educational tool for others to learn just as we did during the project's development. The enhancements have been designed to provide a practical understanding of high-capacity wireless communications, particularly relevant with the advent of fifth-generation (5G) mobile networks. The project, developed in alignment with the [Conceive, Design, Implement, and Operate (CDIO)](http://www.cdio.org/) initiative, aims to help students grasp the fundamentals of modern communication systems and signal processing. By offering comprehensive documentation and free access, it aims to contribute to the educational resources available to the telecommunications community.
+
+A detailed description of these enhancements and the overall project can be found in our [website's documentation](https://lasseufpa.github.io/C_MIMO/) and in the paper titled [*Development of a MIMO System for Education in
+Digital Communications: A CDIO Approach*]().
+
+## Requisites 💻 
 
 - GSL Library (`gsl/gsl_linalg.h`): The GNU Scientific Library (GSL) is a numerical library for C and C++. In this case, the linear algebra part is being used.
 
@@ -13,28 +35,34 @@ This project was developed for the Engineering Project II course taught in the s
 To install the dependencies above run `install_dependencies.sh` with the following command in the terminal:
 
 ```bash
-❯ sh install_dependencies.sh
+sh install_dependencies.sh
 ```
 
-## 🚀 How to Use
+## How to Use 🚀
 
 To compile the project, run the following command in the terminal:
 
 ```bash
-❯ make
+make
 ```
 
 To run the project, run the following command in the terminal:
 
 ```bash
-❯ make test
+make test
 ```
 
 To clean the project (remove the object directory and all test files), run the following command in the terminal:
 
 ```bash
-❯ make clean
+make clean
 ```
+
+### Custom Mode
+
+### Pre-setting Mode
+
+## Results Analysis
 
 # Makefile Guide
 
