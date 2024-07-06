@@ -58,11 +58,25 @@ To clean the project (remove the object directory and all test files), run the f
 make clean
 ```
 
+The system offers two modes of operation, upon execution, the user is prompted to choose between these two modes. The choice is made through a simple console interface where the user inputs either 1 for the pre-setting mode or 2 for the custom mode.
+
+### Pre-setting Mode (Default Mode)
+In Pre-setting Mode, the system operates with predefined parameters. This mode is designed for users who prefer to run the system with standard configurations without customization.
+
+- **Receive Antennas ($N_r$):** Varies in the set $\{2^1, 2^2, \ldots, 2^7\}$
+- **Transmit Antennas ($N_t$):** Each $N_t$ is double the corresponding $N_r$, varying in the set $\{2^2, 2^3, \ldots, 2^8\}$
+
 ### Custom Mode
+In Custom Mode, the user specifies the parameters. The system collects specific inputs from the user using the `getUserInput` function.
 
-### Pre-setting Mode
+- **Parameters to be specified by the user:**
+  - Number of Receive Antennas ($N_r$)
+  - Number of Transmit Antennas ($N_t$)
+  - Noise Level (r)
 
-## Results Analysis
+### Results Analysis
+
+
 
 # Makefile Guide
 
