@@ -8,7 +8,7 @@
     - [How to Use](#how-to-use-🚀)
         - [Custom Mode](#custom-mode)
         - [Pre-setting Mode](#pre-setting-mode)
-    - [Results Analysis](#results-analysis)
+        - [Results Analysis](#results-analysis)
     - [Makefile Guide](#makefile-guide)
         - [Variables](#variables)
         - [Rules](#rules)
