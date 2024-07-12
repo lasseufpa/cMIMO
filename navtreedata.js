@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "My Project", "index.html", [
+  [ "C MIMO", "index.html", [
     [ "Implementation of the MIMO Digital Communication System", "index.html", [
       [ "Developers", "index.html#autotoc_md1", null ],
       [ "Organizations", "index.html#autotoc_md2", null ]
