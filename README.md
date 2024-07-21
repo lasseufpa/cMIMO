@@ -76,7 +76,9 @@ In Custom Mode, the user specifies the parameters. The system collects specific 
 
 ### Results Analysis
 
+When running a simulation, an `output.csv` file is generated containing statistics from the tests, such as the test number, number of receiving antennas ($N_r$), number of transmitting antennas ($N_t$), SER (Symbol Error Rate), BER (Bit Error Rate), SNR (Signal-Noise Ratio), EVM (Error Vector Magnitude), and channel capacity.
 
+Such a csv file can be easily viewed and interpreted by a Python script in a Jupyter Notebook called `analyzer.ipynb` that can be accessed through [Google Colab](). This Notebook also contains the calculations and formulas for the mentioned metrics.
 
 # Makefile Guide
 
