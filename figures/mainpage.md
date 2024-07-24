@@ -6,6 +6,16 @@ This project was developed for the Engineering Project II course taught in the s
 
 Access source code: https://github.com/lasseufpa/c_mimo
 
+## Documentation
+
+[Here](https://lasseufpa.github.io/cMIMO/pds__telecom_8c.html) you can find all implemented functions documented. The documentation provides detailed descriptions of each function, including their purpose, parameters and return values. It serves as a comprehensive guide for developers to understand and utilize the library effectively.
+
+## Results Analysis
+
+When running a simulation, the function [`generate_statistics`](https://lasseufpa.github.io/cMIMO/pds__telecom_8c.html#a0d55c8ce5c8bae89bbd6dd43a1dd7b55:~:text=generate_statistics()) generate a `output.csv` containing statistics from the tests, such as the test number, number of receiving antennas ($N_r$), number of transmitting antennas ($N_t$), SER (Symbol Error Rate), BER (Bit Error Rate), SNR (Signal-Noise Ratio), EVM (Error Vector Magnitude), and channel capacity.
+
+ Visualizations of these statistics can be viewed in the local Jupyter notebook or in [Google Colab](https://colab.research.google.com/github/lasseufpa/C_MIMO/blob/1-implement-command-line-parsing-for-antenna-or-similar-configuration-in-mimo-system-simulation/analyzer.ipynb)
+
 ## Developers
 
 - [João Victor Ferreira](https://github.com/jvictorferreira3301) 
