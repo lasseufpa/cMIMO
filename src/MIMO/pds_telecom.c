@@ -86,6 +86,20 @@ double* calculate_SNR(complexo **original_signal, complexo **received_signal, in
     return snr_values;
 }
 
+double calculate_SNR_mean(double* snr_values, int Nstream) {
+    double snr_mean;
+
+    for (int i = 0; i < Nstream; i++) {
+        if (snr_values[i] == 0) {
+            Nstream = i;
+            break;
+        }
+        snr_mean += snr_values[i];
+    }
+    snr_mean = snr_mean/Nstream;
+
+    return snr_mean;
+}
 
 
 void getUserInput(int* Nr, int* Nt, int* r) {
@@ -840,7 +854,7 @@ void gera_estatistica(int *s, int *finals, long int numBytes, int teste, int Nr,
     }
     double porcentagem_erro = (cont_erros*100)/(4*numBytes);
     printf("Número de bits recebidos com erro: %d\n",cont_erros);
-    printf("Porcentagem de bits recebidos com erro: %0.4f%%\n\n",porcentagem_erro);
+    printf("Porcentagem de bits rgera_esecebidos com erro: %0.4f%%\n\n",porcentagem_erro);
 
     // Cada símbolo QAM errado representa 2 bits errados
     long int total_bits = 2 * numBytes * 4;
@@ -852,6 +866,7 @@ void gera_estatistica(int *s, int *finals, long int numBytes, int teste, int Nr,
     // Calculate SNR
     double *snr_dB = calculate_SNR(original_signal, received_signal, Nstream, Nsymbol);
     // printf("SNR: %f dB\n", snr_dB);
+    double snr_mean = calculate_SNR_mean(snr_dB,Nstream);
 
     for (int i = 0; i < Nstream; i++) {
         printf("SNR: %f dB\n", snr_dB[i]);
@@ -859,6 +874,7 @@ void gera_estatistica(int *s, int *finals, long int numBytes, int teste, int Nr,
 
     // Calculate EVM
     double evm_dB = calculate_EVM(original_signal, received_signal, Nstream, Nsymbol);
+    printf("SNR MEAN: %f dB\n", snr_mean);
     printf("EVM: %f dB\n", evm_dB);
 
     // double cap = calculate_capacity(snr_dB);

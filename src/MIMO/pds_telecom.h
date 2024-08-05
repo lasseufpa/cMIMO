@@ -20,5 +20,6 @@ complexo ** rx_combiner(complexo ** U, complexo ** xt, int Ulinhas, int Ucolunas
 complexo ** rx_feq(complexo ** S, complexo ** xc, int Slinhas, int Scolunas, int xcLinhas, int xcColunas);
 void gera_estatistica(int *s, int *finals, long int numBytes);
 complexo** expandMatrix(complexo** matriz, int linhas, int colunas, int linhasExtras, int padding);
+double calculate_SNR_mean(double* snr_values, int Nstream);
 
 #endif
