@@ -12,10 +12,23 @@
 #include <libgen.h> 
 #include <stdbool.h> 
 #include <unistd.h>
+#include <time.h>
 
-double calculate_capacity(double snr_dB) {
-    double snr = pow(10,snr_dB/10);
-    return log2(1 + snr);  // Capacity in bits per symbol
+double calculate_capacity(double* snr_dB, int Nstream) {
+    double capacity_mean = 0;
+    double snr = 0;
+    for (int i = 0; i < Nstream; i++) {
+        if (snr_dB[i] == 0) {
+            Nstream = i;
+            break;
+        }
+        // snr = pow(10,snr_dB[i]/10);
+        // capacity_mean += log2(1 + pow(10,snr_dB[i]/10));
+        capacity_mean += log2(1 + snr_dB[i]);
+    }
+    capacity_mean = capacity_mean/Nstream;
+
+    return capacity_mean;  // Capacity in bits per symbol
 }
 
 double calculate_EVM(complexo **original_signal, complexo **received_signal, int Nstream, long int Nsymbol) {
@@ -877,7 +890,7 @@ void gera_estatistica(int *s, int *finals, long int numBytes, int teste, int Nr,
     printf("SNR MEAN: %f dB\n", snr_mean);
     printf("EVM: %f dB\n", evm_dB);
 
-    double cap = calculate_capacity(snr_mean);
+    double cap = calculate_capacity(snr_dB, Nstream);
     printf("Capacity: %f bit/symbol\n", cap);
 
     FILE *file;
@@ -891,7 +904,7 @@ void gera_estatistica(int *s, int *finals, long int numBytes, int teste, int Nr,
     }
 
     // Write the data to the file, including the SNR and EVM
-    fprintf(file, "%d,%d,%f,%f\n", Nr, Nt, snr_mean, cap);
+    fprintf(file, "%d,%d,%f,%f,%f\n", Nr, Nt, ber ,snr_mean, cap);
     fclose(file);
 }
 
@@ -1073,6 +1086,7 @@ int main() {
         // Número de antenas transmissoras
         if(mode == 1) {     
             r = 3;
+            
             if(teste == 1){
                 Nr = 2;
                 Nt = 4;
@@ -1095,6 +1109,7 @@ int main() {
                 Nr = 128;
                 Nt = 256;
             }
+            
                             
             // if(teste <= 4){
             //     Nr = 2;
@@ -1163,6 +1178,7 @@ int main() {
         printf("\nCriando canal de transferencia de dados...");
         complexo ** H = channel_gen(Nr, Nt, 1);
         //Inciando transmissão pelo canal de Nsymbol/Nstream tempos de transmissão
+        clock_t inicio = clock();
         printf("\nIniciando segmentação de transmissão...");
         for (int Nx = 0; Nx < Nsymbol/Nstream; Nx++){
             complexo ** x = allocateComplexMatrix(Nstream, 1);
@@ -1185,22 +1201,22 @@ int main() {
                     rx_mtx[l][Nx].real = xf[l][0].real;
                     rx_mtx[l][Nx].img = xf[l][0].img;
                 }
-                if (Nx+1 == Nsymbol/Nstream){
-                    FILE *fp;
-                    fp = fopen("lambda.csv", "a+");
-                    if (fp == NULL){
-                        printf("Erro ao abrir o arquivo\n");
-                        return 1;
-                    }
-                    fprintf(fp, "%d, %d", Nr,Nt);
-                    for(int i=0; i<Nstream; i++){
-                        for(int j=0; j<Nstream; j++){
-                            if(i==j)
-                                fprintf(fp, ", %f",r, S[i][j].real);
-                        }
-                    }
-                    fprintf(fp, "\n");
-                }
+                // if (Nx+1 == Nsymbol/Nstream){
+                //     FILE *fp;
+                //     fp = fopen("lambda.csv", "a+");
+                //     if (fp == NULL){
+                //         printf("Erro ao abrir o arquivo\n");
+                //         return 1;
+                //     }
+                //     fprintf(fp, "%d, %d", Nr,Nt);
+                //     for(int i=0; i<Nstream; i++){
+                //         for(int j=0; j<Nstream; j++){
+                //             if(i==j)
+                //                 fprintf(fp, ", %f",r, S[i][j].real);
+                //         }
+                //     }
+                //     fprintf(fp, "\n");
+                // }
 
             }else if (Nr >= Nt){
                 complexo ** x = allocateComplexMatrix(Nstream, 1);
@@ -1223,9 +1239,8 @@ int main() {
                 }
             }
         }
-
-
-
+        clock_t fim = clock();
+        double taxa_transmissao = numBytes*8/((double)(fim-inicio)/CLOCKS_PER_SEC);
 
         // printf("\nCompondo o vetor de complexos rx_map..");
         complexo *rx_map = rx_layer_demapper(rx_mtx, Nstream, Nsymbol);
@@ -1244,6 +1259,7 @@ int main() {
         sprintf(fileName, "%s/Teste_%d_Nr%d_Nt%d_Rd%d", destino, teste, Nr, Nt, r); // Formata o nome do arquivo com base no valor de i
         rx_data_write(s_rest, numBytes, fileName);
         gera_estatistica(s, s_rest, numBytes, teste, Nr, Nt, r, mtx, rx_mtx, Nstream, Nsymbol);        
+        printf("\nTaxa de transmissão: %f bps\n", taxa_transmissao);
         printf("================== Fim do teste %d================\n", teste);
     }
     fclose(fp);
