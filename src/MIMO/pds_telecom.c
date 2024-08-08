@@ -868,31 +868,31 @@ void gera_estatistica(int *s, int *finals, long int numBytes, int teste, int Nr,
     // printf("SNR: %f dB\n", snr_dB);
     double snr_mean = calculate_SNR_mean(snr_dB,Nstream);
 
-    for (int i = 0; i < Nstream; i++) {
-        printf("SNR: %f dB\n", snr_dB[i]);
-    }
+    // for (int i = 0; i < Nstream; i++) {
+    //     printf("SNR: %f dB\n", snr_dB[i]);
+    // }
 
     // Calculate EVM
     double evm_dB = calculate_EVM(original_signal, received_signal, Nstream, Nsymbol);
     printf("SNR MEAN: %f dB\n", snr_mean);
     printf("EVM: %f dB\n", evm_dB);
 
-    // double cap = calculate_capacity(snr_dB);
-    // printf("Capacity: %f bit/symbol\n", cap);
+    double cap = calculate_capacity(snr_mean);
+    printf("Capacity: %f bit/symbol\n", cap);
 
-    // FILE *file;
+    FILE *file;
 
-    // // Open the file in append mode, so as not to overwrite existing data
-    // file = fopen("output.csv", "a");
+    // Open the file in append mode, so as not to overwrite existing data
+    file = fopen("output.csv", "a");
 
-    // if (file == NULL) {
-    //     printf("Não foi possível abrir o arquivo\n");
-    //     return;
-    // }
+    if (file == NULL) {
+        printf("Não foi possível abrir o arquivo\n");
+        return;
+    }
 
-    // // Write the data to the file, including the SNR and EVM
-    // fprintf(file, "%d,%d,%d,%f,%f,%f,%f,%f,%f\n", teste, Nr, Nt, r, porcentagem_erro, ber, snr_dB, evm_dB, cap);
-    // fclose(file);
+    // Write the data to the file, including the SNR and EVM
+    fprintf(file, "%d,%d,%f,%f\n", Nr, Nt, snr_mean, cap);
+    fclose(file);
 }
 
 complexo** expandMatrix(complexo** matriz, int linhas, int colunas, int linhasExtras, int padding){
