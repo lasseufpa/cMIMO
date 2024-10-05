@@ -18,7 +18,7 @@
 This project was developed for the Engineering Project II course taught in the second semester at the Faculty of Computing and Telecommunications of the Federal University of Pará. The objective of this project is to develop a Multiple Input Multiple Output (MIMO) Digital Communication System in C language. The system to be implemented is described in the image below:
 
 <div align="center">
-    <img src="./figures/mimosystem.png" alt="topology">
+    <img src="./assets/mimosystem.png" alt="topology">
 </div>
 
 Since its initial development, this project has been enhanced with new features and evaluation metrics, further expanding its capabilities and usefulness to now serve as an educational tool for others to learn just as we did during the project's development. The enhancements have been designed to provide a practical understanding of high-capacity wireless communications, particularly relevant with the advent of fifth-generation (5G) mobile networks. The project, developed in alignment with the [Conceive, Design, Implement, and Operate (CDIO)](http://www.cdio.org/) initiative, aims to help students grasp the fundamentals of modern communication systems and signal processing. By offering comprehensive documentation and free access, it aims to contribute to the educational resources available to the telecommunications community.
