@@ -23,7 +23,8 @@ This project was developed for the Engineering Project II course taught in the s
 
 Since its initial development, this project has been enhanced with new features and evaluation metrics, further expanding its capabilities and usefulness to now serve as an educational tool for others to learn just as we did during the project's development. The enhancements have been designed to provide a practical understanding of high-capacity wireless communications, particularly relevant with the advent of fifth-generation (5G) mobile networks. The project, developed in alignment with the [Conceive, Design, Implement, and Operate (CDIO)](http://www.cdio.org/) initiative, aims to help students grasp the fundamentals of modern communication systems and signal processing. By offering comprehensive documentation and free access, it aims to contribute to the educational resources available to the telecommunications community.
 
-A detailed description of these enhancements and the overall project can be found in our [website's documentation](https://lasseufpa.github.io/C_MIMO/). 
+A detailed description of these enhancements and the overall project can be found in our [website's documentation](https://lasseufpa.github.io/C_MIMO/) and in the paper titled [*Development of a MIMO System for Education in
+Digital Communications: A CDIO Approach*](https://biblioteca.sbrt.org.br/articles/4670).
 
 ## Requisites
 
